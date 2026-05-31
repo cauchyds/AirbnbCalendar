@@ -1602,3 +1602,316 @@ body {
   color: var(--text-muted) !important;
   margin-top: 4px;
 }
+
+/* ==========================================================================
+   13. 高级移动端响应式与视口适配 (Mobile Responsiveness & Viewport Optimization)
+   ========================================================================== */
+@media (max-width: 768px) {
+  body { 
+    padding-bottom: 20px; 
+  }
+  .app-header { 
+    padding: 8px 0 !important; 
+    margin-bottom: 10px !important;
+  }
+  .header-container {
+    padding: 0 10px !important;
+    gap: 8px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .logo-area { 
+    gap: 6px !important; 
+  }
+  .logo-icon { 
+    font-size: 1.4rem !important; 
+  }
+  .logo-text h1 { 
+    font-size: 1.25rem !important; 
+  }
+  .logo-text .subtitle {
+    font-size: 0.75rem !important;
+    letter-spacing: 1px !important;
+  }
+  .sync-panel {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 4px 8px !important;
+    font-size: 0.75rem !important;
+    gap: 8px !important;
+    margin-top: 4px !important;
+  }
+  .btn-sync { 
+    padding: 4px 8px !important; 
+    font-size: 0.75rem !important; 
+  }
+  
+  .brand-nav { 
+    padding: 0 4px !important; 
+    margin-top: 8px !important; 
+    margin-bottom: 8px !important;
+  }
+  .brand-tabs-container {
+    gap: 4px !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  .brand-tab { 
+    padding: 6px 12px !important; 
+    font-size: 0.8rem !important; 
+    flex-shrink: 0 !important; 
+  }
+  
+  .dashboard-content { 
+    padding: 0 4px !important; 
+  }
+  
+  .kpi-section { 
+    margin-top: 10px !important; 
+  }
+  .kpi-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 8px !important; 
+  }
+  .kpi-card { 
+    padding: 8px 10px !important; 
+    gap: 8px !important; 
+    border-radius: var(--radius-sm) !important; 
+  }
+  .kpi-icon { 
+    width: 32px !important; 
+    height: 32px !important; 
+    font-size: 1.1rem !important; 
+  }
+  .kpi-value { 
+    font-size: 1.15rem !important; 
+  }
+  .kpi-label { 
+    font-size: 0.65rem !important; 
+    margin-top: 1px !important; 
+  }
+  
+  .todo-section { 
+    margin-top: 10px !important; 
+  }
+  .todo-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 8px !important; 
+  }
+  .todo-box { 
+    padding: 10px 12px !important; 
+    border-radius: var(--radius-sm) !important; 
+  }
+  .todo-title { 
+    padding-bottom: 6px !important; 
+    margin-bottom: 6px !important; 
+    gap: 6px !important;
+  }
+  .todo-title h3 { 
+    font-size: 0.85rem !important; 
+  }
+  .todo-marker {
+    width: 4px !important;
+    height: 12px !important;
+  }
+  .todo-list-container { 
+    max-height: 100px !important; 
+    gap: 6px !important;
+  }
+  .todo-item { 
+    padding: 6px 10px !important; 
+    border-radius: var(--radius-sm) !important;
+  }
+  .todo-prop-name { 
+    font-size: 0.8rem !important; 
+  }
+  .todo-dates { 
+    font-size: 0.7rem !important; 
+  }
+  .todo-empty {
+    padding: 15px 0 !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .timeline-section { 
+    margin-top: 10px !important; 
+  }
+  .section-card { 
+    padding: 6px !important; 
+    border-radius: var(--radius-sm) !important; 
+  }
+  .section-header { 
+    flex-direction: column !important; 
+    align-items: stretch !important; 
+    gap: 8px !important; 
+    margin-bottom: 10px !important; 
+  }
+  .section-header h2 { 
+    font-size: 1.05rem !important; 
+  }
+  .section-badge {
+    font-size: 0.7rem !important;
+    padding: 1px 6px !important;
+  }
+  
+  .timeline-controls {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .control-label {
+    display: none !important;
+  }
+  .control-group { 
+    display: flex !important;
+    flex: 1 !important; 
+    min-width: 0 !important;
+    justify-content: center !important; 
+  }
+  .timeline-nav { 
+    display: flex !important;
+    flex: 1 !important; 
+    min-width: 0 !important;
+    justify-content: center !important; 
+  }
+  .btn-toggle, .btn-nav { 
+    flex: 1 !important; 
+    text-align: center !important; 
+    padding: 6px 4px !important; 
+    font-size: 0.75rem !important; 
+    white-space: nowrap !important;
+  }
+  .timeline-wrapper-outer { 
+    border-radius: var(--radius-sm) !important; 
+    max-height: 500px !important; 
+    margin-bottom: 10px !important;
+  }
+  
+  .tg-col-date-header {
+    width: 70px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    padding: 8px 2px !important;
+    border-right: 1.5px solid var(--border-wood-dark) !important;
+  }
+  .tg-col-corner {
+    width: 70px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    border-right: 1.5px solid var(--border-wood-dark) !important;
+  }
+  .tg-col-date-header .date-name {
+    font-size: 0.8rem !important;
+  }
+  .tg-col-date-header .date-num {
+    font-size: 0.7rem !important;
+  }
+  
+  .tg-col-prop {
+    width: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+  }
+  .tg-thead th {
+    font-size: 0.85rem !important;
+    padding: 8px 4px !important;
+  }
+  .tg-cell-booking, .tg-cell-remark { 
+    border-right: 2px double rgba(122, 98, 78, 0.25) !important; 
+  }
+  .tg-cell-remark { 
+    font-size: 0.7rem !important; 
+    padding: 2px 4px !important; 
+  }
+  .grid-pill {
+    font-size: 0.6rem !important;
+    padding: 0px 4px !important;
+  }
+  .pill-out {
+    margin-left: 2px !important;
+  }
+  
+  /* 月度日历响应式微调 */
+  .single-calendar-section {
+    margin-top: 10px !important;
+  }
+  .property-selector-wrapper label {
+    font-size: 0.8rem !important;
+  }
+  .property-dropdown {
+    padding: 6px 10px !important;
+    font-size: 0.8rem !important;
+  }
+  .calendar-layout { 
+    flex-direction: column !important; 
+    gap: 12px !important; 
+    margin-top: 6px !important;
+  }
+  .calendar-sidebar { 
+    width: 100% !important; 
+  }
+  .sidebar-box {
+    padding: 12px !important;
+  }
+  .sidebar-box h4 {
+    font-size: 0.95rem !important;
+  }
+  .sidebar-booking-list {
+    max-height: 180px !important;
+  }
+  .sidebar-booking-item {
+    padding: 8px 10px !important;
+    font-size: 0.8rem !important;
+  }
+  .calendar-grid-box {
+    padding: 12px !important;
+  }
+  .calendar-month-header {
+    margin-bottom: 10px !important;
+  }
+  .calendar-month-header h3 {
+    font-size: 1.05rem !important;
+    letter-spacing: 1px !important;
+  }
+  .btn-cal-nav {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .calendar-table th {
+    padding: 6px 0 !important;
+    font-size: 0.75rem !important;
+  }
+  .calendar-table td {
+    height: 55px !important;
+    padding: 3px !important;
+  }
+  .cal-date-num {
+    font-size: 0.75rem !important;
+  }
+  .cal-booking-stripe {
+    font-size: 0.6rem !important;
+    padding: 1px 2px !important;
+    margin-top: 2px !important;
+  }
+  
+  /* 页脚 */
+  .app-footer {
+    margin-top: 20px !important;
+    padding: 15px 0 !important;
+  }
+  .footer-container {
+    padding: 0 10px !important;
+  }
+  .app-footer p {
+    font-size: 0.75rem !important;
+  }
+  .footer-note {
+    font-size: 0.65rem !important;
+  }
+}
