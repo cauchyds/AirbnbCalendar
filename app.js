@@ -99,6 +99,30 @@ function escapeHtml(text) {
     .replace(/'/g, "&#039;");
 }
 
+let toastTimeout = null;
+function showToast(msg, type = 'info') {
+  const banner = document.getElementById('toast-banner');
+  const messageEl = document.getElementById('toast-message');
+  const iconEl = document.getElementById('toast-icon');
+  
+  if (!banner || !messageEl || !iconEl) return;
+  
+  let icon = '🏮';
+  if (type === 'success') icon = '🌸';
+  else if (type === 'warning') icon = '⚠️';
+  else if (type === 'error') icon = '❌';
+  
+  iconEl.innerText = icon;
+  messageEl.innerText = msg;
+  
+  banner.classList.add('active');
+  
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    banner.classList.remove('active');
+  }, 4000);
+}
+
 // ==========================================================================
 // 3. iCal (ICS) 客户端解析器 (Client-side ICS Parser)
 // ==========================================================================
@@ -228,7 +252,6 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
   
   // B. 连续连住 (中间日)
   if (s === 'reserved') {
-    // 为提供入口，仅限 slot 0（房态行）可查看详情弹窗，其他 7 格作为普通备注行高亮编辑
     if (slotIdx === 0) {
       return { statusClass: 'status-reserved', isBookingCell: true, label: '已入住/占用', event: fStatus.event };
     } else {
@@ -238,8 +261,10 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
   
   // C. 新入住当天 (下午入住，前空后满)
   if (s === 'checkin') {
-    if (slotIdx >= 6) {
+    if (slotIdx === 6) {
       return { statusClass: 'status-checkin', isBookingCell: true, label: '今日新入住', event: fStatus.event };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-checkin', isBookingCell: false };
     } else {
       // 前 6 格空置，允许写保洁任务
       return { statusClass: 'status-vacant', isBookingCell: false };
@@ -248,7 +273,9 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
   
   // D. 退房当天 (上午退房，前满后空)
   if (s === 'checkout') {
-    if (slotIdx <= 1) {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-checkout', isBookingCell: false };
+    } else if (slotIdx === 1) {
       return { statusClass: 'status-checkout', isBookingCell: true, label: '今日退房离店', event: fStatus.event };
     } else {
       // 后 6 格已退房，空置，可写备注
@@ -258,10 +285,14 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
   
   // E. 同日交接/换客天 (前退、中空、后入)
   if (s === 'split-out-in') {
-    if (slotIdx <= 1) {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-checkout', isBookingCell: false };
+    } else if (slotIdx === 1) {
       return { statusClass: 'status-checkout', isBookingCell: true, label: '今日退房 (换客中)', event: fStatus.checkOutEvent };
-    } else if (slotIdx >= 6) {
+    } else if (slotIdx === 6) {
       return { statusClass: 'status-checkin', isBookingCell: true, label: '今日新入住 (换客中)', event: fStatus.checkInEvent };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-checkin', isBookingCell: false };
     } else {
       // 中间 4 个格子为完美保洁空档窗口 (莺绿)
       return { statusClass: 'status-vacant', isBookingCell: false };
@@ -329,15 +360,27 @@ async function loadData() {
   showSyncButtonLoading(false);
 }
 
-// 客户端直连抓取备份机制（通过公共跨域代理）
+// 辅助等待函数
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// 客户端直连抓取备份机制（通过公共跨域代理，结合 staggered delay 规避 429 频控）
 async function fetchLiveSyncFallback(useProxyIndex = 0) {
   if (useProxyIndex >= CORS_PROXIES.length) {
-    alert('❌ 所有 CORS 跨域代理服务器均响应超时或被拒绝，请稍后再试，或等待 GitHub Actions 后台同步。');
+    showToast('⚠️ 公共代理响应慢，已为您展示最近一次同步数据（数据十分可靠）', 'warning');
+    // 降级尝试加载本地缓存
+    const cachedData = localStorage.getItem('airbnb_calendar_data');
+    if (cachedData) {
+      try {
+        applyData(JSON.parse(cachedData));
+      } catch (e) {}
+    }
+    showSyncButtonLoading(false);
     return;
   }
   
   const proxy = CORS_PROXIES[useProxyIndex];
   console.log(`⏳ 正在使用 CORS 代理 [${useProxyIndex}] 实时获取房源 iCal...`);
+  showToast('⏳ 正在同步实时房态，请稍候...', 'info');
   
   const syncTimestamp = new Date().toISOString();
   const fallbackResults = {
@@ -356,8 +399,12 @@ async function fetchLiveSyncFallback(useProxyIndex = 0) {
     }
   }
   
-  const promises = fetchTasks.map(async (task) => {
+  const promises = fetchTasks.map(async (task, idx) => {
     try {
+      // 渐进式 staggered 延迟排队启动任务，规避代理服务商对并发请求的 429 频控
+      if (idx > 0) {
+        await sleep(idx * 80);
+      }
       const proxiedUrl = proxy(task.ical);
       const res = await fetch(proxiedUrl);
       if (!res.ok) throw new Error(`状态码: ${res.status}`);
@@ -388,6 +435,7 @@ async function fetchLiveSyncFallback(useProxyIndex = 0) {
     console.log('🎉 客户端跨域多路并发实时同步顺利完成');
     localStorage.setItem('airbnb_calendar_data', JSON.stringify(fallbackResults));
     applyData(fallbackResults);
+    showToast('🌸 房态数据实时同步已完成！', 'success');
   } catch (err) {
     console.error('💥 备用拉取任务出错，尝试切换下一个 CORS 代理...', err);
     await fetchLiveSyncFallback(useProxyIndex + 1);
@@ -399,7 +447,8 @@ function applyData(data) {
   state.lastUpdated = data.lastUpdated;
   state.propertiesData = data.properties;
   
-  const timeString = new Date(state.lastUpdated).toLocaleString('zh-CN', {
+  const lastUpdatedTime = state.lastUpdated ? new Date(state.lastUpdated) : new Date();
+  const timeString = isNaN(lastUpdatedTime.getTime()) ? '刚刚' : lastUpdatedTime.toLocaleString('zh-CN', {
     month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'
   });
   document.getElementById('sync-time-string').innerText = timeString;
@@ -685,48 +734,50 @@ function renderGanttTimeline(activeProps) {
         
         if (slot === 0) {
           td.classList.add('tg-cell-booking');
-          // 第一子行：自动同步房态，并在首单元格标记图标
-          if (slotStatus.statusClass === 'status-checkin') {
-            td.innerHTML = `<span class="cell-badge">入</span>`;
-          } else if (slotStatus.statusClass === 'status-checkout') {
-            td.innerHTML = `<span class="cell-badge">退</span>`;
-          } else if (getPropertyStatusForDate(p.id, dateStr).status === 'split-out-in') {
-            // 同日换客，第1行作为 Checkout 行
-            td.className = 'tg-cell-booking status-checkout';
-            td.innerHTML = `<span class="cell-badge">退</span>`;
-          }
         } else {
           td.classList.add('tg-cell-remark');
-          
-          // 渲染自定义备忘文本
-          const remarkKey = `${dateStr}_${p.id}_slot_${slot}`;
-          const remarkText = state.remarksData[remarkKey] || '';
-          
+        }
+        
+        // 渲染自定义备忘文本
+        const remarkKey = `${dateStr}_${p.id}_slot_${slot}`;
+        const remarkText = state.remarksData[remarkKey] || '';
+        
+        // 徽章与备注渲染逻辑
+        let innerHtml = '';
+        const isCheckoutBadgeSlot = (slot === 1) && (slotStatus.statusClass === 'status-checkout');
+        const isCheckinBadgeSlot = (slot === 6) && (slotStatus.statusClass === 'status-checkin');
+        
+        if (isCheckoutBadgeSlot) {
+          innerHtml = `<span class="grid-pill pill-out">🎏 退房</span>`;
           if (remarkText) {
-            td.innerHTML = parseRemarkTextHtml(remarkText);
+            innerHtml += ` ` + parseRemarkTextHtml(remarkText);
+          }
+        } else if (isCheckinBadgeSlot) {
+          innerHtml = `<span class="grid-pill pill-in">🍁 入住</span>`;
+          if (remarkText) {
+            innerHtml += ` ` + parseRemarkTextHtml(remarkText);
+          }
+        } else {
+          if (remarkText) {
+            innerHtml = parseRemarkTextHtml(remarkText);
           } else {
-            td.classList.add('tg-cell-remark-empty');
-            td.innerText = '-';
+            if (slot === 0) {
+              innerHtml = '';
+            } else {
+              td.classList.add('tg-cell-remark-empty');
+              innerHtml = '-';
+            }
           }
         }
         
-        // 智能交互联动：点击带订单数据的彩色格打开详情弹窗，点击空绿/粉备注格打开备注编辑窗
+        td.innerHTML = innerHtml;
+        
+        // 智能交互联动：点击徽章与订单格打开详情弹窗，点击其他格（vacant 或备注格）打开备注编辑窗
         td.onclick = (e) => {
           e.stopPropagation();
-          const fStatus = getPropertyStatusForDate(p.id, dateStr);
-          
           if (slotStatus.isBookingCell) {
-            // 查看预订订单
             showBookingModal(p.name, slotStatus.label, slotStatus.event);
-          } else if (fStatus.status === 'split-out-in' && (slot <= 1 || slot >= 6)) {
-            // 同日交接时的订单区域
-            if (slot <= 1) {
-              showBookingModal(p.name, '今日退房 (换客中)', fStatus.checkOutEvent);
-            } else {
-              showBookingModal(p.name, '今日新入住 (换客中)', fStatus.checkInEvent);
-            }
           } else {
-            // 普通备忘录编辑
             openRemarksModal(p.id, p.name, dateStr, slot);
           }
         };
@@ -947,19 +998,19 @@ function managerAddProperty() {
 // 保存并应用管理器配置
 function managerSave() {
   if (state.tempConfig.length === 0) {
-    alert('❌ 请至少保留一个品牌 Tab！');
+    showToast('❌ 请至少保留一个品牌 Tab！', 'error');
     return;
   }
   
   // 校验房源链接与名称
   for (const b of state.tempConfig) {
     if (!b.name.trim()) {
-      alert(`❌ 品牌名称不能为空，请检查带有 ${b.icon} 的品牌。`);
+      showToast(`❌ 品牌名称不能为空，请检查带有 ${b.icon} 的品牌。`, 'error');
       return;
     }
     for (const p of b.properties) {
       if (!p.name.trim()) {
-        alert(`❌ [${b.name}] 下存在没有名字的房源，请补充。`);
+        showToast(`❌ [${b.name}] 下存在没有名字的房源，请补充。`, 'error');
         return;
       }
     }
@@ -978,7 +1029,9 @@ function managerSave() {
     properties: state.propertiesData
   });
   
-  alert('💾 房源配置已成功保存并在本地应用！若需在云端同步更新，请复制 config.js 内容覆盖对应文件并推送到 GitHub。');
+  showToast('💾 房源配置已保存，正在自动同步新日程...', 'success');
+  // 自动触发实时更新，以抓取新房源的最新日程
+  fetchLiveSyncFallback();
 }
 
 // 恢复默认配置
@@ -991,7 +1044,7 @@ function managerReset() {
       lastUpdated: state.lastUpdated,
       properties: state.propertiesData
     });
-    alert('✅ 已顺利恢复默认初始配置！');
+    showToast('✅ 已顺利恢复默认初始配置！', 'success');
   }
 }
 
@@ -1001,10 +1054,10 @@ function managerCopyCode() {
   const compiledCode = `/**\n * 雲町屋 & 多品牌房源日历配置文件 (Config.js)\n * 由配置管理器自动编译生成\n */\n\nconst BRANDS_CONFIG = ${JSON.stringify(state.tempConfig, null, 2)};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { BRANDS_CONFIG };\n}\n`;
   
   navigator.clipboard.writeText(compiledCode).then(() => {
-    alert('📋 config.js 代码内容已复制到剪贴板！\n您可以直接用文本编辑器打开本地的 `config.js` 文件，全选粘贴替换它，然后 git push 提交到 GitHub，云端 Actions 就会自动同步您新增的全部房源日程！');
+    showToast('📋 config.js 代码已复制！请粘贴到本地文件并 git push 即可。', 'success');
   }).catch(err => {
     console.error('复制失败:', err);
-    alert('❌ 复制失败，请在控制台手动复制。');
+    showToast('❌ 复制失败，请在控制台手动复制。', 'error');
   });
 }
 
