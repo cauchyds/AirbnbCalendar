@@ -136,6 +136,15 @@ body {
 .logo-text h1 {
   font-size: 1.8rem;
   letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.logo-text h1 sup {
+  font-size: 0.45em !important;
+  font-weight: 500 !important;
+  top: -0.65em !important;
+  margin-left: 2px;
+  color: var(--accent-gold);
 }
 
 .logo-text .subtitle {
@@ -623,7 +632,7 @@ body {
   border-bottom: 2px solid var(--border-wood-dark);
   border-right: 3px double rgba(122, 98, 78, 0.35) !important; /* 双竖线分割 */
   padding: 12px 6px;
-  font-weight: 600;
+  font-weight: 500; /* 改为 500 中黑字重，完美规避 Microsoft YaHei 700 渲染发虚、发粗的现象 */
   font-size: 0.95rem; /* 增大字号，极其清晰 */
   font-family: var(--font-sans) !important;
 }
@@ -643,7 +652,7 @@ body {
   vertical-align: middle !important;
   padding: 15px 5px !important;
   font-family: var(--font-sans) !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important; /* 改为 500 中等字重，避免 Windows 粗体毛刺 */
 }
 
 .tg-col-corner {
@@ -655,17 +664,18 @@ body {
   border-right: 2px solid var(--border-wood-dark) !important;
 }
 
-.tg-col-date-header .date-num {
-  font-size: 0.95rem;
-  display: inline;
-  font-weight: 700;
-}
-
 .tg-col-date-header .date-name {
   font-size: 0.95rem;
-  display: inline;
-  margin-left: 2px;
-  font-weight: 600;
+  display: block; /* 独立行展示 */
+  font-weight: 500 !important; /* 规避 Windows 粗体发粗 */
+}
+
+.tg-col-date-header .date-num {
+  font-size: 0.85rem;
+  display: block; /* 独立行展示 */
+  font-weight: 500 !important; /* 规避 Windows 粗体发粗 */
+  opacity: 0.7;
+  margin-top: 2px;
 }
 
 .tg-col-date-header.weekend-sat { background-color: #F1F6F8 !important; color: #366E8A; }
@@ -755,7 +765,7 @@ body {
   font-size: 0.65rem;
   padding: 1px 8px;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 500;
   display: inline-block;
   border: 1px solid currentColor;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);

@@ -712,13 +712,8 @@ function renderGanttTimeline(activeProps) {
         tdDate.rowSpan = 8;
         
         tdDate.innerHTML = `
-          <div style="font-size: 0.95rem; font-weight: 600; font-family: var(--font-sans);">
-            <span class="date-num" style="font-size: 0.95rem; font-weight: 700;">${currentDate.getDate()}</span>
-            <span class="date-name" style="font-size: 0.95rem; font-weight: 600; margin-left: 2px;">${dayNames[dayOfWeek]}</span>
-          </div>
-          <div style="font-size: 0.8rem; opacity: 0.6; font-family: var(--font-sans); margin-top: 2px;">
-            ${(currentDate.getMonth() + 1)}月${currentDate.getDate()}日
-          </div>
+          <span class="date-name">${dayNames[dayOfWeek]}</span>
+          <span class="date-num">${currentDate.getMonth() + 1}/${currentDate.getDate()}</span>
         `;
         tr.appendChild(tdDate);
       }
