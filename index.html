@@ -32,6 +32,9 @@
           <span class="sync-label">自动同步时间：</span>
           <span id="sync-time-string" class="sync-value">加载中...</span>
         </div>
+        <button id="btn-open-manager" class="btn-sync" style="border-color: var(--border-wood-dark); margin-right: 4px;" title="管理房源品牌与日历链接">
+          <span>⚙️ 房源管理</span>
+        </button>
         <button id="btn-manual-sync" class="btn-sync" title="拉取最新数据（越过缓存）">
           <span class="sync-icon">🔄</span>
           <span>立即更新</span>
@@ -320,6 +323,61 @@
         <div class="footer-right-buttons" style="margin-left: auto;">
           <button class="btn-modal-close-confirm" style="background-color: var(--text-muted); margin-right: 8px;" id="btn-cancel-remarks">取消</button>
           <button class="btn-modal-close-confirm" id="btn-save-remarks">保存备注</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 房源与品牌图形化管理器弹窗 (Brand & Listings Manager Modal) -->
+  <div class="modal-overlay" id="manager-modal">
+    <div class="modal-card" style="width: 880px; max-width: 95%;">
+      <div class="modal-header">
+        <h3>⚙️ 房源与品牌配置管理器</h3>
+        <button class="btn-close-modal" id="btn-close-manager-modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 0; display: flex; height: 480px;">
+        
+        <!-- 左侧：品牌 Tab 列表与增删 -->
+        <div class="manager-sidebar-brands">
+          <div class="sidebar-header-action">
+            <h4>🏷️ 房源品牌列表</h4>
+            <button class="btn-manager-mini-add" id="btn-manager-add-brand" title="新增品牌Tab">+ 新增</button>
+          </div>
+          <div class="manager-brands-list" id="manager-brands-list">
+            <!-- JS 动态注入 -->
+          </div>
+        </div>
+        
+        <!-- 右侧：当前选中品牌的房源编辑列表 -->
+        <div class="manager-content-properties">
+          <div class="sidebar-header-action">
+            <h4 id="manager-active-brand-title">🌸 雲町屋 房源列表</h4>
+            <button class="btn-manager-mini-add" id="btn-manager-add-prop" title="在该品牌下新增房源">+ 新增房源</button>
+          </div>
+          <div class="manager-properties-table-wrapper">
+            <table class="manager-properties-table">
+              <thead>
+                <tr>
+                  <th style="width: 32%;">房源显示名称</th>
+                  <th style="width: 58%;">Airbnb ics 订阅链接</th>
+                  <th style="width: 10%; text-align: center;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="manager-properties-list">
+                <!-- JS 动态注入 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer" style="padding: 16px 24px; display: flex; justify-content: space-between;">
+        <button class="btn-modal-delete-remark" style="border-color: var(--text-muted); color: var(--text-muted);" id="btn-manager-reset">恢复默认配置</button>
+        
+        <div class="footer-right-buttons" style="display: flex; gap: 8px;">
+          <button class="btn-sync" style="border-color: var(--accent-gold); color: var(--accent-gold);" id="btn-manager-copy-code" title="复制编译后的 config.js 代码，以便上传 GitHub">📋 复制 config.js 内容</button>
+          <button class="btn-modal-close-confirm" style="background-color: var(--text-muted);" id="btn-manager-cancel">取消</button>
+          <button class="btn-modal-close-confirm" id="btn-manager-save">💾 保存并应用</button>
         </div>
       </div>
     </div>

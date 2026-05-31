@@ -3,13 +3,15 @@
  * 
  * 核心功能：
  * 1. 初始化 Tab 并提供多品牌筛选联动
- * 2. 双轨数据加载：读取 data.json -> 缓存 -> 客户端 CORS 代理实时获取
- * 3. 房态决策系统：计算任意日期下房源是 空闲/预订/入住/退房/半格交接 状态
- * 4. 🔄 [重构] 纵向瀑布流甘特图 (Y-轴为日期，X-轴为房源列)
- * 5. 📋 [新增] 每日 8 行子格编译引擎 (第 1 行为房态，第 2-8 行为备忘录备注)
- * 6. 💾 [新增] LocalStorage 本地备忘录持久化读写与分类标签渲染
- * 7. 动态绘制单房源月历卡片与统计分析
- * 8. 提供房态预订详情模态框 与 运营备注编辑模态框
+ * 2. ⚙️ [新增] 加载优先级：优先读取 localStorage 自定义配置 `airbnb_calendar_custom_config`
+ * 3. 双轨数据加载：读取 data.json -> 缓存 -> 客户端 CORS 代理实时获取
+ * 4. 房态决策系统：计算任意日期下房源是 空闲/预订/入住/退房/半格交接 状态
+ * 5. 🔄 纵向瀑布流甘特图 (Y-轴为日期，X-轴为房源列)
+ * 6. 📋 [重构] 每日 8 行子格精细着色决策引擎 (按住退房/入住时间轴无缝填充)
+ * 7. ✂️ [新增] 房源列头品牌前缀智能去重
+ * 8. ⚙️ [新增] 房源与品牌图形化管理器 (Brands & Listings Manager)
+ * 9. 💾 备忘录持久化读写与分类标签渲染
+ * 10. 动态绘制单房源月历卡片与统计分析，提供详情模态弹窗
  */
 
 // ==========================================================================
@@ -26,16 +28,20 @@ const state = {
   // 核心房态数据源
   lastUpdated: null,
   propertiesData: {},           // 键为 propId，值为 { propId, propName, brandId, events: [...] }
-  rawConfig: BRANDS_CONFIG,     // 来自 config.js
+  rawConfig: [],                // 当前运行的品牌房源配置列表 (从 config.js 或 localStorage 装载)
   
   // 备忘录/任务数据 (持久化于 localStorage)
   remarksData: {},              // 键为 "YYYY-MM-DD_propId_slotIdx" (slotIdx 1-7对应子行2-8)
   
-  // 当前处于活动编辑中的备注信息
+  // 处于活动编辑中的备注信息
   remarksActivePropId: '',
   remarksActiveDate: '',
   remarksActiveSlotIdx: 0,
-  remarksActiveTag: ''          // 选中的快捷标签 (🔧 维修, 🚒 消防...)
+  remarksActiveTag: '',
+  
+  // 房源管理器临时工作状态
+  tempConfig: [],               // 弹窗中编辑的草稿配置
+  managerActiveBrandId: ''      // 当前在管理器中选中的编辑品牌 ID
 };
 
 // CORS 代理服务列表，备用切换提高可用性
@@ -65,7 +71,6 @@ function addDays(date, days) {
   return result;
 }
 
-// 计算两日期之间的晚数
 function getNights(startStr, endStr) {
   const start = new Date(startStr);
   const end = new Date(endStr);
@@ -73,12 +78,10 @@ function getNights(startStr, endStr) {
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-// 获取某年某月的天数
 function getDaysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-// 格式化日期中文展示 (如：2026年06月02日)
 function formatDateChinese(dateStr) {
   if (!dateStr) return '-';
   const parts = dateStr.split('-');
@@ -86,7 +89,6 @@ function formatDateChinese(dateStr) {
   return `${parts[0]}年${parseInt(parts[1])}月${parseInt(parts[2])}日`;
 }
 
-// 安全 HTML 转义，防止备注 XSS 并保证数据呈现安全
 function escapeHtml(text) {
   if (!text) return '';
   return text
@@ -107,8 +109,6 @@ function parseICSClient(icsText) {
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
-    
-    // 处理 iCal 折行
     while (i + 1 < lines.length && (lines[i+1].startsWith(' ') || lines[i+1].startsWith('\t'))) {
       line += lines[i+1].substring(1);
       i++;
@@ -164,10 +164,6 @@ function parseICSDateVal(val) {
 // ==========================================================================
 // 4. 房态决策系统 (Daily Booking Classifier)
 // ==========================================================================
-/**
- * 核心决策算法：根据日期计算特定房源的今日房态
- * 返回：{ status: 'vacant' | 'checkin' | 'checkout' | 'reserved' | 'split-out-in', event, checkOutEvent, checkInEvent }
- */
 function getPropertyStatusForDate(propId, dateStr) {
   const prop = state.propertiesData[propId];
   if (!prop || !prop.events) return { status: 'vacant' };
@@ -181,25 +177,20 @@ function getPropertyStatusForDate(propId, dateStr) {
   let activeEvent = null;
   
   for (const ev of prop.events) {
-    // 恰好今天入住
     if (ev.start === dateStr) {
       isCheckIn = true;
       checkInEvent = ev;
     }
-    // 恰好今天退房
     if (ev.end === dateStr) {
       isCheckOut = true;
       checkOutEvent = ev;
     }
-    // 今天处于订单之间（夜间驻留）
-    // 按照酒店/民宿标准，入住第一晚开始计算，退房当天中午结束
     if (dateStr >= ev.start && dateStr < ev.end) {
       isBetween = true;
       activeEvent = ev;
     }
   }
   
-  // 核心：若上午有客人退房，下午有客人入住，则属于半格斜切（前退后入）
   if (isCheckIn && isCheckOut) {
     return { status: 'split-out-in', checkOutEvent, checkInEvent };
   }
@@ -212,26 +203,105 @@ function getPropertyStatusForDate(propId, dateStr) {
   if (isBetween) {
     return { status: 'reserved', event: activeEvent };
   }
-  
   return { status: 'vacant' };
 }
 
 // ==========================================================================
-// 5. 数据源拉取与本地备注加载 (Data Loaders & Remarks Loader)
+// 4b. 📋 8格精细渐进式着色与交互决策引擎 (Progressive Grid Slot Engine)
+// ==========================================================================
+/**
+ * 核心决策：计算给定日期下，特定房源在 8 个子行槽（0-7）中的渲染色彩与交互属性
+ * 1. 普通空闲天：8格全绿 (vacant)
+ * 2. 连续入住天：8格全粉 (reserved)
+ * 3. 新入住当天：前6格绿 (vacant，等待中)，后2格橘 (checkin，入住后)
+ * 4. 退房离店天：前2格蓝 (checkout，退房前)，后6格绿 (vacant，保洁/空置)
+ * 5. 同日换客天：前2格蓝 (checkout)，中4格绿 (vacant，保洁窗口！)，后2格橘 (checkin)
+ */
+function getSlotStatusForDate(propId, dateStr, slotIdx) {
+  const fStatus = getPropertyStatusForDate(propId, dateStr);
+  const s = fStatus.status;
+  
+  // A. 普通空闲
+  if (s === 'vacant') {
+    return { statusClass: 'status-vacant', isBookingCell: false };
+  }
+  
+  // B. 连续连住 (中间日)
+  if (s === 'reserved') {
+    // 为提供入口，仅限 slot 0（房态行）可查看详情弹窗，其他 7 格作为普通备注行高亮编辑
+    if (slotIdx === 0) {
+      return { statusClass: 'status-reserved', isBookingCell: true, label: '已入住/占用', event: fStatus.event };
+    } else {
+      return { statusClass: 'status-reserved', isBookingCell: false };
+    }
+  }
+  
+  // C. 新入住当天 (下午入住，前空后满)
+  if (s === 'checkin') {
+    if (slotIdx >= 6) {
+      return { statusClass: 'status-checkin', isBookingCell: true, label: '今日新入住', event: fStatus.event };
+    } else {
+      // 前 6 格空置，允许写保洁任务
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // D. 退房当天 (上午退房，前满后空)
+  if (s === 'checkout') {
+    if (slotIdx <= 1) {
+      return { statusClass: 'status-checkout', isBookingCell: true, label: '今日退房离店', event: fStatus.event };
+    } else {
+      // 后 6 格已退房，空置，可写备注
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // E. 同日交接/换客天 (前退、中空、后入)
+  if (s === 'split-out-in') {
+    if (slotIdx <= 1) {
+      return { statusClass: 'status-checkout', isBookingCell: true, label: '今日退房 (换客中)', event: fStatus.checkOutEvent };
+    } else if (slotIdx >= 6) {
+      return { statusClass: 'status-checkin', isBookingCell: true, label: '今日新入住 (换客中)', event: fStatus.checkInEvent };
+    } else {
+      // 中间 4 个格子为完美保洁空档窗口 (莺绿)
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  return { statusClass: 'status-vacant', isBookingCell: false };
+}
+
+// ==========================================================================
+// 5. 数据源拉取与本地备注加载 (Data Loaders)
 // ==========================================================================
 async function loadData() {
   showSyncButtonLoading(true);
   
-  // A. 载入本地备忘录数据
+  // ⚙️ 优先级 1：读取 localStorage 自定义品牌房源配置
+  const customConfig = localStorage.getItem('airbnb_calendar_custom_config');
+  if (customConfig) {
+    try {
+      state.rawConfig = JSON.parse(customConfig);
+      console.log('⚙️ 成功从本地加载自定义房源配置');
+    } catch (e) {
+      console.error('⚠️ 本地自定义配置解析失败，恢复默认配置。');
+      localStorage.removeItem('airbnb_calendar_custom_config');
+      state.rawConfig = BRANDS_CONFIG;
+    }
+  } else {
+    // 使用 config.js 中的默认配置
+    state.rawConfig = BRANDS_CONFIG;
+  }
+  
+  // 载入本地备忘录备注库
   state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
   
-  // B. 尝试从 localStorage 优先读取本地缓存，加快二次访问速度
+  // B. 尝试从 localStorage 优先读取日历缓存
   const cachedData = localStorage.getItem('airbnb_calendar_data');
   if (cachedData) {
     try {
       const parsed = JSON.parse(cachedData);
       const cacheTime = new Date(parsed.lastUpdated);
-      // 20分钟内有效
       if (new Date() - cacheTime < 20 * 60 * 1000) {
         console.log('🚀 命中本地有效缓存数据');
         applyData(parsed);
@@ -252,14 +322,14 @@ async function loadData() {
     localStorage.setItem('airbnb_calendar_data', JSON.stringify(data));
     applyData(data);
   } catch (error) {
-    console.warn('⚠️ 静态 data.json 加载失败或尚不存在，启动前端多路并发拉取备份机制...', error);
+    console.warn('⚠️ 静态 data.json 加载失败，启动前端跨域多路并发实时同步备份机制...', error);
     await fetchLiveSyncFallback();
   }
   
   showSyncButtonLoading(false);
 }
 
-// 客户端直连抓取备用机制（通过公共跨域代理）
+// 客户端直连抓取备份机制（通过公共跨域代理）
 async function fetchLiveSyncFallback(useProxyIndex = 0) {
   if (useProxyIndex >= CORS_PROXIES.length) {
     alert('❌ 所有 CORS 跨域代理服务器均响应超时或被拒绝，请稍后再试，或等待 GitHub Actions 后台同步。');
@@ -267,7 +337,7 @@ async function fetchLiveSyncFallback(useProxyIndex = 0) {
   }
   
   const proxy = CORS_PROXIES[useProxyIndex];
-  console.log(`⏳ 正在使用 CORS 代理 [${useProxyIndex}] 实时获取 16 个房源 iCal...`);
+  console.log(`⏳ 正在使用 CORS 代理 [${useProxyIndex}] 实时获取房源 iCal...`);
   
   const syncTimestamp = new Date().toISOString();
   const fallbackResults = {
@@ -335,6 +405,13 @@ function applyData(data) {
   document.getElementById('sync-time-string').innerText = timeString;
   
   renderBrandTabs();
+  
+  // 确保原选中的品牌依然有效，否则默认选中第一个品牌 Tab
+  const brandExists = state.currentBrandId === 'all' || state.rawConfig.some(b => b.id === state.currentBrandId);
+  if (!brandExists) {
+    state.currentBrandId = state.rawConfig[0]?.id || 'all';
+  }
+  
   switchBrand(state.currentBrandId);
 }
 
@@ -391,7 +468,7 @@ function switchBrand(brandId) {
   renderKPISummary(activeProps);
   renderDailyTodoList(activeProps);
   
-  // 🔄 重构核心：渲染对调后的纵向瀑布流甘特图 (X轴为房源列，Y轴为日期行)
+  // 渲染对调后的纵向瀑布流甘特图 (X轴为房源列，Y轴为日期行)
   renderGanttTimeline(activeProps);
   
   populatePropertyDropdown(activeProps);
@@ -411,7 +488,7 @@ function getPropertiesForActiveBrand() {
 }
 
 // ==========================================================================
-// 7. 大盘 KPI 与待办事项渲染
+// 7. 大盘 KPI 与今日待办事项渲染
 // ==========================================================================
 function renderKPISummary(activeProps) {
   const total = activeProps.length;
@@ -503,17 +580,8 @@ function createTodoCard(propertyName, event, type) {
   return item;
 }
 
-function getBrandNameForProperty(propName) {
-  for (const b of state.rawConfig) {
-    if (b.properties.find(p => p.name === propName)) {
-      return b.name;
-    }
-  }
-  return '所有房源';
-}
-
 // ==========================================================================
-// 8. 🔄 瀑布流甘特图渲染核心 (swapped axis & 8 rows daily renderer)
+// 8. 🔄 瀑布流甘特图与每日 8 格精细着色渲染核心
 // ==========================================================================
 function renderGanttTimeline(activeProps) {
   const container = document.getElementById('timeline-grid-container');
@@ -527,22 +595,31 @@ function renderGanttTimeline(activeProps) {
   const table = document.createElement('table');
   table.className = 'tg-table';
   
-  // 1. 构建横向表头 THEAD (列为房源)
+  // 1. 构建横向表头 THEAD
   const thead = document.createElement('thead');
   thead.className = 'tg-thead';
   const headerRow = document.createElement('tr');
   
-  // 首列为“日期”
+  // 左上角“日期”固位格
   const cornerHeader = document.createElement('th');
   cornerHeader.className = 'tg-col-date-header tg-col-corner';
   cornerHeader.innerText = '日期';
   headerRow.appendChild(cornerHeader);
   
-  // 后续各列为房源名称
+  // 智能前缀剔除：如果在品牌 Tab 下，列头只保留房源短名称，免去冗长前缀
+  const activeBrand = state.currentBrandId !== 'all' ? state.rawConfig.find(b => b.id === state.currentBrandId) : null;
+  
   activeProps.forEach(p => {
     const propHeader = document.createElement('th');
     propHeader.className = 'tg-col-prop';
-    propHeader.innerText = p.name;
+    
+    let displayName = p.name;
+    if (activeBrand) {
+      // 智能前缀过滤，如将 “雲町屋 小御” 替换为 “小御”
+      const prefixReg = new RegExp(`^${activeBrand.name}\\s*`, 'i');
+      displayName = displayName.replace(prefixReg, '').trim();
+    }
+    propHeader.innerText = displayName;
     headerRow.appendChild(propHeader);
   });
   
@@ -552,14 +629,12 @@ function renderGanttTimeline(activeProps) {
   // 2. 构建数据表身 TBODY
   const tbody = document.createElement('tbody');
   
-  // 外层循环：展示天数跨度 (e.g. 30天)
   for (let i = 0; i < state.timelineScale; i++) {
     const currentDate = addDays(state.timelineStartDate, i);
     const dateStr = formatDateString(currentDate);
     const dayOfWeek = currentDate.getDay();
     const todayStr = getTodayString();
     
-    // 判断日期样式
     let dateClass = '';
     if (dateStr === todayStr) {
       dateClass = 'today-date';
@@ -571,11 +646,11 @@ function renderGanttTimeline(activeProps) {
     
     const dayNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     
-    // 每日共包含 8 个纵向子行：第 1 行为房态行，第 2-8 行为备忘录行 (任务槽 1-7)
+    // 每日编译 8 行
     for (let slot = 0; slot < 8; slot++) {
       const tr = document.createElement('tr');
       
-      // 特殊底部描边：给第 8 行备注底线加粗，清晰隔离日期块
+      // 特殊底部描边隔离日期
       if (slot === 7) {
         tr.className = 'tg-row-remark tg-row-last-remark';
       } else if (slot === 0) {
@@ -584,7 +659,7 @@ function renderGanttTimeline(activeProps) {
         tr.className = 'tg-row-remark';
       }
       
-      // 第一子行的首个单元格为“日期列”，需要使用 rowspan="8" 跨越所有 8 个子行
+      // 日期首列 rowspan="8"
       if (slot === 0) {
         const tdDate = document.createElement('td');
         tdDate.className = `tg-col-date-header ${dateClass}`;
@@ -600,71 +675,73 @@ function renderGanttTimeline(activeProps) {
         tr.appendChild(tdDate);
       }
       
-      // 遍历渲染每个房源在该子行的单元格
+      // 遍历渲染房源列
       activeProps.forEach(p => {
         const td = document.createElement('td');
         
+        // 📋 房态色彩决策引擎：获取当前子格 slot 的色彩分类与交互状态
+        const slotStatus = getSlotStatusForDate(p.id, dateStr, slot);
+        td.className = slotStatus.statusClass;
+        
         if (slot === 0) {
-          // A. 房态行 (自动同步)
-          td.className = 'tg-cell-booking';
-          const fStatus = getPropertyStatusForDate(p.id, dateStr);
-          
-          if (fStatus.status === 'split-out-in') {
-            td.classList.add('status-split-out-in');
-            td.title = `双客交接：\n上午退房\n下午入住`;
-            td.onclick = (e) => {
-              e.stopPropagation();
-              showSplitBookingModal(p.name, fStatus.checkOutEvent, fStatus.checkInEvent);
-            };
-          } else if (fStatus.status === 'checkin') {
-            td.classList.add('status-checkin');
+          td.classList.add('tg-cell-booking');
+          // 第一子行：自动同步房态，并在首单元格标记图标
+          if (slotStatus.statusClass === 'status-checkin') {
             td.innerHTML = `<span class="cell-badge">入</span>`;
-            td.onclick = () => showBookingModal(p.name, '新入住', fStatus.event);
-          } else if (fStatus.status === 'checkout') {
-            td.classList.add('status-checkout');
+          } else if (slotStatus.statusClass === 'status-checkout') {
             td.innerHTML = `<span class="cell-badge">退</span>`;
-            td.onclick = () => showBookingModal(p.name, '退房离店', fStatus.event);
-          } else if (fStatus.status === 'reserved') {
-            td.classList.add('status-reserved');
-            td.onclick = () => showBookingModal(p.name, '已入住/占用', fStatus.event);
-          } else {
-            td.classList.add('status-vacant');
-            td.onclick = () => showBookingModal(p.name, '空闲中', { start: dateStr, end: dateStr, summary: 'Available' });
+          } else if (getPropertyStatusForDate(p.id, dateStr).status === 'split-out-in') {
+            // 同日换客，第1行作为 Checkout 行
+            td.className = 'tg-cell-booking status-checkout';
+            td.innerHTML = `<span class="cell-badge">退</span>`;
           }
         } else {
-          // B. 备忘录备注行 (槽 1-7对应 slot 1-7)
-          td.className = 'tg-cell-remark';
+          td.classList.add('tg-cell-remark');
           
-          const remarkKey = `${dateStr}_${p.id}_${slot}`;
+          // 渲染自定义备忘文本
+          const remarkKey = `${dateStr}_${p.id}_slot_${slot}`;
           const remarkText = state.remarksData[remarkKey] || '';
           
           if (remarkText) {
             td.innerHTML = parseRemarkTextHtml(remarkText);
           } else {
             td.classList.add('tg-cell-remark-empty');
-            td.innerText = '-'; // 空白状态下显示轻量虚线
+            td.innerText = '-';
           }
-          
-          // 点击备注格子打开专属备忘录编辑弹窗
-          td.onclick = () => openRemarksModal(p.id, p.name, dateStr, slot);
         }
+        
+        // 智能交互联动：点击带订单数据的彩色格打开详情弹窗，点击空绿/粉备注格打开备注编辑窗
+        td.onclick = (e) => {
+          e.stopPropagation();
+          const fStatus = getPropertyStatusForDate(p.id, dateStr);
+          
+          if (slotStatus.isBookingCell) {
+            // 查看预订订单
+            showBookingModal(p.name, slotStatus.label, slotStatus.event);
+          } else if (fStatus.status === 'split-out-in' && (slot <= 1 || slot >= 6)) {
+            // 同日交接时的订单区域
+            if (slot <= 1) {
+              showBookingModal(p.name, '今日退房 (换客中)', fStatus.checkOutEvent);
+            } else {
+              showBookingModal(p.name, '今日新入住 (换客中)', fStatus.checkInEvent);
+            }
+          } else {
+            // 普通备忘录编辑
+            openRemarksModal(p.id, p.name, dateStr, slot);
+          }
+        };
         
         tr.appendChild(td);
       });
-      
       tbody.appendChild(tr);
     }
   }
-  
   table.appendChild(tbody);
   container.appendChild(table);
 }
 
-// 解析带有分类前缀的备注，将其包装为精美的日式彩色小标签
 function parseRemarkTextHtml(text) {
   if (!text) return '';
-  
-  // 匹配前缀 (🔧 维修 | 🚒 消防 | 📦 配送 | 👥 人数 | 💬 需求)
   const match = text.match(/^(🔧 维修|🚒 消防|📦 配送|👥 人数|💬 需求)\s*(.*)$/);
   if (match) {
     const tag = match[1];
@@ -678,12 +755,265 @@ function parseRemarkTextHtml(text) {
     
     return `<span class="remark-tag-pill ${tagClass}">${tag}</span>${escapeHtml(rest)}`;
   }
-  
   return escapeHtml(text);
 }
 
 // ==========================================================================
-// 9. 备忘录编辑弹窗控制核心 (Remarks Modal Controls)
+// 9. ⚙️ 新增房源与品牌配置管理器逻辑核心 (Brand & Property Config Manager)
+// ==========================================================================
+function openManagerModal() {
+  // 深拷贝当前运行的配置结构，作为临时编辑草稿
+  state.tempConfig = JSON.parse(JSON.stringify(state.rawConfig));
+  
+  // 默认选中第一个品牌进行展示，如果没有则为空
+  state.managerActiveBrandId = state.tempConfig[0]?.id || '';
+  
+  renderManagerBrandsList();
+  renderManagerPropertiesList();
+  
+  document.getElementById('manager-modal').classList.add('active');
+}
+
+// 渲染管理器左侧：品牌 Tab 列表
+function renderManagerBrandsList() {
+  const container = document.getElementById('manager-brands-list');
+  container.innerHTML = '';
+  
+  state.tempConfig.forEach((brand, index) => {
+    const row = document.createElement('div');
+    row.className = `manager-brand-item-row ${state.managerActiveBrandId === brand.id ? 'active' : ''}`;
+    
+    // 点击切换当前编辑的品牌
+    row.onclick = (e) => {
+      // 避免输入框或删除按钮点击导致的误触
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON') {
+        state.managerActiveBrandId = brand.id;
+        renderManagerBrandsList();
+        renderManagerPropertiesList();
+      }
+    };
+    
+    // 1. 图标输入框
+    const emojiInput = document.createElement('input');
+    emojiInput.type = 'text';
+    emojiInput.className = 'manager-brand-emoji-input';
+    emojiInput.value = brand.icon || '🌸';
+    emojiInput.oninput = (e) => {
+      brand.icon = e.target.value;
+    };
+    
+    // 2. 品牌名称输入框
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'manager-brand-name-input';
+    nameInput.value = brand.name;
+    nameInput.oninput = (e) => {
+      brand.name = e.target.value;
+      // 联动更新右侧面板的品牌名字
+      if (state.managerActiveBrandId === brand.id) {
+        document.getElementById('manager-active-brand-title').innerText = `${brand.icon} ${brand.name} 房源列表`;
+      }
+    };
+    
+    // 3. 删除按钮
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn-manager-row-del';
+    delBtn.innerHTML = '&times;';
+    delBtn.title = '删除此品牌及旗下所有房源';
+    delBtn.onclick = () => {
+      if (confirm(`⚠️ 确定要彻底删除品牌 [${brand.name}] 吗？\n旗下关联的所有房源也将一并移除！`)) {
+        state.tempConfig.splice(index, 1);
+        if (state.managerActiveBrandId === brand.id) {
+          state.managerActiveBrandId = state.tempConfig[0]?.id || '';
+        }
+        renderManagerBrandsList();
+        renderManagerPropertiesList();
+      }
+    };
+    
+    row.appendChild(emojiInput);
+    row.appendChild(nameInput);
+    row.appendChild(delBtn);
+    container.appendChild(row);
+  });
+}
+
+// 渲染管理器右侧：当前选中品牌的房源列表
+function renderManagerPropertiesList() {
+  const container = document.getElementById('manager-properties-list');
+  container.innerHTML = '';
+  
+  const activeBrand = state.tempConfig.find(b => b.id === state.managerActiveBrandId);
+  const titleEl = document.getElementById('manager-active-brand-title');
+  const addPropBtn = document.getElementById('btn-manager-add-prop');
+  
+  if (!activeBrand) {
+    titleEl.innerText = '🏷️ 请选择或创建品牌';
+    addPropBtn.disabled = true;
+    container.innerHTML = '<tr><td colspan="3" class="todo-empty">请在左侧选择品牌，或点击 [新增品牌]</td></tr>';
+    return;
+  }
+  
+  addPropBtn.disabled = false;
+  titleEl.innerText = `${activeBrand.icon} ${activeBrand.name} 房源列表`;
+  
+  if (activeBrand.properties.length === 0) {
+    container.innerHTML = '<tr><td colspan="3" class="todo-empty">该品牌下暂无房源。点击上方 [+ 新增房源] 开始添加</td></tr>';
+    return;
+  }
+  
+  activeBrand.properties.forEach((prop, idx) => {
+    const tr = document.createElement('tr');
+    
+    // 1. 房源名称列
+    const tdName = document.createElement('td');
+    const inputName = document.createElement('input');
+    inputName.type = 'text';
+    inputName.className = 'manager-text-input';
+    inputName.value = prop.name;
+    inputName.placeholder = '例如: 雲町屋 小御';
+    inputName.oninput = (e) => {
+      prop.name = e.target.value;
+    };
+    tdName.appendChild(inputName);
+    
+    // 2. iCal 链接列
+    const tdLink = document.createElement('td');
+    const inputLink = document.createElement('input');
+    inputLink.type = 'text';
+    inputLink.className = 'manager-text-input';
+    inputLink.value = prop.ical;
+    inputLink.placeholder = 'https://www.airbnb.com/calendar/ical/...';
+    inputLink.oninput = (e) => {
+      prop.ical = e.target.value.trim();
+    };
+    tdLink.appendChild(inputLink);
+    
+    // 3. 操作列
+    const tdDel = document.createElement('td');
+    tdDel.style.textAlign = 'center';
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn-manager-row-del';
+    delBtn.innerHTML = '&times;';
+    delBtn.title = '移除此房源';
+    delBtn.onclick = () => {
+      activeBrand.properties.splice(idx, 1);
+      renderManagerPropertiesList();
+    };
+    tdDel.appendChild(delBtn);
+    
+    tr.appendChild(tdName);
+    tr.appendChild(tdLink);
+    tr.appendChild(tdDel);
+    container.appendChild(tr);
+  });
+}
+
+// 新增品牌
+function managerAddBrand() {
+  const newBrandId = 'brand_' + Date.now();
+  const newBrand = {
+    id: newBrandId,
+    name: '新建品牌 Tab',
+    icon: '✨',
+    properties: []
+  };
+  state.tempConfig.push(newBrand);
+  state.managerActiveBrandId = newBrandId;
+  renderManagerBrandsList();
+  renderManagerPropertiesList();
+}
+
+// 新增房源
+function managerAddProperty() {
+  const activeBrand = state.tempConfig.find(b => b.id === state.managerActiveBrandId);
+  if (!activeBrand) return;
+  
+  const newProp = {
+    id: 'prop_' + Date.now(),
+    name: '新房源名称',
+    ical: ''
+  };
+  activeBrand.properties.push(newProp);
+  renderManagerPropertiesList();
+  
+  // 滚动到底部以展示新添加的行
+  setTimeout(() => {
+    const wrapper = document.querySelector('.manager-properties-table-wrapper');
+    wrapper.scrollTop = wrapper.scrollHeight;
+  }, 50);
+}
+
+// 保存并应用管理器配置
+function managerSave() {
+  if (state.tempConfig.length === 0) {
+    alert('❌ 请至少保留一个品牌 Tab！');
+    return;
+  }
+  
+  // 校验房源链接与名称
+  for (const b of state.tempConfig) {
+    if (!b.name.trim()) {
+      alert(`❌ 品牌名称不能为空，请检查带有 ${b.icon} 的品牌。`);
+      return;
+    }
+    for (const p of b.properties) {
+      if (!p.name.trim()) {
+        alert(`❌ [${b.name}] 下存在没有名字的房源，请补充。`);
+        return;
+      }
+    }
+  }
+  
+  state.rawConfig = state.tempConfig;
+  
+  // 持久化存储于本地 localStorage 数据库
+  localStorage.setItem('airbnb_calendar_custom_config', JSON.stringify(state.rawConfig));
+  
+  hideManagerModal();
+  
+  // 局部重新装载激活，重绘全网页所有 Tab 和甘特图！
+  applyData({
+    lastUpdated: state.lastUpdated,
+    properties: state.propertiesData
+  });
+  
+  alert('💾 房源配置已成功保存并在本地应用！若需在云端同步更新，请复制 config.js 内容覆盖对应文件并推送到 GitHub。');
+}
+
+// 恢复默认配置
+function managerReset() {
+  if (confirm('🗑️ 确定要清空所有自定义房源，恢复为最初的 [雲町屋 14个房源] 默认配置吗？\n此操作将擦除您的所有修改！')) {
+    localStorage.removeItem('airbnb_calendar_custom_config');
+    state.rawConfig = BRANDS_CONFIG;
+    hideManagerModal();
+    applyData({
+      lastUpdated: state.lastUpdated,
+      properties: state.propertiesData
+    });
+    alert('✅ 已顺利恢复默认初始配置！');
+  }
+}
+
+// 一键复制并编译当前配置为 config.js 物理文件内容
+function managerCopyCode() {
+  // 生成与本地 config.js 完全一样的代码文本格式
+  const compiledCode = `/**\n * 雲町屋 & 多品牌房源日历配置文件 (Config.js)\n * 由配置管理器自动编译生成\n */\n\nconst BRANDS_CONFIG = ${JSON.stringify(state.tempConfig, null, 2)};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { BRANDS_CONFIG };\n}\n`;
+  
+  navigator.clipboard.writeText(compiledCode).then(() => {
+    alert('📋 config.js 代码内容已复制到剪贴板！\n您可以直接用文本编辑器打开本地的 `config.js` 文件，全选粘贴替换它，然后 git push 提交到 GitHub，云端 Actions 就会自动同步您新增的全部房源日程！');
+  }).catch(err => {
+    console.error('复制失败:', err);
+    alert('❌ 复制失败，请在控制台手动复制。');
+  });
+}
+
+function hideManagerModal() {
+  document.getElementById('manager-modal').classList.remove('active');
+}
+
+// ==========================================================================
+// 10. 备忘录编辑弹窗控制
 // ==========================================================================
 function openRemarksModal(propId, propName, dateStr, slotIdx) {
   state.remarksActivePropId = propId;
@@ -694,14 +1024,12 @@ function openRemarksModal(propId, propName, dateStr, slotIdx) {
   document.getElementById('remarks-modal-date').innerText = formatDateChinese(dateStr);
   document.getElementById('remarks-modal-slot-id').innerText = `第 ${slotIdx} 行备注槽`;
   
-  // 读取已保存的数据
-  const remarkKey = `${dateStr}_${propId}_${slotIdx}`;
+  const remarkKey = `${dateStr}_${propId}_slot_${slotIdx}`;
   const existing = state.remarksData[remarkKey] || '';
   
   let tag = '';
   let textVal = existing;
   
-  // 解析标签和文本
   const match = existing.match(/^(🔧 维修|🚒 消防|📦 配送|👥 人数|💬 需求)\s*(.*)$/);
   if (match) {
     tag = match[1];
@@ -710,13 +1038,9 @@ function openRemarksModal(propId, propName, dateStr, slotIdx) {
   
   state.remarksActiveTag = tag;
   document.getElementById('input-remark-text').value = textVal;
-  
-  // 高亮对应的标签按钮
   updateRemarksTagHighlight();
   
   document.getElementById('remarks-modal').classList.add('active');
-  
-  // 延迟聚焦输入框，优化键盘操作体验
   setTimeout(() => {
     document.getElementById('input-remark-text').focus();
   }, 100);
@@ -736,27 +1060,22 @@ function updateRemarksTagHighlight() {
 
 function saveRemarks() {
   const textVal = document.getElementById('input-remark-text').value.trim();
-  const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_${state.remarksActiveSlotIdx}`;
+  const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_slot_${state.remarksActiveSlotIdx}`;
   
   if (textVal === '') {
-    // 文本为空则代表删除
     delete state.remarksData[key];
   } else {
-    // 将标签前缀与文字拼装保存
     const fullText = state.remarksActiveTag ? `${state.remarksActiveTag} ${textVal}` : textVal;
     state.remarksData[key] = fullText;
   }
   
-  // 写入 localStorage 本地库
   localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
-  
   hideRemarksModal();
-  // 重新重绘整个瀑布流表格
   renderGanttTimeline(getPropertiesForActiveBrand());
 }
 
 function deleteRemark() {
-  const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_${state.remarksActiveSlotIdx}`;
+  const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_slot_${state.remarksActiveSlotIdx}`;
   delete state.remarksData[key];
   
   localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
@@ -769,7 +1088,7 @@ function hideRemarksModal() {
 }
 
 // ==========================================================================
-// 10. 单房源月度精细日历渲染 (Monthly Grid Calendar)
+// 11. 单房源月度精细日历渲染
 // ==========================================================================
 function populatePropertyDropdown(activeProps) {
   const dropdown = document.getElementById('select-property');
@@ -943,7 +1262,7 @@ function renderSidebarBookingList(propId) {
 }
 
 // ==========================================================================
-// 11. 预订详情与双客交错弹窗控制
+// 12. 预订详情与双客交错弹窗控制
 // ==========================================================================
 function showBookingModal(propertyName, statusText, event) {
   const modal = document.getElementById('booking-modal');
@@ -1009,7 +1328,7 @@ function hideBookingModal() {
 }
 
 // ==========================================================================
-// 12. 控制监听与程序初始化 (Event Handlers & Bootstrapper)
+// 13. 控制监听与程序初始化 (Event Handlers & Bootstrapper)
 // ==========================================================================
 function setupEventListeners() {
   // 1. 甘特图时间轴跨度切换 (15, 30, 60天)
@@ -1017,7 +1336,7 @@ function setupEventListeners() {
   document.getElementById('btn-scale-30').onclick = (e) => setTimelineScale(30, e.target);
   document.getElementById('btn-scale-60').onclick = (e) => setTimelineScale(60, e.target);
   
-  // 2. 甘特图纵向时间向前、向后移天数（根据当前尺度大小平滑移动）
+  // 2. 甘特图导航
   document.getElementById('btn-time-prev').onclick = () => {
     state.timelineStartDate = addDays(state.timelineStartDate, -state.timelineScale);
     renderGanttTimeline(getPropertiesForActiveBrand());
@@ -1070,13 +1389,12 @@ function setupEventListeners() {
     if (e.target.id === 'booking-modal') hideBookingModal();
   };
   
-  // 7. 备忘录编辑弹窗交互绑定
+  // 7. 备忘录编辑弹窗关闭与动作
   document.getElementById('btn-close-remarks-modal').onclick = hideRemarksModal;
   document.getElementById('btn-cancel-remarks').onclick = hideRemarksModal;
   document.getElementById('btn-save-remarks').onclick = saveRemarks;
   document.getElementById('btn-delete-remark').onclick = deleteRemark;
   
-  // 分类标签按钮的选取切换
   const tagButtons = document.querySelectorAll('.type-buttons .btn-type-tag');
   tagButtons.forEach(btn => {
     btn.onclick = (e) => {
@@ -1086,15 +1404,28 @@ function setupEventListeners() {
     };
   });
   
-  // 备忘录弹窗背景板点击关闭
   document.getElementById('remarks-modal').onclick = (e) => {
     if (e.target.id === 'remarks-modal') hideRemarksModal();
+  };
+  
+  // ⚙️ 8. 房源管理器弹窗动作交互绑定
+  document.getElementById('btn-open-manager').onclick = openManagerModal;
+  document.getElementById('btn-close-manager-modal').onclick = hideManagerModal;
+  document.getElementById('btn-manager-cancel').onclick = hideManagerModal;
+  document.getElementById('btn-manager-save').onclick = managerSave;
+  document.getElementById('btn-manager-reset').onclick = managerReset;
+  document.getElementById('btn-manager-copy-code').onclick = managerCopyCode;
+  
+  document.getElementById('btn-manager-add-brand').onclick = managerAddBrand;
+  document.getElementById('btn-manager-add-prop').onclick = managerAddProperty;
+  
+  document.getElementById('manager-modal').onclick = (e) => {
+    if (e.target.id === 'manager-modal') hideManagerModal();
   };
 }
 
 function setTimelineScale(days, buttonEl) {
   state.timelineScale = days;
-  
   document.querySelectorAll('.timeline-controls .btn-toggle').forEach(btn => {
     btn.classList.remove('active');
   });

@@ -69,7 +69,6 @@ body {
   padding-bottom: 60px;
 }
 
-/* 优雅且具有人文气息的 Noto Serif JP 标题 */
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
   font-weight: 500;
@@ -146,7 +145,7 @@ h1, h2, h3, h4, .font-serif {
 .sync-panel {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
   background-color: var(--bg-tatami);
   padding: 8px 16px;
   border-radius: var(--radius-md);
@@ -262,7 +261,6 @@ h1, h2, h3, h4, .font-serif {
   font-weight: 600;
 }
 
-/* 日式滑动下划线装饰 */
 .brand-tab.active::after {
   content: '';
   position: absolute;
@@ -292,7 +290,6 @@ h1, h2, h3, h4, .font-serif {
   gap: 20px;
 }
 
-/* 宣纸大盘卡片 - 障子格边缘 */
 .kpi-card {
   background-color: var(--bg-washi);
   border: 1px solid var(--border-wood-light);
@@ -342,11 +339,9 @@ h1, h2, h3, h4, .font-serif {
   margin-top: 4px;
 }
 
-/* 特色色标图标 */
 .icon-checkin { background-color: var(--color-kaki-bg); color: var(--color-kaki); border-color: rgba(206, 101, 62, 0.2); }
 .icon-checkout { background-color: var(--color-aizome-bg); color: var(--color-aizome); border-color: rgba(75, 110, 125, 0.2); }
 
-/* 今日待办板块 (Check-ins & Check-outs Lists) */
 .todo-section {
   margin-top: 25px;
 }
@@ -411,7 +406,6 @@ h1, h2, h3, h4, .font-serif {
   font-style: italic;
 }
 
-/* 待办项目卡片设计 */
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -520,7 +514,6 @@ h1, h2, h3, h4, .font-serif {
   font-size: 1.35rem;
 }
 
-/* 控制按钮组与导航 */
 .timeline-controls {
   display: flex;
   align-items: center;
@@ -593,11 +586,10 @@ h1, h2, h3, h4, .font-serif {
   font-weight: 500;
 }
 
-/* 甘特图滚动容器 - 双向滚动适配 */
 .timeline-wrapper-outer {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 700px;                 /* 限制最大高度，提供精美的纵向滚动条 */
+  max-height: 700px;
   border: 1px solid var(--border-wood-light);
   border-radius: var(--radius-md);
   background-color: var(--bg-tatami);
@@ -611,7 +603,6 @@ h1, h2, h3, h4, .font-serif {
   display: grid;
 }
 
-/* 核心对调表格样式 */
 .tg-table {
   width: 100%;
   border-collapse: collapse;
@@ -619,16 +610,15 @@ h1, h2, h3, h4, .font-serif {
   table-layout: fixed;
 }
 
-/* 🚀 精细双固位：表头顶部粘滞，日期列左侧粘滞 */
 .tg-thead {
   position: sticky;
   top: 0;
-  z-index: 30; /* 比日期列 z-index 高，保证滚动交叉不穿帮 */
+  z-index: 30;
   box-shadow: 0 2px 5px rgba(110, 102, 88, 0.08);
 }
 
 .tg-thead th {
-  background-color: #EDE9DE;         /* 略深的和风底色作为固定表头 */
+  background-color: #EDE9DE;
   border-bottom: 2px solid var(--border-wood-dark);
   border-right: 1px solid var(--border-wood-light);
   padding: 12px 6px;
@@ -638,7 +628,6 @@ h1, h2, h3, h4, .font-serif {
   font-size: 0.85rem;
 }
 
-/* 首列：日期粘滞定位 (rowspan="8" 跨越天) */
 .tg-col-date-header {
   position: sticky;
   left: 0;
@@ -657,17 +646,15 @@ h1, h2, h3, h4, .font-serif {
   padding: 15px 5px !important;
 }
 
-/* 表头交汇处的左上角单元格 (Date-Label Column Head) */
 .tg-col-corner {
   position: sticky;
   left: 0;
   top: 0;
-  z-index: 40 !important; /* 拥有全场最高优先级，交叉滚动无缝遮挡 */
+  z-index: 40 !important;
   background-color: #EDE9DE !important;
   border-right: 2px solid var(--border-wood-dark) !important;
 }
 
-/* 日期显示微调 */
 .tg-col-date-header .date-num {
   font-size: 1.1rem;
   font-family: var(--font-sans);
@@ -689,26 +676,26 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: inset 0 0 0 1.5px var(--accent-gold), 2px 0 5px rgba(110, 102, 88, 0.04) !important;
 }
 
-/* 每列房源宽度 */
 .tg-col-prop {
   width: 150px;
   min-width: 150px;
   max-width: 150px;
 }
 
-/* 8 子行单元格结构与边框 */
 .tg-row-booking {
-  height: 38px;                     /* 房态行略高 */
+  height: 38px;
 }
 
 .tg-row-remark {
-  height: 28px;                     /* 备注行矮小紧凑 */
+  height: 28px;
 }
 
-/* 水平底部分割线控制 */
+/* ==========================================================================
+   6a. 📋 房态单元格边框无缝化调整 (Seamless Status Bars Borders)
+   ========================================================================== */
 .tg-cell-booking {
   border-right: 1px solid rgba(229, 222, 201, 0.6);
-  border-bottom: 1.5px dashed rgba(229, 222, 201, 0.8);
+  border-bottom: 1.5px dashed rgba(229, 222, 201, 0.35); /* 极淡水平虚线 */
   position: relative;
   cursor: pointer;
   transition: all 0.2s;
@@ -717,7 +704,7 @@ h1, h2, h3, h4, .font-serif {
 
 .tg-cell-remark {
   border-right: 1px solid rgba(229, 222, 201, 0.6);
-  border-bottom: 1px dashed rgba(229, 222, 201, 0.4);
+  border-bottom: 1px dashed rgba(229, 222, 201, 0.25); /* 备注间虚线极细，融合背景色 */
   font-size: 0.75rem;
   color: var(--text-dark);
   padding: 2px 8px;
@@ -728,24 +715,27 @@ h1, h2, h3, h4, .font-serif {
   transition: all 0.2s;
 }
 
-/* 区分不同日期块：第 8 行备注底线加深 */
-.tg-row-last-remark td {
-  border-bottom: 2px solid var(--border-wood-dark) !important;
-}
+/* 单元格连续着色状态下的边框虚化，呈现极致连贯条状物 */
+.status-vacant { background-color: var(--color-uguisu-bg); color: var(--color-uguisu); border-bottom-color: rgba(102, 122, 62, 0.06); }
+.status-reserved { background-color: var(--color-sakura-bg); color: var(--color-sakura); border-bottom-color: rgba(195, 92, 92, 0.06); }
+.status-checkin { background-color: var(--color-kaki-bg); color: var(--color-kaki); border-bottom-color: rgba(206, 101, 62, 0.06); }
+.status-checkout { background-color: var(--color-aizome-bg); color: var(--color-aizome); border-bottom-color: rgba(75, 110, 125, 0.06); }
 
-/* 备注单元格的微交互 */
+/* 备注单元格的微交互与高亮 */
 .tg-cell-remark:hover {
-  background-color: var(--accent-gold-light);
-  color: var(--accent-gold);
+  background-color: var(--accent-gold-light) !important;
+  color: var(--accent-gold) !important;
   font-weight: 500;
   box-shadow: inset 0 0 0 1px rgba(194, 159, 104, 0.4);
 }
 
 .tg-cell-remark-empty {
-  color: #C0BCB4;
-  font-style: italic;
-  font-size: 0.7rem;
+  color: rgba(44, 44, 43, 0.2); /* 淡淡的一小横线暗示槽 */
   text-align: center;
+}
+
+.tg-row-last-remark td {
+  border-bottom: 2px solid var(--border-wood-dark) !important;
 }
 
 /* ==========================================================================
@@ -769,54 +759,8 @@ h1, h2, h3, h4, .font-serif {
 .tag-request { background-color: var(--color-uguisu-bg); color: var(--color-uguisu); border-color: rgba(102, 122, 62, 0.2); }
 
 /* ==========================================================================
-   8. 房态状态单元格配色 (Gantt States Styles)
+   8. 房态状态单元格斜切 (Check-out Check-in Overlap cell)
    ========================================================================== */
-/* 🟢 空闲状态 */
-.status-vacant {
-  background-color: var(--color-uguisu-bg);
-  color: var(--color-uguisu);
-}
-
-/* 🔴 连住/已预订状态 */
-.status-reserved {
-  background-color: var(--color-sakura-bg);
-  border: 1px solid rgba(195, 92, 92, 0.25);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-inset);
-  color: var(--color-sakura);
-  position: relative;
-}
-
-.status-reserved::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(195, 92, 92, 0.03) 25%, transparent 25%, transparent 50%, rgba(195, 92, 92, 0.03) 50%, rgba(195, 92, 92, 0.03) 75%, transparent 75%, transparent);
-  background-size: 8px 8px;
-  pointer-events: none;
-}
-
-/* 🟣 今日入住 */
-.status-checkin {
-  background-color: var(--color-kaki-bg);
-  border: 1.5px solid var(--color-kaki);
-  border-radius: var(--radius-sm);
-  color: var(--color-kaki);
-  font-weight: 600;
-}
-
-/* 🔵 今日退房 */
-.status-checkout {
-  background-color: var(--color-aizome-bg);
-  border: 1.5px dashed var(--color-aizome);
-  border-radius: var(--radius-sm);
-  color: var(--color-aizome);
-}
-
-/* 🌓 极致半格斜切 (Split checkout-checkin cell) */
 .status-split-out-in {
   background: linear-gradient(135deg, var(--color-aizome-bg) 50%, var(--color-kaki-bg) 50%);
   border: 1px solid var(--border-wood-light);
@@ -849,7 +793,6 @@ h1, h2, h3, h4, .font-serif {
   pointer-events: none;
 }
 
-/* 图例工具条 */
 .legend-bar {
   display: flex;
   justify-content: center;
@@ -920,7 +863,6 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: var(--shadow-gold);
 }
 
-/* 日历内部双栏布局 */
 .calendar-layout {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -934,7 +876,6 @@ h1, h2, h3, h4, .font-serif {
   }
 }
 
-/* 左侧栏：统计面板 */
 .calendar-sidebar {
   display: flex;
   flex-direction: column;
@@ -1017,7 +958,6 @@ h1, h2, h3, h4, .font-serif {
   transform: translateX(1px);
 }
 
-/* 右侧栏：月度表格 */
 .calendar-grid-box {
   background-color: var(--bg-washi);
   border: 1px solid var(--border-wood-light);
@@ -1087,7 +1027,6 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: inset 0 0 0 1px var(--accent-gold);
 }
 
-/* 单元格内元素 */
 .cal-cell-inner {
   display: flex;
   flex-direction: column;
@@ -1103,7 +1042,6 @@ h1, h2, h3, h4, .font-serif {
   align-self: flex-start;
 }
 
-/* 周末日期的微调色 */
 .calendar-table td.sat .cal-date-num { color: #366E8A; }
 .calendar-table td.sun .cal-date-num { color: #B54A4A; }
 
@@ -1113,7 +1051,6 @@ h1, h2, h3, h4, .font-serif {
   pointer-events: none;
 }
 
-/* 月历单元格内的预订条 */
 .cal-booking-stripe {
   font-size: 0.7rem;
   padding: 2px 6px;
@@ -1126,7 +1063,6 @@ h1, h2, h3, h4, .font-serif {
   text-align: center;
 }
 
-/* 今日高亮 */
 .calendar-table td.today-cell {
   box-shadow: inset 0 0 0 1.5px var(--accent-gold);
 }
@@ -1142,7 +1078,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 /* ==========================================================================
-   10. 弹出窗与备忘编辑器设计 (Washi Paper Modal & Remarks Editor)
+   10. 弹出窗设计 (Washi Paper Modal & Remarks Editor)
    ========================================================================== */
 .modal-overlay {
   position: fixed;
@@ -1251,7 +1187,6 @@ h1, h2, h3, h4, .font-serif {
   color: var(--accent-gold);
 }
 
-/* 弹出窗特色按钮 */
 .btn-modal-action {
   background-color: var(--bg-tatami);
   color: var(--accent-gold);
@@ -1296,7 +1231,6 @@ h1, h2, h3, h4, .font-serif {
   background-color: var(--text-dark);
 }
 
-/* 备注专属删除按钮 */
 .btn-modal-delete-remark {
   background: none;
   color: var(--color-sakura);
@@ -1314,7 +1248,6 @@ h1, h2, h3, h4, .font-serif {
   color: white;
 }
 
-/* 备注分类标签选择器按钮组 */
 .type-buttons {
   display: flex;
   gap: 8px;
@@ -1353,7 +1286,6 @@ h1, h2, h3, h4, .font-serif {
   font-size: 0.9rem;
 }
 
-/* 文本输入框 */
 .remarks-input-field {
   width: 100%;
   background-color: var(--bg-tatami);
@@ -1373,7 +1305,187 @@ h1, h2, h3, h4, .font-serif {
 }
 
 /* ==========================================================================
-   11. 页脚装饰 (Footer)
+   11. ⚙️ 新增房源配置管理器样式 (Listings Config Manager Styles)
+   ========================================================================== */
+.manager-sidebar-brands {
+  width: 240px;
+  min-width: 240px;
+  background-color: var(--bg-tatami);
+  border-right: 1px solid var(--border-wood-light);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header-action {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-wood-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EDE9DE;
+}
+
+.sidebar-header-action h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-serif);
+}
+
+.btn-manager-mini-add {
+  background-color: var(--bg-washi);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-family: var(--font-serif);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-manager-mini-add:hover {
+  background-color: var(--accent-gold);
+  color: white;
+}
+
+.manager-brands-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 品牌可编辑项目行 */
+.manager-brand-item-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(229, 222, 201, 0.4);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  gap: 6px;
+}
+
+.manager-brand-item-row:hover {
+  background-color: rgba(229, 222, 201, 0.3);
+}
+
+.manager-brand-item-row.active {
+  background-color: var(--bg-washi);
+  border-left: 4px solid var(--accent-gold);
+  font-weight: 600;
+}
+
+.manager-brand-emoji-input {
+  width: 32px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.manager-brand-emoji-input:focus {
+  border-color: var(--accent-gold);
+  background-color: var(--bg-tatami);
+  border-radius: var(--radius-sm);
+}
+
+.manager-brand-name-input {
+  flex-grow: 1;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  background: none;
+  outline: none;
+  padding: 2px 6px;
+  color: var(--text-dark);
+}
+
+.manager-brand-name-input:focus {
+  border-color: var(--accent-gold);
+  background-color: var(--bg-washi);
+  border-radius: var(--radius-sm);
+}
+
+.btn-manager-row-del {
+  background: none;
+  border: none;
+  color: #C0BCB4;
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition-smooth);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-manager-row-del:hover {
+  color: var(--color-sakura);
+  transform: scale(1.15);
+}
+
+/* 房源配置核心编辑区 */
+.manager-content-properties {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-washi);
+}
+
+.manager-properties-table-wrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.manager-properties-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manager-properties-table th {
+  padding: 10px;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border-wood-light);
+  text-align: left;
+}
+
+.manager-properties-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(229, 222, 201, 0.4);
+  vertical-align: middle;
+}
+
+/* 输入控件扁平化设计 */
+.manager-text-input {
+  width: 100%;
+  border: 1px solid var(--border-wood-light);
+  background-color: var(--bg-tatami);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  outline: none;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.manager-text-input:focus {
+  border-color: var(--accent-gold);
+  background-color: var(--bg-washi);
+  box-shadow: var(--shadow-inset);
+}
+
+/* ==========================================================================
+   12. 页脚装饰 (Footer)
    ========================================================================== */
 .app-footer {
   background-color: var(--bg-washi);
