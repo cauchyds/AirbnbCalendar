@@ -108,21 +108,22 @@
       </div>
     </section>
 
-    <!-- 全房源纵览甘特图 (Gantt Timeline Grid) -->
+    <!-- 全房源纵览瀑布流时间轴 (Gantt Multi-Property Timeline Grid) -->
     <section class="timeline-section">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title-wrapper">
-            <span class="section-badge">甘特图</span>
-            <h2>多房源状态纵览时间轴</h2>
+            <span class="section-badge">每日看板</span>
+            <h2>多房源状态与运营排班瀑布流</h2>
           </div>
           
           <!-- 时间轴过滤器与视图切换 -->
           <div class="timeline-controls">
             <div class="control-group">
-              <button id="btn-scale-7" class="btn-toggle active">7天视图</button>
-              <button id="btn-scale-15" class="btn-toggle">15天视图</button>
-              <button id="btn-scale-30" class="btn-toggle">30天视图</button>
+              <span class="control-label" style="font-family: var(--font-serif); font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 5px;">展示天数：</span>
+              <button id="btn-scale-15" class="btn-toggle">15天</button>
+              <button id="btn-scale-30" class="btn-toggle active">30天</button>
+              <button id="btn-scale-60" class="btn-toggle">60天</button>
             </div>
             
             <div class="timeline-nav">
@@ -133,19 +134,25 @@
           </div>
         </div>
         
-        <!-- 甘特图表格挂载点 -->
+        <!-- 甘特图表格挂载点 (横纵对调版) -->
         <div class="timeline-wrapper-outer">
           <div class="timeline-grid-container" id="timeline-grid-container">
             <!-- JS 渲染甘特图 -->
           </div>
         </div>
         
-        <!-- 传统日本色图例 -->
+        <!-- 传统日本色与操作备注图例 -->
         <div class="legend-bar">
           <div class="legend-item"><span class="legend-dot color-vacant"></span><span>空闲 (莺绿)</span></div>
           <div class="legend-item"><span class="legend-dot color-reserved"></span><span>已预订/连住 (薄红梅)</span></div>
           <div class="legend-item"><span class="legend-dot color-checkin"></span><span>今日入住 (柿涩橙)</span></div>
           <div class="legend-item"><span class="legend-dot color-checkout"></span><span>今日退房 (蓝染蓝)</span></div>
+          <div class="legend-separator">|</div>
+          <div class="legend-item"><span>🔧 维修</span></div>
+          <div class="legend-item"><span>🚒 消防</span></div>
+          <div class="legend-item"><span>📦 配送</span></div>
+          <div class="legend-item"><span>👥 人数</span></div>
+          <div class="legend-item"><span>💬 需求</span></div>
         </div>
       </div>
     </section>
@@ -264,6 +271,56 @@
       </div>
       <div class="modal-footer">
         <button class="btn-modal-close-confirm" id="btn-close-modal-confirm">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 备忘录编辑弹窗 (Remarks Editor Modal) -->
+  <div class="modal-overlay" id="remarks-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📝 编辑每日备忘与运营任务</h3>
+        <button class="btn-close-modal" id="btn-close-remarks-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <span class="field-label">目标房源</span>
+          <span class="field-value font-highlight" id="remarks-modal-prop-name">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">指定日期</span>
+          <span class="field-value" id="remarks-modal-date">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">备注插槽</span>
+          <span class="field-value" id="remarks-modal-slot-id">第 - 行</span>
+        </div>
+        
+        <!-- 快捷分类选择 -->
+        <div class="remarks-type-selector">
+          <span class="field-label" style="display: block; margin-bottom: 8px;">选择快捷分类标签：</span>
+          <div class="type-buttons">
+            <button class="btn-type-tag" data-tag="🔧 维修"><span class="tag-icon">🔧</span>维修</button>
+            <button class="btn-type-tag" data-tag="🚒 消防"><span class="tag-icon">🚒</span>消防</button>
+            <button class="btn-type-tag" data-tag="📦 配送"><span class="tag-icon">📦</span>配送</button>
+            <button class="btn-type-tag" data-tag="👥 人数"><span class="tag-icon">👥</span>人数</button>
+            <button class="btn-type-tag" data-tag="💬 需求"><span class="tag-icon">💬</span>需求</button>
+            <button class="btn-type-tag active" data-tag=""><span class="tag-icon">📝</span>无标签</button>
+          </div>
+        </div>
+        
+        <!-- 文本输入框 -->
+        <div class="remarks-input-wrapper" style="margin-top: 15px;">
+          <label for="input-remark-text" class="field-label" style="display: block; margin-bottom: 6px;">任务/备注内容：</label>
+          <input type="text" id="input-remark-text" class="remarks-input-field" placeholder="输入具体的备忘信息..." autocomplete="off">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-delete-remark" id="btn-delete-remark">清除此条</button>
+        <div class="footer-right-buttons" style="margin-left: auto;">
+          <button class="btn-modal-close-confirm" style="background-color: var(--text-muted); margin-right: 8px;" id="btn-cancel-remarks">取消</button>
+          <button class="btn-modal-close-confirm" id="btn-save-remarks">保存备注</button>
+        </div>
       </div>
     </div>
   </div>
