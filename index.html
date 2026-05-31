@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雲町屋 & 多品牌房源日历看板</title>
+  
+  <!-- 引入优雅的日式和风字体与现代数字字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 顶部雅致横幅与控制栏 -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-icon">🏮</span>
+        <div class="logo-text">
+          <h1>雲町屋 房态管理大盘</h1>
+          <p class="subtitle">雅致和风 • 多品牌民宿日历中心</p>
+        </div>
+      </div>
+      
+      <!-- 同步状态与手动触发 -->
+      <div class="sync-panel">
+        <div class="sync-info">
+          <span class="sync-dot blinking-dot"></span>
+          <span class="sync-label">自动同步时间：</span>
+          <span id="sync-time-string" class="sync-value">加载中...</span>
+        </div>
+        <button id="btn-manual-sync" class="btn-sync" title="拉取最新数据（越过缓存）">
+          <span class="sync-icon">🔄</span>
+          <span>立即更新</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 品牌 Tab 移门导航栏 -->
+  <nav class="brand-nav">
+    <div class="brand-tabs-container" id="brand-tabs">
+      <!-- JS 动态注入 Brand Tabs -->
+    </div>
+  </nav>
+
+  <main class="dashboard-content">
+    
+    <!-- 今日房态核心大盘 (KPI Stats) -->
+    <section class="kpi-section">
+      <div class="kpi-grid">
+        <div class="kpi-card stats-total">
+          <div class="kpi-icon">🏠</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-total-properties">-</span>
+            <span class="kpi-label">房源总数</span>
+          </div>
+        </div>
+        <div class="kpi-card stats-occupancy">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-occupancy-rate">-</span>
+            <span class="kpi-label">今日入住率</span>
+          </div>
+        </div>
+        <div class="kpi-card stats-checkin">
+          <div class="kpi-icon icon-checkin">🍂</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-today-checkins">-</span>
+            <span class="kpi-label">今日新入住</span>
+          </div>
+        </div>
+        <div class="kpi-card stats-checkout">
+          <div class="kpi-icon icon-checkout">🌾</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-today-checkouts">-</span>
+            <span class="kpi-label">今日需退房</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 今日待办事项列表 (Check-ins & Check-outs Detailed) -->
+    <section class="todo-section">
+      <div class="todo-grid">
+        <div class="todo-box card-checkin">
+          <div class="todo-title">
+            <span class="todo-marker marker-in"></span>
+            <h3>今日新入住列表 (Check-ins)</h3>
+          </div>
+          <div class="todo-list-container" id="list-today-checkins">
+            <div class="todo-empty">今日无新入住客人</div>
+          </div>
+        </div>
+        
+        <div class="todo-box card-checkout">
+          <div class="todo-title">
+            <span class="todo-marker marker-out"></span>
+            <h3>今日退房/待保洁列表 (Check-outs)</h3>
+          </div>
+          <div class="todo-list-container" id="list-today-checkouts">
+            <div class="todo-empty">今日无退房日程</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 全房源纵览甘特图 (Gantt Timeline Grid) -->
+    <section class="timeline-section">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title-wrapper">
+            <span class="section-badge">甘特图</span>
+            <h2>多房源状态纵览时间轴</h2>
+          </div>
+          
+          <!-- 时间轴过滤器与视图切换 -->
+          <div class="timeline-controls">
+            <div class="control-group">
+              <button id="btn-scale-7" class="btn-toggle active">7天视图</button>
+              <button id="btn-scale-15" class="btn-toggle">15天视图</button>
+              <button id="btn-scale-30" class="btn-toggle">30天视图</button>
+            </div>
+            
+            <div class="timeline-nav">
+              <button id="btn-time-prev" class="btn-nav" title="向前移">◀</button>
+              <button id="btn-time-today" class="btn-nav btn-today">今天</button>
+              <button id="btn-time-next" class="btn-nav" title="向后移">▶</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 甘特图表格挂载点 -->
+        <div class="timeline-wrapper-outer">
+          <div class="timeline-grid-container" id="timeline-grid-container">
+            <!-- JS 渲染甘特图 -->
+          </div>
+        </div>
+        
+        <!-- 传统日本色图例 -->
+        <div class="legend-bar">
+          <div class="legend-item"><span class="legend-dot color-vacant"></span><span>空闲 (莺绿)</span></div>
+          <div class="legend-item"><span class="legend-dot color-reserved"></span><span>已预订/连住 (薄红梅)</span></div>
+          <div class="legend-item"><span class="legend-dot color-checkin"></span><span>今日入住 (柿涩橙)</span></div>
+          <div class="legend-item"><span class="legend-dot color-checkout"></span><span>今日退房 (蓝染蓝)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 精细单房源日历视图 -->
+    <section class="single-calendar-section">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title-wrapper">
+            <span class="section-badge">精细日历</span>
+            <h2>单房源月度日程</h2>
+          </div>
+          
+          <!-- 房源选择下拉列表 -->
+          <div class="property-selector-wrapper">
+            <label for="select-property">选择房源：</label>
+            <select id="select-property" class="property-dropdown">
+              <!-- JS 填充 -->
+            </select>
+          </div>
+        </div>
+
+        <div class="calendar-layout">
+          <!-- 左侧：月度统计与订单列表 -->
+          <div class="calendar-sidebar">
+            <div class="sidebar-box info-card">
+              <h4 id="sidebar-prop-name">房源名称</h4>
+              <p class="sidebar-brand-badge" id="sidebar-brand-name">品牌</p>
+              <div class="divider"></div>
+              <div class="stat-row">
+                <span>当月已预订天数：</span>
+                <strong id="stat-booked-days">- 天</strong>
+              </div>
+              <div class="stat-row">
+                <span>当月入住率：</span>
+                <strong id="stat-occupancy-rate">-</strong>
+              </div>
+            </div>
+
+            <div class="sidebar-box booking-list-box">
+              <h4>最近预订日程</h4>
+              <div class="sidebar-booking-list" id="sidebar-bookings">
+                <!-- 动态列表 -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧：精美日历格子 -->
+          <div class="calendar-grid-box">
+            <div class="calendar-month-header">
+              <button id="btn-cal-prev" class="btn-cal-nav">◀</button>
+              <h3 id="calendar-month-year">2026年 5月</h3>
+              <button id="btn-cal-next" class="btn-cal-nav">▶</button>
+            </div>
+            
+            <!-- 日历表格 -->
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>日</th>
+                  <th>一</th>
+                  <th>二</th>
+                  <th>三</th>
+                  <th>四</th>
+                  <th>五</th>
+                  <th>六</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-body">
+                <!-- JS 动态填充格子 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 订单详情弹窗 (Modal) -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📄 房态预订详情</h3>
+        <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <span class="field-label">房源名称</span>
+          <span class="field-value font-highlight" id="modal-prop-name">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">预订状态</span>
+          <span class="field-value" id="modal-status">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">入住日期 (Check-in)</span>
+          <span class="field-value" id="modal-start-date">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">退房日期 (Check-out)</span>
+          <span class="field-value" id="modal-end-date">-</span>
+        </div>
+        <div class="modal-field">
+          <span class="field-label">入住晚数 (Nights)</span>
+          <span class="field-value font-bold" id="modal-nights">- 晚</span>
+        </div>
+        <div class="modal-field" id="modal-field-phone">
+          <span class="field-label">电话后四位</span>
+          <span class="field-value" id="modal-phone">-</span>
+        </div>
+        <div class="modal-field" id="modal-field-link">
+          <span class="field-label">订单操作</span>
+          <a href="#" target="_blank" class="btn-modal-action" id="modal-link">前往 Airbnb 订单详情 ↗</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-close-confirm" id="btn-close-modal-confirm">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>© 2026 雲町屋 • 庆有鱼 | 房源预订大盘</p>
+      <p class="footer-note">数据基于 Airbnb 官方日历源，通过 GitHub Actions 每 3 小时高精度自动更新</p>
+    </div>
+  </footer>
+
+  <!-- 引入配置与逻辑控制 JS -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

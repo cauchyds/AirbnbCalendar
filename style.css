@@ -1,0 +1,1259 @@
+/**
+ * 雲町屋 & 多品牌房源日历看板 - 和风视觉样式表 (style.css)
+ * 
+ * 视觉理念：日式传统美学 (Traditional Japanese Zen / Wagashi Aesthetic)
+ * 色调选择：叠席米白 (Tatami Beige)、莺绿 (Uguisu)、薄红梅 (Sakura)、柿涩橙 (Kaki)、蓝染蓝 (Aizome)
+ */
+
+/* ==========================================================================
+   1. 设计系统令牌 (Design Tokens)
+   ========================================================================== */
+:root {
+  /* 基础调色盘 */
+  --bg-tatami: #F7F4EB;              /* 传统叠席温暖米白，作为页面主底色 */
+  --bg-washi: #FFFFFF;              /* 宣纸纯白，作为卡片底色 */
+  --text-dark: #2C2C2B;             /* 极深木炭黑，避免刺眼的纯黑 */
+  --text-muted: #646461;            /* 优雅的烟灰，用于辅助文字 */
+  
+  /* 日本传统色系 (Nihon no Dentou-shoku) */
+  --color-uguisu: #667A3E;          /* 莺绿色 - 空闲 (Available) */
+  --color-uguisu-bg: #F1F4EA;
+  --color-uguisu-hover: #5A6D37;
+  
+  --color-sakura: #C35C5C;          /* 薄红梅/红梅色 - 已预订连住 (Reserved) */
+  --color-sakura-bg: #FCF0F0;
+  
+  --color-kaki: #CE653E;            /* 柿涩橙/橙色 - 今日入住 (Check-in) */
+  --color-kaki-bg: #FAF0EB;
+  
+  --color-aizome: #4B6E7D;          /* 蓝染蓝/靛蓝 - 今日退房 (Check-out) */
+  --color-aizome-bg: #EDF3F5;
+  
+  /* 木质结构装饰色 */
+  --border-wood-light: #E5DEC9;     /* 浅色障子纸框色 */
+  --border-wood-dark: #7A624E;      /* 深色雪松木装饰色 */
+  --accent-gold: #C29F68;           /* 砂金金黄 - 高亮与重点 */
+  --accent-gold-light: #FAF6ED;
+  
+  /* 阴影与深度 */
+  --shadow-washi: 0 6px 20px rgba(110, 102, 88, 0.06), 0 1px 3px rgba(110, 102, 88, 0.03);
+  --shadow-inset: inset 0 2px 4px rgba(110, 102, 88, 0.03);
+  --shadow-gold: 0 4px 12px rgba(194, 159, 104, 0.2);
+  
+  /* 字体排版 */
+  --font-serif: 'Noto Serif JP', 'Georgia', 'Songti SC', serif;
+  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* 间距与圆角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   2. 全局重置与排版 (Global Reset & Typography)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-tatami);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 60px;
+}
+
+/* 优雅且具有人文气息的 Noto Serif JP 标题 */
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+/* 自定义日式和风滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-tatami);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-wood-light);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* ==========================================================================
+   3. 页眉设计与控制区 (Header & Controls)
+   ========================================================================== */
+.app-header {
+  background-color: var(--bg-washi);
+  border-bottom: 3px double var(--border-wood-light);
+  padding: 20px 0;
+  box-shadow: var(--shadow-washi);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  font-size: 2.2rem;
+  animation: sway 4s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+@keyframes sway {
+  0% { transform: rotate(-5deg) translateY(0); }
+  100% { transform: rotate(5deg) translateY(-3px); }
+}
+
+.logo-text h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.logo-text .subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+.sync-panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--bg-tatami);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-wood-light);
+}
+
+.sync-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-uguisu);
+}
+
+.blinking-dot {
+  animation: blink 2s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.sync-label {
+  color: var(--text-muted);
+}
+
+.sync-value {
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+/* 扁平优雅按钮 - 木框金边风格 */
+.btn-sync {
+  background-color: var(--bg-washi);
+  color: var(--text-dark);
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-smooth);
+}
+
+.btn-sync:hover {
+  background-color: var(--accent-gold);
+  color: white;
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-1px);
+}
+
+.btn-sync:active {
+  transform: translateY(0);
+}
+
+.sync-icon-spin {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   4. 品牌 Tab 移门式导航栏 (Shoji Sliding Brand Tabs)
+   ========================================================================== */
+.brand-nav {
+  max-width: 1400px;
+  margin: 25px auto 0;
+  padding: 0 30px;
+}
+
+.brand-tabs-container {
+  display: flex;
+  border-bottom: 2px solid var(--border-wood-light);
+  gap: 10px;
+}
+
+.brand-tab {
+  background: none;
+  border: none;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  padding: 12px 28px;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-smooth);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+}
+
+.brand-tab:hover {
+  color: var(--text-dark);
+  background-color: rgba(229, 222, 201, 0.2);
+}
+
+.brand-tab.active {
+  color: var(--text-dark);
+  background-color: var(--bg-washi);
+  border-color: var(--border-wood-light) var(--border-wood-light) var(--bg-washi);
+  font-weight: 600;
+}
+
+/* 日式滑动下划线装饰 */
+.brand-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   5. 数据大盘与今日待办 (KPIs & Daily Check-ins)
+   ========================================================================== */
+.dashboard-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.kpi-section {
+  margin-top: 25px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* 宣纸大盘卡片 - 障子格边缘 */
+.kpi-card {
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-washi);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: var(--transition-smooth);
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+}
+
+.kpi-icon {
+  font-size: 2.2rem;
+  width: 55px;
+  height: 55px;
+  background-color: var(--bg-tatami);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-wood-light);
+}
+
+.kpi-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-value {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-dark);
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  margin-top: 4px;
+}
+
+/* 特色色标图标 */
+.icon-checkin { background-color: var(--color-kaki-bg); color: var(--color-kaki); border-color: rgba(206, 101, 62, 0.2); }
+.icon-checkout { background-color: var(--color-aizome-bg); color: var(--color-aizome); border-color: rgba(75, 110, 125, 0.2); }
+
+/* 今日待办板块 (Check-ins & Check-outs Lists) */
+.todo-section {
+  margin-top: 25px;
+}
+
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .todo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.todo-box {
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-washi);
+  padding: 24px;
+}
+
+.todo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-wood-light);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.todo-title h3 {
+  font-size: 1.1rem;
+}
+
+.todo-marker {
+  width: 6px;
+  height: 18px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.marker-in { background-color: var(--color-kaki); }
+.marker-out { background-color: var(--color-aizome); }
+
+.todo-list-container {
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px;
+}
+
+.todo-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 30px 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* 待办项目卡片设计 */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--bg-tatami);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(229, 222, 201, 0.5);
+  transition: var(--transition-smooth);
+}
+
+.todo-item:hover {
+  border-color: var(--accent-gold);
+  transform: translateX(2px);
+}
+
+.todo-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-prop-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.todo-dates {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.todo-item-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.todo-nights {
+  font-family: var(--font-sans);
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-light);
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.btn-todo-details {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-gold);
+  cursor: pointer;
+}
+
+.btn-todo-details:hover {
+  color: var(--border-wood-dark);
+  border-bottom-color: var(--border-wood-dark);
+}
+
+/* ==========================================================================
+   6. 甘特图纵览时间轴 (Gantt Multi-Property Timeline)
+   ========================================================================== */
+.timeline-section, .single-calendar-section {
+  margin-top: 30px;
+}
+
+.section-card {
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-washi);
+  padding: 28px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-badge {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  background-color: var(--accent-gold-light);
+  color: var(--accent-gold);
+  border: 1px solid rgba(194, 159, 104, 0.3);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.section-header h2 {
+  font-size: 1.35rem;
+}
+
+/* 控制按钮组与导航 */
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.control-group {
+  display: flex;
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.btn-toggle {
+  background-color: var(--bg-washi);
+  color: var(--text-muted);
+  border: none;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-toggle:not(:last-child) {
+  border-right: 1px solid var(--border-wood-light);
+}
+
+.btn-toggle:hover {
+  color: var(--text-dark);
+  background-color: var(--bg-tatami);
+}
+
+.btn-toggle.active {
+  background-color: var(--accent-gold);
+  color: white;
+  font-weight: 500;
+}
+
+.timeline-nav {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.btn-nav {
+  background-color: var(--bg-washi);
+  border: none;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  color: var(--text-dark);
+}
+
+.btn-nav:hover {
+  background-color: var(--bg-tatami);
+}
+
+.btn-nav:active {
+  background-color: var(--border-wood-light);
+}
+
+.btn-today {
+  font-family: var(--font-serif);
+  border-left: 1px solid var(--border-wood-light);
+  border-right: 1px solid var(--border-wood-light);
+  font-weight: 500;
+}
+
+/* 甘特图滚动容器 */
+.timeline-wrapper-outer {
+  overflow-x: auto;
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-tatami);
+  box-shadow: var(--shadow-inset);
+  margin-bottom: 20px;
+}
+
+.timeline-grid-container {
+  min-width: 100%;
+  display: grid;
+}
+
+/* 时间轴表格布局 */
+.tg-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-washi);
+  table-layout: fixed;
+}
+
+.tg-thead th {
+  background-color: var(--bg-tatami);
+  border-bottom: 2px solid var(--border-wood-light);
+  border-right: 1px solid var(--border-wood-light);
+  padding: 10px 4px;
+  font-family: var(--font-sans);
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* 首列固定 - 房源名称列 */
+.tg-col-prop-header {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: var(--bg-tatami) !important;
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+  text-align: left !important;
+  padding-left: 15px !important;
+  border-right: 2px solid var(--border-wood-light) !important;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.03);
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+}
+
+/* 区分工作日与周末 */
+.tg-day-header {
+  width: 65px;
+  min-width: 65px;
+}
+
+.tg-day-header.weekend-sat {
+  background-color: #EBF2F6;
+  color: #366E8A;
+}
+
+.tg-day-header.weekend-sun {
+  background-color: #FBF0F0;
+  color: #B54A4A;
+}
+
+.tg-day-header.today {
+  background-color: var(--accent-gold-light);
+  color: var(--accent-gold);
+  border: 1px solid rgba(194, 159, 104, 0.4);
+  box-shadow: inset 0 0 0 1px var(--accent-gold);
+}
+
+.tg-day-header .day-number {
+  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  display: block;
+}
+
+.tg-day-header .day-name {
+  font-size: 0.65rem;
+  font-family: var(--font-serif);
+  display: block;
+  opacity: 0.8;
+  margin-top: 1px;
+}
+
+/* 甘特图行与网格单元 */
+.tg-row {
+  border-bottom: 1px solid var(--border-wood-light);
+}
+
+.tg-row:hover {
+  background-color: rgba(247, 244, 235, 0.4);
+}
+
+.tg-cell {
+  height: 60px;
+  border-right: 1px solid rgba(229, 222, 201, 0.6);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 3px;
+}
+
+/* 单元格悬停与焦点 */
+.tg-cell:hover {
+  filter: brightness(0.97);
+  box-shadow: inset 0 0 0 2px var(--accent-gold);
+}
+
+/* 日历状态的样式渲染 */
+
+/* 🟢 空闲状态 */
+.status-vacant {
+  background-color: var(--color-uguisu-bg);
+  color: var(--color-uguisu);
+}
+
+/* 🔴 连住/已预订状态 */
+.status-reserved {
+  background-color: var(--color-sakura-bg);
+  border: 1px solid rgba(195, 92, 92, 0.25);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-inset);
+  color: var(--color-sakura);
+  position: relative;
+}
+
+.status-reserved::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(195, 92, 92, 0.03) 25%, transparent 25%, transparent 50%, rgba(195, 92, 92, 0.03) 50%, rgba(195, 92, 92, 0.03) 75%, transparent 75%, transparent);
+  background-size: 8px 8px;
+}
+
+/* 🟣 今日入住 */
+.status-checkin {
+  background-color: var(--color-kaki-bg);
+  border: 1.5px solid var(--color-kaki);
+  border-radius: var(--radius-sm);
+  color: var(--color-kaki);
+  font-weight: 600;
+}
+
+/* 🔵 今日退房 */
+.status-checkout {
+  background-color: var(--color-aizome-bg);
+  border: 1.5px dashed var(--color-aizome);
+  border-radius: var(--radius-sm);
+  color: var(--color-aizome);
+}
+
+/* 🌓 极致半格斜切（前退后入）- 解决上午退房下午入住的核心样式 */
+.status-split-out-in {
+  background: linear-gradient(135deg, var(--color-aizome-bg) 50%, var(--color-kaki-bg) 50%);
+  border: 1px solid var(--border-wood-light);
+  border-left: 2px solid var(--color-aizome);
+  border-right: 2px solid var(--color-kaki);
+  border-radius: var(--radius-sm);
+}
+
+.status-split-out-in::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 48%, var(--border-wood-light) 48%, var(--border-wood-light) 52%, transparent 52%);
+  pointer-events: none;
+}
+
+/* 内部指示小圆点/文字标签 */
+.cell-badge {
+  font-size: 0.65rem;
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.8);
+  border: 1px solid currentColor;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* 图例工具条 */
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-family: var(--font-serif);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  border: 1px solid var(--border-wood-light);
+}
+
+.color-vacant { background-color: var(--color-uguisu-bg); border-color: var(--color-uguisu); }
+.color-reserved { background-color: var(--color-sakura-bg); border-color: var(--color-sakura); }
+.color-checkin { background-color: var(--color-kaki-bg); border-color: var(--color-kaki); }
+.color-checkout { background-color: var(--color-aizome-bg); border-color: var(--color-aizome); }
+
+/* ==========================================================================
+   7. 单房源月度精细日历 (Monthly Grid Calendar)
+   ========================================================================== */
+.property-selector-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.property-selector-wrapper label {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.property-dropdown {
+  background-color: var(--bg-tatami);
+  color: var(--text-dark);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-gold);
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.property-dropdown:focus {
+  background-color: var(--bg-washi);
+  box-shadow: var(--shadow-gold);
+}
+
+/* 日历内部双栏布局 */
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+@media (max-width: 950px) {
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 左侧栏：统计面板 */
+.calendar-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-box {
+  background-color: var(--bg-tatami);
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.sidebar-box h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.sidebar-brand-badge {
+  font-size: 0.75rem;
+  background-color: var(--accent-gold);
+  color: white;
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-wood-light);
+  margin: 12px 0;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.stat-row strong {
+  font-family: var(--font-sans);
+  color: var(--accent-gold);
+  font-size: 1rem;
+}
+
+.booking-list-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-booking-list {
+  overflow-y: auto;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-right: 2px;
+}
+
+.sidebar-booking-item {
+  background-color: var(--bg-washi);
+  border: 1px solid rgba(229, 222, 201, 0.7);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.sidebar-booking-item:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-inset);
+  transform: translateX(1px);
+}
+
+/* 右侧栏：月度表格 */
+.calendar-grid-box {
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.calendar-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-month-header h3 {
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+}
+
+.btn-cal-nav {
+  background: none;
+  border: 1px solid var(--border-wood-light);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  color: var(--text-dark);
+}
+
+.btn-cal-nav:hover {
+  background-color: var(--accent-gold-light);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-table th {
+  padding: 10px 0;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border-wood-light);
+  text-align: center;
+  width: 14.28%;
+}
+
+.calendar-table td {
+  height: 90px;
+  border: 1px solid rgba(229, 222, 201, 0.5);
+  vertical-align: top;
+  padding: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.calendar-table td:hover {
+  background-color: rgba(247, 244, 235, 0.4);
+  box-shadow: inset 0 0 0 1px var(--accent-gold);
+}
+
+/* 单元格内元素 */
+.cal-cell-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.cal-date-num {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  align-self: flex-start;
+}
+
+/* 周末日期的微调色 */
+.calendar-table td.sat .cal-date-num { color: #366E8A; }
+.calendar-table td.sun .cal-date-num { color: #B54A4A; }
+
+.calendar-table td.other-month {
+  opacity: 0.25;
+  background-color: rgba(247, 244, 235, 0.2);
+  pointer-events: none;
+}
+
+/* 月历单元格内的预订条 */
+.cal-booking-stripe {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* 今日高亮 */
+.calendar-table td.today-cell {
+  box-shadow: inset 0 0 0 1.5px var(--accent-gold);
+}
+.calendar-table td.today-cell::before {
+  content: '今日';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 0.65rem;
+  font-family: var(--font-serif);
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   8. 弹出窗设计 (Washi Paper Modal)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(74, 53, 37, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background-color: var(--bg-washi);
+  border: 3px double var(--border-wood-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(74, 53, 37, 0.15);
+  width: 480px;
+  max-width: 90%;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-wood-light);
+  background-color: var(--bg-tatami);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition-smooth);
+}
+
+.btn-close-modal:hover {
+  color: var(--color-sakura);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(229, 222, 201, 0.5);
+  padding-bottom: 10px;
+}
+
+.field-label {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.field-value {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.font-highlight {
+  font-family: var(--font-serif);
+  color: var(--border-wood-dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.font-bold {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+/* 弹出窗特色按钮 */
+.btn-modal-action {
+  background-color: var(--bg-tatami);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.btn-modal-action:hover {
+  background-color: var(--accent-gold);
+  color: white;
+  box-shadow: var(--shadow-gold);
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  background-color: var(--bg-tatami);
+  border-top: 1px solid var(--border-wood-light);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-modal-close-confirm {
+  background-color: var(--border-wood-dark);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-modal-close-confirm:hover {
+  background-color: var(--text-dark);
+}
+
+/* ==========================================================================
+   9. 页脚装饰 (Footer)
+   ========================================================================== */
+.app-footer {
+  background-color: var(--bg-washi);
+  border-top: 3px double var(--border-wood-light);
+  padding: 30px 0;
+  margin-top: 50px;
+  text-align: center;
+  box-shadow: 0 -4px 15px rgba(110, 102, 88, 0.03);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-footer p {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.footer-note {
+  font-family: var(--font-sans) !important;
+  font-size: 0.75rem !important;
+  color: var(--text-muted) !important;
+  margin-top: 4px;
+}

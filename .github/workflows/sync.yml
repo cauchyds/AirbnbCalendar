@@ -1,0 +1,61 @@
+# GitHub Actions 自动化日历同步工作流 (.github/workflows/sync.yml)
+#
+# 此配置实现：
+# 1. 每 3 小时自动在云端执行抓取脚本，获取 16 个房源的最实时日程。
+# 2. 自动将最新抓取到的 data.json 提交回您的仓库。
+# 3. 从而自动触发 GitHub Pages 重新部署，确保您的网页数据永远处于最新状态。
+# 4. 支持在 GitHub 仓库界面手动点击“Run workflow”进行即时同步。
+
+name: Airbnb Calendar Auto Sync
+
+on:
+  schedule:
+    # 国际标准时间每 3 小时执行一次 (例如：00:00, 03:00, 06:00 等)
+    # 对应北京/东京时间为 03:00, 06:00, 09:00 等，对服务器非常友好且能保证数据极高新鲜度
+    - cron: '0 */3 * * *'
+  
+  # 支持在 GitHub 网页上手动一键触发同步
+  workflow_dispatch:
+
+  # 当您手动向 main 分支推送修改（如修改了 config.js 房源）时自动触发同步
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出仓库代码
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. 安装 Node.js 运行环境 (使用 LTS 版本 v20，零依赖极速初始化)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. 执行抓取与解析脚本 (生成最新的 data.json)
+      - name: Run Calendar Fetcher
+        run: node fetch_calendars.js
+
+      # 4. 自动提交 data.json 更新回 GitHub 仓库
+      - name: Commit and Push Updated Data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          
+          # 检查是否有文件改动，有改动则提交，无改动则跳过，防止产生空 Commit
+          if git diff --staged --quiet; then
+            echo "📅 数据未发生变化，跳过提交。"
+          else
+            git commit -m "chore: auto-sync Airbnb calendar data [skip ci]"
+            git push
+          fi
