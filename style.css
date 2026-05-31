@@ -656,15 +656,16 @@ body {
 }
 
 .tg-col-date-header .date-num {
-  font-size: 1.1rem;
-  display: block;
+  font-size: 0.95rem;
+  display: inline;
   font-weight: 700;
 }
 
 .tg-col-date-header .date-name {
-  font-size: 0.75rem;
-  display: block;
-  margin-top: 2px;
+  font-size: 0.95rem;
+  display: inline;
+  margin-left: 2px;
+  font-weight: 600;
 }
 
 .tg-col-date-header.weekend-sat { background-color: #F1F6F8 !important; color: #366E8A; }
@@ -676,9 +677,9 @@ body {
 }
 
 .tg-col-prop {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
 }
 
 .tg-row-booking {

@@ -712,11 +712,13 @@ function renderGanttTimeline(activeProps) {
         tdDate.rowSpan = 8;
         
         tdDate.innerHTML = `
-          <span class="date-num">${currentDate.getDate()}</span>
-          <span class="date-name">${dayNames[dayOfWeek]}</span>
-          <span style="font-size: 0.65rem; opacity: 0.7; font-family: var(--font-sans); display:block; margin-top:2px;">
-            ${(currentDate.getMonth() + 1)}/${currentDate.getDate()}
-          </span>
+          <div style="font-size: 0.95rem; font-weight: 600; font-family: var(--font-sans);">
+            <span class="date-num" style="font-size: 0.95rem; font-weight: 700;">${currentDate.getDate()}</span>
+            <span class="date-name" style="font-size: 0.95rem; font-weight: 600; margin-left: 2px;">${dayNames[dayOfWeek]}</span>
+          </div>
+          <div style="font-size: 0.8rem; opacity: 0.6; font-family: var(--font-sans); margin-top: 2px;">
+            ${(currentDate.getMonth() + 1)}月${currentDate.getDate()}日
+          </div>
         `;
         tr.appendChild(tdDate);
       }
@@ -745,12 +747,12 @@ function renderGanttTimeline(activeProps) {
         const isCheckinBadgeSlot = (slot === 6) && (slotStatus.statusClass === 'status-checkin');
         
         if (isCheckoutBadgeSlot) {
-          innerHtml = `<span class="grid-pill pill-out">🎏 退房</span>`;
+          innerHtml = `<span class="grid-pill pill-out">退房</span>`;
           if (remarkText) {
             innerHtml += ` ` + parseRemarkTextHtml(remarkText);
           }
         } else if (isCheckinBadgeSlot) {
-          innerHtml = `<span class="grid-pill pill-in">🍁 入住</span>`;
+          innerHtml = `<span class="grid-pill pill-in">入住</span>`;
           if (remarkText) {
             innerHtml += ` ` + parseRemarkTextHtml(remarkText);
           }
