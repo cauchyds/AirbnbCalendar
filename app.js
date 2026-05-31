@@ -252,11 +252,7 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
   
   // B. 连续连住 (中间日)
   if (s === 'reserved') {
-    if (slotIdx === 0) {
-      return { statusClass: 'status-reserved', isBookingCell: true, label: '已入住/占用', event: fStatus.event };
-    } else {
-      return { statusClass: 'status-reserved', isBookingCell: false };
-    }
+    return { statusClass: 'status-reserved', isBookingCell: false };
   }
   
   // C. 新入住当天 (下午入住，前空后满)
@@ -742,12 +738,12 @@ function renderGanttTimeline(activeProps) {
         const isCheckinBadgeSlot = (slot === 6) && (slotStatus.statusClass === 'status-checkin');
         
         if (isCheckoutBadgeSlot) {
-          innerHtml = `<span class="grid-pill pill-out">退房</span>`;
+          innerHtml = `<span class="grid-pill pill-out">退房 <span class="badge-info-icon">ℹ️</span></span>`;
           if (remarkText) {
             innerHtml += ` ` + parseRemarkTextHtml(remarkText);
           }
         } else if (isCheckinBadgeSlot) {
-          innerHtml = `<span class="grid-pill pill-in">入住</span>`;
+          innerHtml = `<span class="grid-pill pill-in">入住 <span class="badge-info-icon">ℹ️</span></span>`;
           if (remarkText) {
             innerHtml += ` ` + parseRemarkTextHtml(remarkText);
           }

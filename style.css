@@ -1607,6 +1607,14 @@ body {
    13. 高级移动端响应式与视口适配 (Mobile Responsiveness & Viewport Optimization)
    ========================================================================== */
 @media (max-width: 768px) {
+  /* 确保整个网页在手机端水平方向完全锁死，防止全屏浮动弹性晃动 */
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+  }
+  
   body { 
     padding-bottom: 20px; 
   }
@@ -1651,6 +1659,9 @@ body {
     padding: 0 4px !important; 
     margin-top: 8px !important; 
     margin-bottom: 8px !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   .brand-tabs-container {
     gap: 4px !important;
@@ -1742,6 +1753,9 @@ body {
   .section-card { 
     padding: 6px !important; 
     border-radius: var(--radius-sm) !important; 
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   .section-header { 
     flex-direction: column !important; 
@@ -1788,9 +1802,14 @@ body {
     white-space: nowrap !important;
   }
   .timeline-wrapper-outer { 
+    width: 100% !important;
+    max-width: 100% !important;
     border-radius: var(--radius-sm) !important; 
     max-height: 500px !important; 
     margin-bottom: 10px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-sizing: border-box !important;
   }
   
   .tg-col-date-header {
@@ -1914,4 +1933,18 @@ body {
   .footer-note {
     font-size: 0.65rem !important;
   }
+}
+
+/* 🛌 入住/退房胶囊详情小交互图标 */
+.badge-info-icon {
+  font-size: 0.6rem;
+  margin-left: 3px;
+  opacity: 0.85;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.grid-pill:hover .badge-info-icon {
+  transform: scale(1.2);
 }
