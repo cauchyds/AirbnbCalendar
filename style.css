@@ -41,7 +41,7 @@
   --shadow-gold: 0 4px 12px rgba(194, 159, 104, 0.2);
   
   /* 🔤 微软雅黑无衬线字体栈：彻底解决 Windows 电脑宋体毛刺/模糊，保证阅读极其舒适清晰 */
-  --font-serif: 'Noto Serif JP', 'Georgia', 'Songti SC', serif;
+  --font-serif: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "PingFang SC", sans-serif;
   --font-sans: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "PingFang SC", sans-serif;
   
   /* 间距与圆角 */
@@ -621,10 +621,10 @@ body {
 .tg-thead th {
   background-color: #EDE9DE;
   border-bottom: 2px solid var(--border-wood-dark);
-  border-right: 1px solid var(--border-wood-light);
+  border-right: 3px double rgba(122, 98, 78, 0.35) !important; /* 双竖线分割 */
   padding: 12px 6px;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.95rem; /* 增大字号，极其清晰 */
   font-family: var(--font-sans) !important;
 }
 
@@ -693,7 +693,7 @@ body {
    6a. 🏁 每一个小格子之间的水平分割线微调 (Dashed separators visibility 0.12)
    ========================================================================== */
 .tg-cell-booking {
-  border-right: 1px solid rgba(122, 98, 78, 0.22);
+  border-right: 3px double rgba(122, 98, 78, 0.35) !important; /* 双竖线分割 */
   border-bottom: 1.2px dashed rgba(122, 98, 78, 0.25) !important; /* 烟茶色虚线，清晰易辨 */
   position: relative;
   cursor: pointer;
@@ -702,7 +702,7 @@ body {
 }
 
 .tg-cell-remark {
-  border-right: 1px solid rgba(122, 98, 78, 0.22);
+  border-right: 3px double rgba(122, 98, 78, 0.35) !important; /* 双竖线分割 */
   border-bottom: 1.2px dashed rgba(122, 98, 78, 0.25) !important; /* 略微明显但绝不抢戏的格栅分割虚线 */
   font-size: 0.75rem;
   color: var(--text-dark);
@@ -714,9 +714,9 @@ body {
   transition: all 0.2s;
 }
 
-/* 连续粉色在住单元格下的分割虚线：微微泛红，便于识别格行 */
+/* 连续绿在住单元格下的分割虚线：微微泛绿，便于识别格行 */
 .status-reserved, .status-checkin, .status-checkout {
-  border-bottom-color: rgba(139, 44, 44, 0.25) !important;
+  border-bottom-color: rgba(25, 77, 37, 0.20) !important;
 }
 
 /* 🟢 空闲背景色 */
@@ -724,10 +724,10 @@ body {
   background-color: var(--color-uguisu-bg) !important;
 }
 
-/* 🔴 连住/占用背景与文字颜色 (统一的、醒目的薄红梅粉大色块，深红梅色文字) */
+/* 🟢 连住/占用背景与文字颜色 (统一且高亮醒目的日本竹绿/青苔绿大色块，深森林绿文字) */
 .status-reserved, .status-checkin, .status-checkout {
-  background-color: var(--color-sakura-bg) !important;
-  color: var(--color-sakura) !important;
+  background-color: #CDE6D0 !important;
+  color: #194D25 !important;
 }
 
 /* 单元格悬停小高亮 */
@@ -774,6 +774,9 @@ body {
   background-color: var(--color-aizome-bg) !important;
   color: var(--color-aizome) !important;
   border-color: rgba(75, 110, 125, 0.4) !important;
+  float: right;
+  margin-top: 1px;
+  margin-left: 6px;
 }
 
 /* 备注小标签样式 */
@@ -861,7 +864,7 @@ body {
 }
 
 .color-vacant { background-color: var(--color-uguisu-bg); border-color: var(--color-uguisu); }
-.color-reserved { background-color: var(--color-sakura-bg); border-color: var(--color-sakura); }
+.color-reserved { background-color: #CDE6D0; border-color: #194D25; }
 .color-checkin { background-color: var(--color-kaki-bg); border-color: var(--color-kaki); }
 .color-checkout { background-color: var(--color-aizome-bg); border-color: var(--color-aizome); }
 

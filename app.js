@@ -327,24 +327,19 @@ async function loadData() {
   // 载入本地备忘录备注库
   state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
   
-  // B. 尝试从 localStorage 优先读取日历缓存
+  // B. 尝试从 localStorage 优先读取日历缓存（实现极速载入，无需等待 Actions JSON 请求）
   const cachedData = localStorage.getItem('airbnb_calendar_data');
   if (cachedData) {
     try {
       const parsed = JSON.parse(cachedData);
-      const cacheTime = new Date(parsed.lastUpdated);
-      if (new Date() - cacheTime < 20 * 60 * 1000) {
-        console.log('🚀 命中本地有效缓存数据');
-        applyData(parsed);
-        showSyncButtonLoading(false);
-        return;
-      }
+      console.log('🚀 命中本地缓存数据');
+      applyData(parsed);
     } catch (e) {
       localStorage.removeItem('airbnb_calendar_data');
     }
   }
 
-  // C. 读取静态 data.json
+  // C. 尝试静默拉取 Actions 自动跑出的可靠静态 data.json
   try {
     const response = await fetch('data.json?t=' + new Date().getTime());
     if (!response.ok) throw new Error('读取静态日历 JSON 失败');
@@ -353,8 +348,10 @@ async function loadData() {
     localStorage.setItem('airbnb_calendar_data', JSON.stringify(data));
     applyData(data);
   } catch (error) {
-    console.warn('⚠️ 静态 data.json 加载失败，启动前端跨域多路并发实时同步备份机制...', error);
-    await fetchLiveSyncFallback();
+    console.warn('⚠️ 静态 data.json 加载失败，暂不自动启动前端跨域代理实时并发拉取，以防过度刷新...', error);
+    if (!cachedData) {
+      showToast('⚠️ 未能加载云端日程，请点击“立即更新”拉取最新房态。', 'warning');
+    }
   }
   
   showSyncButtonLoading(false);
@@ -1029,9 +1026,7 @@ function managerSave() {
     properties: state.propertiesData
   });
   
-  showToast('💾 房源配置已保存，正在自动同步新日程...', 'success');
-  // 自动触发实时更新，以抓取新房源的最新日程
-  fetchLiveSyncFallback();
+  showToast('💾 房源配置已成功保存并在本地应用！若需拉取最新日程，请点击“立即更新”。', 'success');
 }
 
 // 恢复默认配置
@@ -1166,7 +1161,7 @@ function updateSingleCalendarInfo() {
   if (!prop) return;
   
   document.getElementById('sidebar-prop-name').innerText = prop.name;
-  document.getElementById('sidebar-brand-name').innerText = getBrandNameForProperty(prop.name);
+  document.getElementById('sidebar-brand-name').innerText = getBrandNameForProperty(propId);
   
   renderMonthlyGrid();
   renderSidebarBookingList(propId);
@@ -1178,6 +1173,14 @@ function getPropertyById(propId) {
     if (found) return found;
   }
   return null;
+}
+
+function getBrandNameForProperty(propIdOrName) {
+  for (const b of state.rawConfig) {
+    const found = b.properties.some(p => p.id === propIdOrName || p.name === propIdOrName);
+    if (found) return b.name;
+  }
+  return '其他品牌';
 }
 
 function renderMonthlyGrid() {
@@ -1240,8 +1243,8 @@ function renderMonthlyGrid() {
           statusStripeHtml = `<div class="cal-booking-stripe" style="color: var(--color-aizome)">🌾 今日退房</div>`;
           td.onclick = () => showBookingModal(getPropertyById(propId).name, '退房离店', fStatus.event);
         } else if (fStatus.status === 'reserved') {
-          td.style.backgroundColor = 'var(--color-sakura-bg)';
-          statusStripeHtml = `<div class="cal-booking-stripe" style="color: var(--color-sakura)">🌸 已占用</div>`;
+          td.style.backgroundColor = '#CDE6D0';
+          statusStripeHtml = `<div class="cal-booking-stripe" style="color: #194D25">🎋 已占用</div>`;
           td.onclick = () => showBookingModal(getPropertyById(propId).name, '已入住/占用', fStatus.event);
         } else {
           td.style.backgroundColor = 'var(--color-uguisu-bg)';
