@@ -1,40 +1,16 @@
 {
-  "lastUpdated": "2026-06-11T10:47:16.766Z",
+  "lastUpdated": "2026-06-11T16:12:38.055Z",
   "properties": {
-    "xiaoyu": {
-      "propId": "xiaoyu",
-      "propName": "雲町屋 小御",
+    "xiaochi": {
+      "propId": "xiaochi",
+      "propName": "雲町屋 小池",
       "brandId": "yunmachiya",
       "events": [
         {
-          "start": "2026-06-10",
-          "end": "2026-06-13",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
-          "phoneLast4": "3540",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
-        },
-        {
-          "start": "2026-11-20",
-          "end": "2026-11-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
-          "phoneLast4": "3245",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4Phone"
-        },
-        {
-          "start": "2026-06-14",
-          "end": "2026-06-15",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
-        },
-        {
-          "start": "2027-03-08",
+          "start": "2026-09-10",
           "end": "2027-06-12",
           "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-3bd60f8371f0e59389dc22a095444bf7@airbnb.com"
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
         }
       ],
       "status": "ok"
@@ -122,34 +98,6 @@
       ],
       "status": "ok"
     },
-    "xiaotian": {
-      "propId": "xiaotian",
-      "propName": "雲町屋 小天",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-12-08",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "xiaole": {
-      "propId": "xiaole",
-      "propName": "雲町屋 小樂",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-09-09",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
     "xiaogong": {
       "propId": "xiaogong",
       "propName": "雲町屋 小宫",
@@ -169,6 +117,124 @@
           "end": "2027-06-12",
           "summary": "Airbnb (Not available)",
           "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "fengzao": {
+      "propId": "fengzao",
+      "propName": "雲町屋 风早",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-09-02",
+          "end": "2026-09-07",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-59b60c4e27082f777502bbb35e75d195@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A\\nPhone Number (Last 4 Digits): 2386",
+          "phoneLast4": "2386",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5APhone"
+        },
+        {
+          "start": "2026-10-26",
+          "end": "2026-10-28",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a615c39afab75aa0ca5472f27e2a4751@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3\\nPhone Number (Last 4 Digits): 4041",
+          "phoneLast4": "4041",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3Phone"
+        },
+        {
+          "start": "2026-11-20",
+          "end": "2026-11-23",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3800535d6dc25e8c65e4062da3e854a9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED\\nPhone Number (Last 4 Digits): 5102",
+          "phoneLast4": "5102",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZS2W3BEDPhone"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaotian": {
+      "propId": "xiaotian",
+      "propName": "雲町屋 小天",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "qing_dummy2": {
+      "propId": "qing_dummy2",
+      "propName": "庆有鱼 岚山温泉店",
+      "brandId": "qingyouyu",
+      "events": [
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaole": {
+      "propId": "xiaole",
+      "propName": "雲町屋 小樂",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaoyue": {
+      "propId": "xiaoyue",
+      "propName": "雲町屋 小月",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-21e8939d29c579e94bdcd58a65faece3@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM498YPAJQ\\nPhone Number (Last 4 Digits): 2418",
+          "phoneLast4": "2418",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM498YPAJQPhone"
+        },
+        {
+          "start": "2026-08-01",
+          "end": "2026-08-28",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-cf60422aa0bf1b0354dfa90bd3dae09b@airbnb.com"
+        },
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
         }
       ],
       "status": "ok"
@@ -207,9 +273,70 @@
         },
         {
           "start": "2026-06-09",
-          "end": "2026-06-12",
+          "end": "2026-06-13",
           "summary": "Airbnb (Not available)",
           "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaoyu": {
+      "propId": "xiaoyu",
+      "propName": "雲町屋 小御",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
+          "phoneLast4": "3540",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
+        },
+        {
+          "start": "2026-11-20",
+          "end": "2026-11-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
+          "phoneLast4": "3245",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4Phone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
+        },
+        {
+          "start": "2027-03-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5d9da63f11f6aaf1d5a0aff1c055255f@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaoshan": {
+      "propId": "xiaoshan",
+      "propName": "雲町屋 小杉",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-12",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3a96ee9a9f8a9671f8699f41625925ee@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8\\nPhone Number (Last 4 Digits): 8155",
+          "phoneLast4": "8155",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8Phone"
         },
         {
           "start": "2026-12-08",
@@ -260,207 +387,6 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5\\nPhone Number (Last 4 Digits): 6714",
           "phoneLast4": "6714",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5Phone"
-        }
-      ],
-      "status": "ok"
-    },
-    "fengzao": {
-      "propId": "fengzao",
-      "propName": "雲町屋 风早",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-09-02",
-          "end": "2026-09-07",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-59b60c4e27082f777502bbb35e75d195@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A\\nPhone Number (Last 4 Digits): 2386",
-          "phoneLast4": "2386",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5APhone"
-        },
-        {
-          "start": "2026-10-26",
-          "end": "2026-10-28",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-a615c39afab75aa0ca5472f27e2a4751@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3\\nPhone Number (Last 4 Digits): 4041",
-          "phoneLast4": "4041",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3Phone"
-        },
-        {
-          "start": "2026-11-20",
-          "end": "2026-11-23",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-3800535d6dc25e8c65e4062da3e854a9@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED\\nPhone Number (Last 4 Digits): 5102",
-          "phoneLast4": "5102",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZS2W3BEDPhone"
-        },
-        {
-          "start": "2026-06-09",
-          "end": "2026-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
-        },
-        {
-          "start": "2026-12-08",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "xiaoshan": {
-      "propId": "xiaoshan",
-      "propName": "雲町屋 小杉",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-09",
-          "end": "2026-06-12",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-3a96ee9a9f8a9671f8699f41625925ee@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8\\nPhone Number (Last 4 Digits): 8155",
-          "phoneLast4": "8155",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8Phone"
-        },
-        {
-          "start": "2026-12-08",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "qing_dummy1": {
-      "propId": "qing_dummy1",
-      "propName": "庆有鱼 鸭川观景店",
-      "brandId": "qingyouyu",
-      "events": [
-        {
-          "start": "2026-06-10",
-          "end": "2026-06-13",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
-          "phoneLast4": "3540",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
-        },
-        {
-          "start": "2026-11-20",
-          "end": "2026-11-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
-          "phoneLast4": "3245",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4Phone"
-        },
-        {
-          "start": "2026-06-14",
-          "end": "2026-06-15",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
-        },
-        {
-          "start": "2027-03-08",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-3bd60f8371f0e59389dc22a095444bf7@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "shuiyingge": {
-      "propId": "shuiyingge",
-      "propName": "雲町屋 水影阁",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-09",
-          "end": "2026-06-13",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-3227241ba260a76836d64fd0c12d6818@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDH\\nPhone Number (Last 4 Digits): 3037",
-          "phoneLast4": "3037",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDHPhone"
-        },
-        {
-          "start": "2026-06-13",
-          "end": "2026-06-18",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-d24ccdef1bc6e015090f67334adc2af7@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYH\\nPhone Number (Last 4 Digits): 8361",
-          "phoneLast4": "8361",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYHPhone"
-        },
-        {
-          "start": "2026-06-21",
-          "end": "2026-06-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-6dfa01e04667e74b67322b1e64d31b8b@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8WNF342W\\nPhone Number (Last 4 Digits): 9357",
-          "phoneLast4": "9357",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8WNF342WPhone"
-        },
-        {
-          "start": "2026-06-27",
-          "end": "2026-07-01",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-31d2c4b4abfae90928ee107aa73036e0@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3\\nPhone Number (Last 4 Digits): 3712",
-          "phoneLast4": "3712",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3Phone"
-        },
-        {
-          "start": "2026-07-01",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "qing_dummy2": {
-      "propId": "qing_dummy2",
-      "propName": "庆有鱼 岚山温泉店",
-      "brandId": "qingyouyu",
-      "events": [
-        {
-          "start": "2026-09-09",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
-        }
-      ],
-      "status": "ok"
-    },
-    "xiaoyue": {
-      "propId": "xiaoyue",
-      "propName": "雲町屋 小月",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-10",
-          "end": "2026-06-13",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-21e8939d29c579e94bdcd58a65faece3@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM498YPAJQ\\nPhone Number (Last 4 Digits): 2418",
-          "phoneLast4": "2418",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM498YPAJQPhone"
-        },
-        {
-          "start": "2026-08-01",
-          "end": "2026-08-28",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-cf60422aa0bf1b0354dfa90bd3dae09b@airbnb.com"
-        },
-        {
-          "start": "2026-09-09",
-          "end": "2027-06-12",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
         }
       ],
       "status": "ok"
@@ -642,6 +568,15 @@
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNQ38PJEJPhone"
         },
         {
+          "start": "2026-12-05",
+          "end": "2026-12-08",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-bde1fff48de1788d26303aeab7129792@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMEPJQH4S2\\nPhone Number (Last 4 Digits): 8792",
+          "phoneLast4": "8792",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMEPJQH4S2Phone"
+        },
+        {
           "start": "2026-12-27",
           "end": "2026-12-31",
           "summary": "Reserved",
@@ -695,16 +630,52 @@
       ],
       "status": "ok"
     },
-    "xiaochi": {
-      "propId": "xiaochi",
-      "propName": "雲町屋 小池",
+    "shuiyingge": {
+      "propId": "shuiyingge",
+      "propName": "雲町屋 水影阁",
       "brandId": "yunmachiya",
       "events": [
         {
-          "start": "2026-09-09",
+          "start": "2026-06-09",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3227241ba260a76836d64fd0c12d6818@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDH\\nPhone Number (Last 4 Digits): 3037",
+          "phoneLast4": "3037",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDHPhone"
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-18",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d24ccdef1bc6e015090f67334adc2af7@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYH\\nPhone Number (Last 4 Digits): 8361",
+          "phoneLast4": "8361",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYHPhone"
+        },
+        {
+          "start": "2026-06-21",
+          "end": "2026-06-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6dfa01e04667e74b67322b1e64d31b8b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8WNF342W\\nPhone Number (Last 4 Digits): 9357",
+          "phoneLast4": "9357",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8WNF342WPhone"
+        },
+        {
+          "start": "2026-06-27",
+          "end": "2026-07-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-31d2c4b4abfae90928ee107aa73036e0@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3\\nPhone Number (Last 4 Digits): 3712",
+          "phoneLast4": "3712",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3Phone"
+        },
+        {
+          "start": "2026-07-01",
           "end": "2027-06-12",
           "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
+          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com"
         }
       ],
       "status": "ok"
@@ -815,6 +786,44 @@
           "end": "2027-06-12",
           "summary": "Airbnb (Not available)",
           "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        }
+      ],
+      "status": "ok"
+    },
+    "qing_dummy1": {
+      "propId": "qing_dummy1",
+      "propName": "庆有鱼 鸭川观景店",
+      "brandId": "qingyouyu",
+      "events": [
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
+          "phoneLast4": "3540",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
+        },
+        {
+          "start": "2026-11-20",
+          "end": "2026-11-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
+          "phoneLast4": "3245",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4Phone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
+        },
+        {
+          "start": "2027-03-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5d9da63f11f6aaf1d5a0aff1c055255f@airbnb.com"
         }
       ],
       "status": "ok"
