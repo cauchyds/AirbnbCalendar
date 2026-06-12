@@ -714,7 +714,7 @@ function createTodoCard(propertyName, event, type) {
     </div>
     <div class="todo-item-meta">
       <span class="todo-nights">${nights}晚</span>
-      <span class="btn-todo-details">查看详情</span>
+      <span class="btn-todo-details" title="查看订单详情">ℹ️</span>
     </div>
   `;
   

@@ -287,7 +287,7 @@ body {
    5. 数据大盘与今日待办 (KPIs & Daily Check-ins)
    ========================================================================== */
 .dashboard-content {
-  max-width: 1760px;
+  max-width: 1980px;
   margin: 0 auto;
   padding: 0 30px;
 }
@@ -479,17 +479,18 @@ body {
 }
 
 .btn-todo-details {
-  font-size: 0.8rem;
+  font-size: 0.95rem; /* 稍微放大图标，便于点击 */
   color: var(--accent-gold);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent-gold);
   cursor: pointer;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
 }
 
 .btn-todo-details:hover {
+  transform: scale(1.25);
   color: var(--border-wood-dark);
-  border-bottom-color: var(--border-wood-dark);
 }
 
 /* ==========================================================================
@@ -497,7 +498,7 @@ body {
    ========================================================================== */
 .timeline-section {
   margin-top: 30px;
-  max-width: 1760px;
+  max-width: 1980px; /* 1400px (center card) + 280px * 2 (sidebars) + 20px * 2 (gaps) + 60px (padding) */
   margin-left: auto;
   margin-right: auto;
 }
@@ -532,8 +533,15 @@ body {
 }
 
 .timeline-wrapper-outer-card {
-  flex: 1;
+  flex: 0 0 1400px; /* 大屏幕下固定为 1400px，与 KPI 卡片完全对齐 */
+  width: 1400px;
   min-width: 0;
+}
+
+@media (max-width: 1980px) {
+  .timeline-wrapper-outer-card {
+    flex: 1 !important; /* 屏幕变窄时开启弹性伸缩，防止溢出 */
+  }
 }
 
 .section-card {
