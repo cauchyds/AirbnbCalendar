@@ -287,7 +287,7 @@ body {
    5. 数据大盘与今日待办 (KPIs & Daily Check-ins)
    ========================================================================== */
 .dashboard-content {
-  max-width: 1400px;
+  max-width: 1650px;
   margin: 0 auto;
   padding: 0 30px;
 }
@@ -484,6 +484,28 @@ body {
    ========================================================================== */
 .timeline-section, .single-calendar-section {
   margin-top: 30px;
+}
+
+.gantt-layout-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.gantt-sidebar-todo {
+  width: 290px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px; /* 粘性表头的高度以下开始固定 */
+  align-self: flex-start;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* 调整侧栏中的待办列表高度 */
+.gantt-sidebar-todo .todo-list-container {
+  max-height: 480px;
+  overflow-y: auto;
 }
 
 .section-card {
@@ -1995,4 +2017,32 @@ body {
 
 .grid-pill:hover .badge-info-icon {
   transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+   14. 甘特图两侧待办与响应式布局
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .gantt-layout-container {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+  
+  .gantt-sidebar-todo {
+    width: 100% !important;
+    position: static !important;
+    margin-top: 10px;
+  }
+  
+  .timeline-wrapper-outer {
+    order: 1 !important;
+  }
+  
+  .card-checkin {
+    order: 2 !important;
+  }
+  
+  .card-checkout {
+    order: 3 !important;
+  }
 }
