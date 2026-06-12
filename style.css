@@ -735,6 +735,12 @@ body {
   background-color: var(--color-uguisu-bg) !important;
 }
 
+/* 🔒 房东锁房/系统屏蔽背景色 (和风烟灰/沙灰色) */
+.status-blocked {
+  background-color: #E8E4D9 !important;
+  color: #8C8475 !important;
+}
+
 /* 🟢 连住/占用背景与文字颜色 (统一且高亮醒目的日本竹绿/青苔绿大色块，深森林绿文字) */
 .status-reserved, .status-checkin, .status-checkout {
   background-color: #CDE6D0 !important;

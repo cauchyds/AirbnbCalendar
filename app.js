@@ -143,6 +143,7 @@ function parseICSClient(icsText) {
       currentEvent = {};
     } else if (line === 'END:VEVENT') {
       if (currentEvent && currentEvent.start && currentEvent.end) {
+        currentEvent.isReservation = !!(currentEvent.reservationUrl || (currentEvent.description && currentEvent.description.includes('Reservation URL')));
         events.push(currentEvent);
       }
       currentEvent = null;
@@ -200,33 +201,80 @@ function getPropertyStatusForDate(propId, dateStr) {
   let checkOutEvent = null;
   let activeEvent = null;
   
+  // Also track blocked dates
+  let isBlockedCheckIn = false;
+  let isBlockedCheckOut = false;
+  let isBlockedBetween = false;
+  let blockedCheckInEvent = null;
+  let blockedCheckOutEvent = null;
+  let blockedActiveEvent = null;
+  
   for (const ev of prop.events) {
-    if (ev.start === dateStr) {
-      isCheckIn = true;
-      checkInEvent = ev;
-    }
-    if (ev.end === dateStr) {
-      isCheckOut = true;
-      checkOutEvent = ev;
-    }
-    if (dateStr >= ev.start && dateStr < ev.end) {
-      isBetween = true;
-      activeEvent = ev;
+    const isReal = !!(ev.isReservation || ev.reservationUrl || (ev.description && ev.description.includes('Reservation URL')));
+    
+    if (isReal) {
+      if (ev.start === dateStr) {
+        isCheckIn = true;
+        checkInEvent = ev;
+      }
+      if (ev.end === dateStr) {
+        isCheckOut = true;
+        checkOutEvent = ev;
+      }
+      if (dateStr >= ev.start && dateStr < ev.end) {
+        isBetween = true;
+        activeEvent = ev;
+      }
+    } else {
+      if (ev.start === dateStr) {
+        isBlockedCheckIn = true;
+        blockedCheckInEvent = ev;
+      }
+      if (ev.end === dateStr) {
+        isBlockedCheckOut = true;
+        blockedCheckOutEvent = ev;
+      }
+      if (dateStr >= ev.start && dateStr < ev.end) {
+        isBlockedBetween = true;
+        blockedActiveEvent = ev;
+      }
     }
   }
   
+  // Real guest bookings take absolute precedence
   if (isCheckIn && isCheckOut) {
     return { status: 'split-out-in', checkOutEvent, checkInEvent };
   }
   if (isCheckIn) {
+    if (isBlockedCheckOut) {
+      return { status: 'split-out-in', checkOutEvent: blockedCheckOutEvent, checkInEvent };
+    }
     return { status: 'checkin', event: checkInEvent };
   }
   if (isCheckOut) {
+    if (isBlockedCheckIn) {
+      return { status: 'split-out-in', checkOutEvent, checkInEvent: blockedCheckInEvent };
+    }
     return { status: 'checkout', event: checkOutEvent };
   }
   if (isBetween) {
     return { status: 'reserved', event: activeEvent };
   }
+  
+  // If no guest booking exists, return block statuses
+  if (isBlockedCheckIn && isBlockedCheckOut) {
+    return { status: 'blocked-split', checkOutEvent: blockedCheckOutEvent, checkInEvent: blockedCheckInEvent };
+  }
+  if (isBlockedCheckIn) {
+    return { status: 'blocked-checkin', event: blockedCheckInEvent };
+  }
+  if (isBlockedCheckOut) {
+    return { status: 'blocked-checkout', event: blockedCheckOutEvent };
+  }
+  if (isBlockedBetween) {
+    return { status: 'blocked', event: blockedActiveEvent };
+  }
+  
   return { status: 'vacant' };
 }
 
@@ -291,6 +339,52 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
       return { statusClass: 'status-checkin', isBookingCell: false };
     } else {
       // 中间 4 个格子为完美保洁空档窗口 (莺绿)
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // F. 房东锁房/不可用 (8格全灰)
+  if (s === 'blocked') {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-blocked', isBookingCell: true, label: '已锁房/不可用', event: fStatus.event };
+    } else {
+      return { statusClass: 'status-blocked', isBookingCell: false };
+    }
+  }
+  
+  // G. 锁房开始日 (前空后满锁房)
+  if (s === 'blocked-checkin') {
+    if (slotIdx === 6) {
+      return { statusClass: 'status-blocked', isBookingCell: true, label: '今日锁房/不可用', event: fStatus.event };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-blocked', isBookingCell: false };
+    } else {
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // H. 锁房结束日 (前满锁房后空)
+  if (s === 'blocked-checkout') {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-blocked', isBookingCell: false };
+    } else if (slotIdx === 1) {
+      return { statusClass: 'status-blocked', isBookingCell: true, label: '今日解锁房源', event: fStatus.event };
+    } else {
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // I. 锁房交接日 (前灰、中空、后灰)
+  if (s === 'blocked-split') {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-blocked', isBookingCell: false };
+    } else if (slotIdx === 1) {
+      return { statusClass: 'status-blocked', isBookingCell: true, label: '今日解锁房源', event: fStatus.checkOutEvent };
+    } else if (slotIdx === 6) {
+      return { statusClass: 'status-blocked', isBookingCell: true, label: '今日锁房/不可用', event: fStatus.checkInEvent };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-blocked', isBookingCell: false };
+    } else {
       return { statusClass: 'status-vacant', isBookingCell: false };
     }
   }
@@ -1239,6 +1333,10 @@ function renderMonthlyGrid() {
           td.style.backgroundColor = '#CDE6D0';
           statusStripeHtml = `<div class="cal-booking-stripe" style="color: #194D25">🎋 已占用</div>`;
           td.onclick = () => showBookingModal(getPropertyById(propId).name, '已入住/占用', fStatus.event);
+        } else if (fStatus.status === 'blocked' || fStatus.status === 'blocked-checkin' || fStatus.status === 'blocked-checkout' || fStatus.status === 'blocked-split') {
+          td.style.backgroundColor = '#E8E4D9';
+          statusStripeHtml = `<div class="cal-booking-stripe" style="color: #8C8475">🔒 锁房/不可用</div>`;
+          td.onclick = () => showBookingModal(getPropertyById(propId).name, '已锁房/不可用', fStatus.event || fStatus.checkInEvent || fStatus.checkOutEvent);
         } else {
           td.style.backgroundColor = 'var(--color-uguisu-bg)';
           td.onclick = () => showBookingModal(getPropertyById(propId).name, '空闲中', { start: dateStr, end: dateStr, summary: 'Available' });
@@ -1271,7 +1369,9 @@ function renderSidebarBookingList(propId) {
     return;
   }
   
-  const sortedEvents = [...prop.events].sort((a,b) => new Date(a.start) - new Date(b.start));
+  const sortedEvents = [...prop.events]
+    .filter(ev => !!(ev.isReservation || ev.reservationUrl || (ev.description && ev.description.includes('Reservation URL'))))
+    .sort((a,b) => new Date(a.start) - new Date(b.start));
   let bookedNightsInMonth = 0;
   const currentMonthStart = new Date(state.calendarYear, state.calendarMonth, 1);
   const currentMonthEnd = new Date(state.calendarYear, state.calendarMonth + 1, 1);
@@ -1321,7 +1421,16 @@ function showBookingModal(propertyName, statusText, event) {
   statusEl.innerText = statusText;
   statusEl.className = 'field-value';
   
-  if (statusText.includes('入住')) {
+  const isReal = !!(event.isReservation || event.reservationUrl || (event.description && event.description.includes('Reservation URL')));
+  const titleEl = document.querySelector('#booking-modal .modal-header h3');
+  if (titleEl) {
+    titleEl.innerText = isReal ? '📄 房态预订详情' : '🔒 房态锁定详情';
+  }
+  
+  if (!isReal) {
+    statusEl.style.color = '#8C8475';
+    statusEl.innerText = '房东锁房/系统锁定';
+  } else if (statusText.includes('入住')) {
     statusEl.style.color = 'var(--color-kaki)';
   } else if (statusText.includes('退房')) {
     statusEl.style.color = 'var(--color-aizome)';
@@ -1340,14 +1449,14 @@ function showBookingModal(propertyName, statusText, event) {
   const phoneRow = document.getElementById('modal-field-phone');
   const linkRow = document.getElementById('modal-field-link');
   
-  if (event.phoneLast4) {
+  if (isReal && event.phoneLast4) {
     phoneRow.style.display = 'flex';
     document.getElementById('modal-phone').innerText = `*** - **** - ${event.phoneLast4}`;
   } else {
     phoneRow.style.display = 'none';
   }
   
-  if (event.reservationUrl) {
+  if (isReal && event.reservationUrl) {
     linkRow.style.display = 'flex';
     document.getElementById('modal-link').href = event.reservationUrl;
   } else {

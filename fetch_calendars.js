@@ -64,6 +64,7 @@ function parseICS(icsText) {
       currentEvent = {};
     } else if (line === 'END:VEVENT') {
       if (currentEvent && currentEvent.start && currentEvent.end) {
+        currentEvent.isReservation = !!(currentEvent.reservationUrl || (currentEvent.description && currentEvent.description.includes('Reservation URL')));
         events.push(currentEvent);
       }
       currentEvent = null;
