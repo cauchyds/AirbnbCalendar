@@ -246,15 +246,9 @@ function getPropertyStatusForDate(propId, dateStr) {
     return { status: 'split-out-in', checkOutEvent, checkInEvent };
   }
   if (isCheckIn) {
-    if (isBlockedCheckOut) {
-      return { status: 'split-out-in', checkOutEvent: blockedCheckOutEvent, checkInEvent };
-    }
     return { status: 'checkin', event: checkInEvent };
   }
   if (isCheckOut) {
-    if (isBlockedCheckIn) {
-      return { status: 'split-out-in', checkOutEvent, checkInEvent: blockedCheckInEvent };
-    }
     return { status: 'checkout', event: checkOutEvent };
   }
   if (isBetween) {
