@@ -287,13 +287,16 @@ body {
    5. 数据大盘与今日待办 (KPIs & Daily Check-ins)
    ========================================================================== */
 .dashboard-content {
-  max-width: 1650px;
+  max-width: 1760px;
   margin: 0 auto;
   padding: 0 30px;
 }
 
 .kpi-section {
   margin-top: 25px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .kpi-grid {
@@ -436,18 +439,25 @@ body {
 .todo-item-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  margin-right: 8px;
 }
 
 .todo-prop-name {
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .todo-dates {
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-top: 2px;
+  white-space: nowrap;
 }
 
 .todo-item-meta {
@@ -455,9 +465,11 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .todo-nights {
+  white-space: nowrap;
   background-color: var(--bg-washi);
   border: 1px solid var(--border-wood-light);
   padding: 2px 8px;
@@ -472,6 +484,7 @@ body {
   text-decoration: none;
   border-bottom: 1px dashed var(--accent-gold);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-todo-details:hover {
@@ -482,8 +495,18 @@ body {
 /* ==========================================================================
    6. 重构甘特图时间轴 - 纵向瀑布流与 8 行设计 (Swapped Gantt Vertical Flow)
    ========================================================================== */
-.timeline-section, .single-calendar-section {
+.timeline-section {
   margin-top: 30px;
+  max-width: 1760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-calendar-section {
+  margin-top: 30px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .gantt-layout-container {
@@ -493,7 +516,7 @@ body {
 }
 
 .gantt-sidebar-todo {
-  width: 290px;
+  width: 280px; /* 收窄为 280px */
   flex-shrink: 0;
   position: sticky;
   top: 80px; /* 粘性表头的高度以下开始固定 */
@@ -504,7 +527,7 @@ body {
 
 /* 调整侧栏中的待办列表高度 */
 .gantt-sidebar-todo .todo-list-container {
-  max-height: 480px;
+  max-height: 520px; /* 高度适当增加以显示更多待办 */
   overflow-y: auto;
 }
 

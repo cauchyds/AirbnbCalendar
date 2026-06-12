@@ -93,6 +93,13 @@ function formatDateChinese(dateStr) {
   return `${parts[0]}年${parseInt(parts[1])}月${parseInt(parts[2])}日`;
 }
 
+function formatDateDot(dateStr) {
+  if (!dateStr) return '-';
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  return `${parts[0]}.${parts[1]}.${parts[2]}`;
+}
+
 function escapeHtml(text) {
   if (!text) return '';
   return text
@@ -703,7 +710,7 @@ function createTodoCard(propertyName, event, type) {
   item.innerHTML = `
     <div class="todo-item-info">
       <span class="todo-prop-name">${propertyName}</span>
-      <span class="todo-dates">${formatDateChinese(event.start)} 至 ${formatDateChinese(event.end)}</span>
+      <span class="todo-dates">${formatDateDot(event.start)} 至 ${formatDateDot(event.end)}</span>
     </div>
     <div class="todo-item-meta">
       <span class="todo-nights">${nights}晚</span>

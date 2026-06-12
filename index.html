@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.8">
+  <link rel="stylesheet" href="style.css?v=3.9">
 </head>
 <body>
 
@@ -94,64 +94,64 @@
 
     <!-- 全房源纵览瀑布流时间轴 (Gantt Multi-Property Timeline Grid) -->
     <section class="timeline-section">
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-title-wrapper">
-            <span class="section-badge">每日看板</span>
-            <h2>多房源状态与运营排班瀑布流</h2>
+      <!-- 左右待办与中间甘特图的布局容器 -->
+      <div class="gantt-layout-container">
+        
+        <!-- 左侧：今日新入住列表 -->
+        <div class="gantt-sidebar-todo todo-box card-checkin">
+          <div class="todo-title">
+            <span class="todo-marker marker-in"></span>
+            <h3>今日新入住 (Check-ins)</h3>
           </div>
-          
-          <!-- 时间轴过滤器与视图切换 -->
-          <div class="timeline-controls">
-            <div class="control-group">
-              <span class="control-label" style="font-family: var(--font-serif); font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 5px;">展示天数：</span>
-              <button id="btn-scale-15" class="btn-toggle">15天</button>
-              <button id="btn-scale-30" class="btn-toggle active">30天</button>
-              <button id="btn-scale-60" class="btn-toggle">60天</button>
-            </div>
-            
-            <div class="timeline-nav">
-              <button id="btn-time-prev" class="btn-nav" title="向前移">◀</button>
-              <button id="btn-time-today" class="btn-nav btn-today">今天</button>
-              <button id="btn-time-next" class="btn-nav" title="向后移">▶</button>
-            </div>
+          <div class="todo-list-container" id="list-today-checkins">
+            <div class="todo-empty">今日无新入住客人</div>
           </div>
         </div>
         
-        <!-- 左右待办与中间甘特图的布局容器 -->
-        <div class="gantt-layout-container">
-          
-          <!-- 左侧：今日新入住列表 -->
-          <div class="gantt-sidebar-todo todo-box card-checkin">
-            <div class="todo-title">
-              <span class="todo-marker marker-in"></span>
-              <h3>今日新入住 (Check-ins)</h3>
+        <!-- 中间：甘特图的主卡片 -->
+        <div class="section-card timeline-wrapper-outer-card">
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <span class="section-badge">每日看板</span>
+              <h2>多房源状态与运营排班瀑布流</h2>
             </div>
-            <div class="todo-list-container" id="list-today-checkins">
-              <div class="todo-empty">今日无新入住客人</div>
+            
+            <!-- 时间轴过滤器与视图切换 -->
+            <div class="timeline-controls">
+              <div class="control-group">
+                <span class="control-label" style="font-family: var(--font-serif); font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 5px;">展示天数：</span>
+                <button id="btn-scale-15" class="btn-toggle">15天</button>
+                <button id="btn-scale-30" class="btn-toggle active">30天</button>
+                <button id="btn-scale-60" class="btn-toggle">60天</button>
+              </div>
+              
+              <div class="timeline-nav">
+                <button id="btn-time-prev" class="btn-nav" title="向前移">◀</button>
+                <button id="btn-time-today" class="btn-nav btn-today">今天</button>
+                <button id="btn-time-next" class="btn-nav" title="向后移">▶</button>
+              </div>
             </div>
           </div>
           
-          <!-- 中间：甘特图表格挂载点 (横纵对调版) -->
+          <!-- 甘特图表格挂载点 (横纵对调版) -->
           <div class="timeline-wrapper-outer">
             <div class="timeline-grid-container" id="timeline-grid-container">
               <!-- JS 渲染甘特图 -->
             </div>
           </div>
-          
-          <!-- 右侧：今日退房/待保洁列表 -->
-          <div class="gantt-sidebar-todo todo-box card-checkout">
-            <div class="todo-title">
-              <span class="todo-marker marker-out"></span>
-              <h3>今日退房/待保洁 (Check-outs)</h3>
-            </div>
-            <div class="todo-list-container" id="list-today-checkouts">
-              <div class="todo-empty">今日无退房日程</div>
-            </div>
-          </div>
-          
         </div>
-
+        
+        <!-- 右侧：今日退房/待保洁列表 -->
+        <div class="gantt-sidebar-todo todo-box card-checkout">
+          <div class="todo-title">
+            <span class="todo-marker marker-out"></span>
+            <h3>今日退房/待保洁 (Check-outs)</h3>
+          </div>
+          <div class="todo-list-container" id="list-today-checkouts">
+            <div class="todo-empty">今日无退房日程</div>
+          </div>
+        </div>
+        
       </div>
     </section>
 
@@ -405,7 +405,7 @@
   </footer>
 
   <!-- 引入配置与逻辑控制 JS -->
-  <script src="config.js?v=3.8"></script>
-  <script src="app.js?v=3.8"></script>
+  <script src="config.js?v=3.9"></script>
+  <script src="app.js?v=3.9"></script>
 </body>
 </html>
