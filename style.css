@@ -293,10 +293,9 @@ body {
 }
 
 .kpi-section {
-  margin-top: 25px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .kpi-grid {
@@ -526,6 +525,22 @@ body {
   z-index: 10;
 }
 
+.gantt-center-column {
+  flex: 0 0 1400px; /* 大屏幕下固定为 1400px，与 KPI 卡片和甘特图对齐 */
+  width: 1400px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Spacing between KPI section and Gantt chart card */
+}
+
+@media (max-width: 1980px) {
+  .gantt-center-column {
+    flex: 1 !important;
+    width: auto !important;
+  }
+}
+
 /* 调整侧栏中的待办列表高度 */
 .gantt-sidebar-todo .todo-list-container {
   max-height: 520px; /* 高度适当增加以显示更多待办 */
@@ -533,15 +548,10 @@ body {
 }
 
 .timeline-wrapper-outer-card {
-  flex: 0 0 1400px; /* 大屏幕下固定为 1400px，与 KPI 卡片完全对齐 */
-  width: 1400px;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
-}
-
-@media (max-width: 1980px) {
-  .timeline-wrapper-outer-card {
-    flex: 1 !important; /* 屏幕变窄时开启弹性伸缩，防止溢出 */
-  }
+  box-sizing: border-box;
 }
 
 .section-card {
@@ -2070,8 +2080,9 @@ body {
     margin-top: 10px;
   }
   
-  .timeline-wrapper-outer {
+  .gantt-center-column {
     order: 1 !important;
+    width: 100% !important;
   }
   
   .card-checkin {

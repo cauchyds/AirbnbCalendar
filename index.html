@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.11">
+  <link rel="stylesheet" href="style.css?v=3.12">
 </head>
 <body>
 
@@ -58,40 +58,6 @@
 
   <main class="dashboard-content">
     
-    <!-- 今日房态核心大盘 (KPI Stats) -->
-    <section class="kpi-section">
-      <div class="kpi-grid">
-        <div class="kpi-card stats-total">
-          <div class="kpi-icon">🏠</div>
-          <div class="kpi-data">
-            <span class="kpi-value" id="kpi-total-properties">-</span>
-            <span class="kpi-label">房源总数</span>
-          </div>
-        </div>
-        <div class="kpi-card stats-occupancy">
-          <div class="kpi-icon">📈</div>
-          <div class="kpi-data">
-            <span class="kpi-value" id="kpi-occupancy-rate">-</span>
-            <span class="kpi-label">今日入住率</span>
-          </div>
-        </div>
-        <div class="kpi-card stats-checkin">
-          <div class="kpi-icon icon-checkin">🍂</div>
-          <div class="kpi-data">
-            <span class="kpi-value" id="kpi-today-checkins">-</span>
-            <span class="kpi-label">今日新入住</span>
-          </div>
-        </div>
-        <div class="kpi-card stats-checkout">
-          <div class="kpi-icon icon-checkout">🌾</div>
-          <div class="kpi-data">
-            <span class="kpi-value" id="kpi-today-checkouts">-</span>
-            <span class="kpi-label">今日需退房</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 全房源纵览瀑布流时间轴 (Gantt Multi-Property Timeline Grid) -->
     <section class="timeline-section">
       <!-- 左右待办与中间甘特图的布局容器 -->
@@ -108,8 +74,44 @@
           </div>
         </div>
         
-        <!-- 中间：甘特图的主卡片 -->
-        <div class="section-card timeline-wrapper-outer-card">
+        <!-- 中间列：KPI 大盘与甘特图主卡片 -->
+        <div class="gantt-center-column">
+          <!-- 今日房态核心大盘 (KPI Stats) -->
+          <section class="kpi-section" style="margin-top: 0;">
+            <div class="kpi-grid">
+              <div class="kpi-card stats-total">
+                <div class="kpi-icon">🏠</div>
+                <div class="kpi-data">
+                  <span class="kpi-value" id="kpi-total-properties">-</span>
+                  <span class="kpi-label">房源总数</span>
+                </div>
+              </div>
+              <div class="kpi-card stats-occupancy">
+                <div class="kpi-icon">📈</div>
+                <div class="kpi-data">
+                  <span class="kpi-value" id="kpi-occupancy-rate">-</span>
+                  <span class="kpi-label">今日入住率</span>
+                </div>
+              </div>
+              <div class="kpi-card stats-checkin">
+                <div class="kpi-icon icon-checkin">🍂</div>
+                <div class="kpi-data">
+                  <span class="kpi-value" id="kpi-today-checkins">-</span>
+                  <span class="kpi-label">今日新入住</span>
+                </div>
+              </div>
+              <div class="kpi-card stats-checkout">
+                <div class="kpi-icon icon-checkout">🌾</div>
+                <div class="kpi-data">
+                  <span class="kpi-value" id="kpi-today-checkouts">-</span>
+                  <span class="kpi-label">今日需退房</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 甘特图的主卡片 -->
+          <div class="section-card timeline-wrapper-outer-card">
           <div class="section-header">
             <div class="section-title-wrapper">
               <span class="section-badge">每日看板</span>
@@ -139,7 +141,8 @@
               <!-- JS 渲染甘特图 -->
             </div>
           </div>
-        </div>
+        </div> <!-- timeline-wrapper-outer-card end -->
+        </div> <!-- gantt-center-column end -->
         
         <!-- 右侧：今日退房/待保洁列表 -->
         <div class="gantt-sidebar-todo todo-box card-checkout">
@@ -405,7 +408,7 @@
   </footer>
 
   <!-- 引入配置与逻辑控制 JS -->
-  <script src="config.js?v=3.11"></script>
-  <script src="app.js?v=3.11"></script>
+  <script src="config.js?v=3.12"></script>
+  <script src="app.js?v=3.12"></script>
 </body>
 </html>
