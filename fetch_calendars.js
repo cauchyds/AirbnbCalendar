@@ -43,6 +43,38 @@ function parseDateString(val) {
   }
   return cleanVal;
 }
+// 判断事件是否为有效的客人预订（而非房东/系统锁房）
+function isReservationEvent(ev) {
+  if (!ev) return false;
+  
+  const desc = (ev.description || '').trim();
+  if (ev.reservationUrl || desc.includes('Reservation URL') || desc.includes('预订链接') || desc.includes('预订URL')) {
+    return true;
+  }
+  
+  const summary = (ev.summary || '').trim();
+  if (!summary) {
+    return false;
+  }
+  
+  const summaryLower = summary.toLowerCase();
+  const isBlock = summaryLower.includes('not available') || 
+                  summaryLower.includes('unavailable') || 
+                  summaryLower.includes('blocked') || 
+                  summaryLower.includes('closed') ||
+                  summaryLower.includes('锁房') || 
+                  summaryLower.includes('锁定') || 
+                  summaryLower.includes('不可用') ||
+                  summaryLower.includes('准备时间') ||
+                  summaryLower.includes('preparation time') ||
+                  summaryLower.includes('装修') ||
+                  summaryLower.includes('自用') ||
+                  summaryLower.includes('自住') ||
+                  summaryLower.includes('保洁') ||
+                  summaryLower.includes('clean');
+                  
+  return !isBlock;
+}
 
 // 解析 ICS 文件纯文本为结构化事件列表
 function parseICS(icsText) {
@@ -64,7 +96,7 @@ function parseICS(icsText) {
       currentEvent = {};
     } else if (line === 'END:VEVENT') {
       if (currentEvent && currentEvent.start && currentEvent.end) {
-        currentEvent.isReservation = !!(currentEvent.reservationUrl || (currentEvent.description && currentEvent.description.includes('Reservation URL')));
+        currentEvent.isReservation = isReservationEvent(currentEvent);
         events.push(currentEvent);
       }
       currentEvent = null;

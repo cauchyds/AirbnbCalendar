@@ -100,6 +100,42 @@ function formatDateDot(dateStr) {
   return `${parts[0]}.${parts[1]}.${parts[2]}`;
 }
 
+function isReservationEvent(ev) {
+  if (!ev) return false;
+  
+  // 1. 如果有明确的预订链接，肯定是预订
+  const desc = (ev.description || '').trim();
+  if (ev.reservationUrl || desc.includes('Reservation URL') || desc.includes('预订链接') || desc.includes('预订URL')) {
+    return true;
+  }
+  
+  // 2. 分析事件标题 (Summary)
+  const summary = (ev.summary || '').trim();
+  if (!summary) {
+    return false; // 空标题默认视为锁房
+  }
+  
+  const summaryLower = summary.toLowerCase();
+  
+  // 检查是否包含锁房/不可用关键字
+  const isBlock = summaryLower.includes('not available') || 
+                  summaryLower.includes('unavailable') || 
+                  summaryLower.includes('blocked') || 
+                  summaryLower.includes('closed') ||
+                  summaryLower.includes('锁房') || 
+                  summaryLower.includes('锁定') || 
+                  summaryLower.includes('不可用') ||
+                  summaryLower.includes('准备时间') ||
+                  summaryLower.includes('preparation time') ||
+                  summaryLower.includes('装修') ||
+                  summaryLower.includes('自用') ||
+                  summaryLower.includes('自住') ||
+                  summaryLower.includes('保洁') ||
+                  summaryLower.includes('clean');
+                  
+  return !isBlock;
+}
+
 function escapeHtml(text) {
   if (!text) return '';
   return text
@@ -154,7 +190,7 @@ function parseICSClient(icsText) {
       currentEvent = {};
     } else if (line === 'END:VEVENT') {
       if (currentEvent && currentEvent.start && currentEvent.end) {
-        currentEvent.isReservation = !!(currentEvent.reservationUrl || (currentEvent.description && currentEvent.description.includes('Reservation URL')));
+        currentEvent.isReservation = isReservationEvent(currentEvent);
         events.push(currentEvent);
       }
       currentEvent = null;
@@ -221,7 +257,7 @@ function getPropertyStatusForDate(propId, dateStr) {
   let blockedActiveEvent = null;
   
   for (const ev of prop.events) {
-    const isReal = !!(ev.isReservation || ev.reservationUrl || (ev.description && ev.description.includes('Reservation URL')));
+    const isReal = isReservationEvent(ev);
     
     if (isReal) {
       if (ev.start === dateStr) {
@@ -1477,7 +1513,7 @@ function renderSidebarBookingList(propId) {
   }
   
   const sortedEvents = [...prop.events]
-    .filter(ev => !!(ev.isReservation || ev.reservationUrl || (ev.description && ev.description.includes('Reservation URL'))))
+    .filter(ev => isReservationEvent(ev))
     .sort((a,b) => new Date(a.start) - new Date(b.start));
   let bookedNightsInMonth = 0;
   const currentMonthStart = new Date(state.calendarYear, state.calendarMonth, 1);
@@ -1528,7 +1564,7 @@ function showBookingModal(propertyName, statusText, event) {
   statusEl.innerText = statusText;
   statusEl.className = 'field-value';
   
-  const isReal = !!(event.isReservation || event.reservationUrl || (event.description && event.description.includes('Reservation URL')));
+  const isReal = isReservationEvent(event);
   const titleEl = document.querySelector('#booking-modal .modal-header h3');
   if (titleEl) {
     titleEl.innerText = isReal ? '📄 房态预订详情' : '🔒 房态锁定详情';
