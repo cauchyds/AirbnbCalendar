@@ -345,57 +345,65 @@
     </div>
   </div>
 
-  <!-- 房源与品牌图形化管理器弹窗 (Brand & Listings Manager Modal) -->
+  <!-- 房源配置管理器弹窗 (Listings Config Manager Modal) -->
   <div class="modal-overlay" id="manager-modal">
-    <div class="modal-card" style="width: 880px; max-width: 95%;">
+    <div class="modal-card" style="width: 960px; max-width: 95%;">
       <div class="modal-header">
-        <h3>⚙️ 房源与品牌配置管理器</h3>
+        <h3>⚙️ 房源配置管理器</h3>
         <button class="btn-close-modal" id="btn-close-manager-modal">&times;</button>
       </div>
-      <div class="modal-body" style="padding: 0; display: flex; height: 480px;">
+      <div class="modal-body" style="padding: 20px; height: 500px; display: flex; flex-direction: column; gap: 15px; min-height: 0; box-sizing: border-box;">
         
-        <!-- 左侧：品牌 Tab 列表与增删 -->
-        <div class="manager-sidebar-brands">
-          <div class="sidebar-header-action">
-            <h4>🏷️ 房源品牌列表</h4>
-            <button class="btn-manager-mini-add" id="btn-manager-add-brand" title="新增品牌Tab">+ 新增</button>
-          </div>
-          <div class="manager-brands-list" id="manager-brands-list">
-            <!-- JS 动态注入 -->
+        <div class="manager-toolbar" style="display: flex; justify-content: space-between; align-items: center;">
+          <h4 id="manager-title" style="font-family: var(--font-serif); font-weight: 600; font-size: 1rem; color: var(--text-dark);">🌸 房源列表管理</h4>
+          <div class="manager-toolbar-actions" style="display: flex; gap: 8px;">
+            <button class="btn-manager-mini-add" id="btn-manager-toggle-mode">📋 切换至 Excel 粘贴模式</button>
+            <button class="btn-manager-mini-add" id="btn-manager-add-prop">+ 新增单行房源</button>
           </div>
         </div>
         
-        <!-- 右侧：当前选中品牌的房源编辑列表 -->
-        <div class="manager-content-properties">
-          <div class="sidebar-header-action">
-            <h4 id="manager-active-brand-title">🌸 Lucky™ 房源列表</h4>
-            <button class="btn-manager-mini-add" id="btn-manager-add-prop" title="在该品牌下新增房源">+ 新增房源</button>
+        <!-- 表格编辑模式 -->
+        <div class="manager-properties-table-wrapper" id="manager-table-wrapper" style="flex-grow: 1; overflow-y: auto; border: 1px solid var(--border-wood-light); border-radius: var(--radius-sm); min-height: 0; background-color: var(--bg-washi);">
+          <table class="manager-properties-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="position: sticky; top: 0; background-color: #EDE9DE; z-index: 5;">
+                <th style="width: 20%; padding: 10px;">品牌名称</th>
+                <th style="width: 25%; padding: 10px;">房源名称</th>
+                <th style="width: 45%; padding: 10px;">Airbnb ics 订阅链接</th>
+                <th style="width: 10%; padding: 10px; text-align: center;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="manager-properties-list">
+              <!-- JS 动态注入 -->
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Excel 批量粘贴/文本模式 (默认隐藏) -->
+        <div class="manager-properties-text-wrapper" id="manager-text-wrapper" style="flex-grow: 1; display: none; flex-direction: column; min-height: 0;">
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px;">
+            请直接从 Excel 中复制多行数据（包含品牌、房源名、链接三列）粘贴到下方文本框中，或直接在此进行文本编辑：
           </div>
-          <div class="manager-properties-table-wrapper">
-            <table class="manager-properties-table">
-              <thead>
-                <tr>
-                  <th style="width: 32%;">房源显示名称</th>
-                  <th style="width: 58%;">Airbnb ics 订阅链接</th>
-                  <th style="width: 10%; text-align: center;">操作</th>
-                </tr>
-              </thead>
-              <tbody id="manager-properties-list">
-                <!-- JS 动态注入 -->
-              </tbody>
-            </table>
-          </div>
+          <textarea id="manager-properties-textarea" style="flex-grow: 1; width: 100%; height: 100%; border: 1px solid var(--border-wood-light); border-radius: var(--radius-sm); padding: 10px; font-family: monospace; font-size: 0.8rem; line-height: 1.5; resize: none; outline: none; background-color: var(--bg-tatami); color: var(--text-dark); box-sizing: border-box; min-height: 0;"></textarea>
+        </div>
+        
+        <!-- 💡 提示说明框 -->
+        <div class="manager-instructions-box" style="padding: 10px 15px; background-color: var(--bg-tatami); border: 1px dashed var(--border-wood-light); border-radius: var(--radius-sm); font-size: 0.75rem; color: var(--text-muted); line-height: 1.5;">
+          <strong style="color: var(--text-dark);">💡 说明与操作提示：</strong>
+          <ul style="margin: 4px 0 0 0; padding-left: 18px;">
+            <li><strong>保存并应用：</strong> 将房源保存到当前浏览器中，并立即刷新大盘状态（仅对当前浏览器生效）。</li>
+            <li><strong>复制 config.js 代码：</strong> 复制配置代码，将其覆盖粘贴至您项目中的 <code>config.js</code> 文件并提交至 GitHub 即可让 Actions 自动更新也生效。</li>
+            <li><strong>恢复初始配置：</strong> 丢弃本地所有自定义修改，完全恢复为当前 <code>config.js</code> 文件中所定义的默认房源列表。</li>
+          </ul>
         </div>
         
       </div>
       <div class="modal-footer" style="padding: 16px 24px; display: flex; justify-content: space-between;">
-        <button class="btn-modal-delete-remark" style="border-color: var(--text-muted); color: var(--text-muted);" id="btn-manager-reset">恢复默认配置</button>
-        
-        <div class="footer-right-buttons" style="display: flex; gap: 8px;">
-          <button class="btn-sync" style="border-color: var(--accent-gold); color: var(--accent-gold);" id="btn-manager-copy-code" title="复制编译后的 config.js 代码，以便上传 GitHub">📋 复制 config.js 内容</button>
-          <button class="btn-modal-close-confirm" style="background-color: var(--text-muted);" id="btn-manager-cancel">取消</button>
-          <button class="btn-modal-close-confirm" id="btn-manager-save">💾 保存并应用</button>
+        <div class="footer-left-buttons" style="display: flex; gap: 8px;">
+          <button class="btn-modal-delete-remark" style="border-color: var(--text-muted); color: var(--text-muted);" id="btn-manager-reset">恢复初始配置</button>
+          <button class="btn-sync" style="border-color: var(--accent-gold); color: var(--accent-gold);" id="btn-manager-copy-code" title="复制编译后的 config.js 代码，以便上传 GitHub">📋 复制 config.js 代码</button>
         </div>
+        <button class="btn-modal-close-confirm" id="btn-manager-save">💾 保存并应用</button>
       </div>
     </div>
   </div>

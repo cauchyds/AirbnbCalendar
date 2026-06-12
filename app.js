@@ -44,8 +44,8 @@ const state = {
   remarksActiveTag: '',
   
   // 房源管理器临时工作状态
-  tempConfig: [],               // 弹窗中编辑的草稿配置
-  managerActiveBrandId: ''      // 当前在管理器中选中的编辑品牌 ID
+  tempConfigProps: [],          // 弹窗中扁平化的房源编辑草稿列表
+  managerMode: 'table'          // 编辑器模式：'table' 或 'text'
 };
 
 // CORS 代理服务列表，备用切换提高可用性
@@ -902,125 +902,98 @@ function parseRemarkTextHtml(text) {
 }
 
 // ==========================================================================
-// 9. ⚙️ 新增房源与品牌配置管理器逻辑核心 (Brand & Property Config Manager)
+// 9. ⚙️ 新增房源配置管理器逻辑核心 (Property Config Manager)
 // ==========================================================================
 function openManagerModal() {
-  // 深拷贝当前运行的配置结构，作为临时编辑草稿
-  state.tempConfig = JSON.parse(JSON.stringify(state.rawConfig));
+  // 扁平化 rawConfig 导入到工作状态
+  state.tempConfigProps = [];
   
-  // 默认选中第一个品牌进行展示，如果没有则为空
-  state.managerActiveBrandId = state.tempConfig[0]?.id || '';
+  state.rawConfig.forEach(brand => {
+    const brandName = brand.name || '';
+    if (brand.properties && Array.isArray(brand.properties)) {
+      brand.properties.forEach(prop => {
+        let fullName = prop.name || '';
+        let propName = fullName;
+        
+        // 分离品牌前缀，例如 "雲町屋 京都駅前" 拆为品牌 "雲町屋" 和房源 "京都駅前"
+        if (brandName && fullName.startsWith(brandName)) {
+          propName = fullName.substring(brandName.length).trim();
+          // 如果带有全角空格，去掉全角空格
+          if (propName.startsWith('　')) {
+            propName = propName.substring(1).trim();
+          }
+        }
+        
+        state.tempConfigProps.push({
+          brand: brandName,
+          name: propName,
+          ical: prop.ical || ''
+        });
+      });
+    }
+  });
   
-  renderManagerBrandsList();
+  // 默认设置为表格模式
+  state.managerMode = 'table';
+  
+  const toggleBtn = document.getElementById('btn-manager-toggle-mode');
+  if (toggleBtn) {
+    toggleBtn.innerText = '📋 切换至 Excel 粘贴模式';
+  }
+  
+  const tableWrapper = document.getElementById('manager-table-wrapper');
+  if (tableWrapper) tableWrapper.style.display = 'block';
+  
+  const textWrapper = document.getElementById('manager-text-wrapper');
+  if (textWrapper) textWrapper.style.display = 'none';
+  
+  const addPropBtn = document.getElementById('btn-manager-add-prop');
+  if (addPropBtn) addPropBtn.style.display = 'inline-block';
+  
   renderManagerPropertiesList();
   
   document.getElementById('manager-modal').classList.add('active');
 }
 
-// 渲染管理器左侧：品牌 Tab 列表
-function renderManagerBrandsList() {
-  const container = document.getElementById('manager-brands-list');
-  container.innerHTML = '';
-  
-  state.tempConfig.forEach((brand, index) => {
-    const row = document.createElement('div');
-    row.className = `manager-brand-item-row ${state.managerActiveBrandId === brand.id ? 'active' : ''}`;
-    
-    // 点击切换当前编辑的品牌
-    row.onclick = (e) => {
-      // 避免输入框或删除按钮点击导致的误触
-      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON') {
-        state.managerActiveBrandId = brand.id;
-        renderManagerBrandsList();
-        renderManagerPropertiesList();
-      }
-    };
-    
-    // 1. 图标输入框
-    const emojiInput = document.createElement('input');
-    emojiInput.type = 'text';
-    emojiInput.className = 'manager-brand-emoji-input';
-    emojiInput.value = brand.icon || '🌸';
-    emojiInput.oninput = (e) => {
-      brand.icon = e.target.value;
-    };
-    
-    // 2. 品牌名称输入框
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.className = 'manager-brand-name-input';
-    nameInput.value = brand.name;
-    nameInput.oninput = (e) => {
-      brand.name = e.target.value;
-      // 联动更新右侧面板的品牌名字
-      if (state.managerActiveBrandId === brand.id) {
-        document.getElementById('manager-active-brand-title').innerText = `${brand.icon} ${brand.name} 房源列表`;
-      }
-    };
-    
-    // 3. 删除按钮
-    const delBtn = document.createElement('button');
-    delBtn.className = 'btn-manager-row-del';
-    delBtn.innerHTML = '&times;';
-    delBtn.title = '删除此品牌及旗下所有房源';
-    delBtn.onclick = () => {
-      if (confirm(`⚠️ 确定要彻底删除品牌 [${brand.name}] 吗？\n旗下关联的所有房源也将一并移除！`)) {
-        state.tempConfig.splice(index, 1);
-        if (state.managerActiveBrandId === brand.id) {
-          state.managerActiveBrandId = state.tempConfig[0]?.id || '';
-        }
-        renderManagerBrandsList();
-        renderManagerPropertiesList();
-      }
-    };
-    
-    row.appendChild(emojiInput);
-    row.appendChild(nameInput);
-    row.appendChild(delBtn);
-    container.appendChild(row);
-  });
-}
-
-// 渲染管理器右侧：当前选中品牌的房源列表
+// 渲染房源配置列表
 function renderManagerPropertiesList() {
   const container = document.getElementById('manager-properties-list');
+  if (!container) return;
   container.innerHTML = '';
   
-  const activeBrand = state.tempConfig.find(b => b.id === state.managerActiveBrandId);
-  const titleEl = document.getElementById('manager-active-brand-title');
-  const addPropBtn = document.getElementById('btn-manager-add-prop');
-  
-  if (!activeBrand) {
-    titleEl.innerText = '🏷️ 请选择或创建品牌';
-    addPropBtn.disabled = true;
-    container.innerHTML = '<tr><td colspan="3" class="todo-empty">请在左侧选择品牌，或点击 [新增品牌]</td></tr>';
+  if (state.tempConfigProps.length === 0) {
+    container.innerHTML = '<tr><td colspan="4" class="todo-empty" style="text-align: center; padding: 20px;">暂无房源。点击上方 [+ 新增单行房源] 或切换至 [Excel 粘贴模式] 开始添加</td></tr>';
     return;
   }
   
-  addPropBtn.disabled = false;
-  titleEl.innerText = `${activeBrand.icon} ${activeBrand.name} 房源列表`;
-  
-  if (activeBrand.properties.length === 0) {
-    container.innerHTML = '<tr><td colspan="3" class="todo-empty">该品牌下暂无房源。点击上方 [+ 新增房源] 开始添加</td></tr>';
-    return;
-  }
-  
-  activeBrand.properties.forEach((prop, idx) => {
+  state.tempConfigProps.forEach((prop, idx) => {
     const tr = document.createElement('tr');
     
-    // 1. 房源名称列
+    // 1. 品牌名称列
+    const tdBrand = document.createElement('td');
+    const inputBrand = document.createElement('input');
+    inputBrand.type = 'text';
+    inputBrand.className = 'manager-text-input';
+    inputBrand.value = prop.brand;
+    inputBrand.placeholder = '例如: 雲町屋';
+    inputBrand.oninput = (e) => {
+      prop.brand = e.target.value;
+    };
+    tdBrand.appendChild(inputBrand);
+    
+    // 2. 房源名称列
     const tdName = document.createElement('td');
     const inputName = document.createElement('input');
     inputName.type = 'text';
     inputName.className = 'manager-text-input';
     inputName.value = prop.name;
-    inputName.placeholder = '例如: 雲町屋 小御';
+    inputName.placeholder = '例如: 京都駅前';
     inputName.oninput = (e) => {
       prop.name = e.target.value;
     };
     tdName.appendChild(inputName);
     
-    // 2. iCal 链接列
+    // 3. iCal 链接列
     const tdLink = document.createElement('td');
     const inputLink = document.createElement('input');
     inputLink.type = 'text';
@@ -1032,7 +1005,7 @@ function renderManagerPropertiesList() {
     };
     tdLink.appendChild(inputLink);
     
-    // 3. 操作列
+    // 4. 操作列
     const tdDel = document.createElement('td');
     tdDel.style.textAlign = 'center';
     const delBtn = document.createElement('button');
@@ -1040,11 +1013,12 @@ function renderManagerPropertiesList() {
     delBtn.innerHTML = '&times;';
     delBtn.title = '移除此房源';
     delBtn.onclick = () => {
-      activeBrand.properties.splice(idx, 1);
+      state.tempConfigProps.splice(idx, 1);
       renderManagerPropertiesList();
     };
     tdDel.appendChild(delBtn);
     
+    tr.appendChild(tdBrand);
     tr.appendChild(tdName);
     tr.appendChild(tdLink);
     tr.appendChild(tdDel);
@@ -1052,70 +1026,189 @@ function renderManagerPropertiesList() {
   });
 }
 
-// 新增品牌
-function managerAddBrand() {
-  const newBrandId = 'brand_' + Date.now();
-  const newBrand = {
-    id: newBrandId,
-    name: '新建品牌 Tab',
-    icon: '✨',
-    properties: []
-  };
-  state.tempConfig.push(newBrand);
-  state.managerActiveBrandId = newBrandId;
-  renderManagerBrandsList();
-  renderManagerPropertiesList();
+// 切换编辑模式 (表格 <-> Excel粘贴文本框)
+function managerToggleMode() {
+  const toggleBtn = document.getElementById('btn-manager-toggle-mode');
+  const tableWrapper = document.getElementById('manager-table-wrapper');
+  const textWrapper = document.getElementById('manager-text-wrapper');
+  const addPropBtn = document.getElementById('btn-manager-add-prop');
+  
+  if (state.managerMode === 'table') {
+    // 切换至文本模式，将当前状态序列化为 TSV (Tab 间隔)
+    const textRows = state.tempConfigProps.map(p => `${p.brand}\t${p.name}\t${p.ical}`).join('\n');
+    document.getElementById('manager-properties-textarea').value = textRows;
+    
+    tableWrapper.style.display = 'none';
+    textWrapper.style.display = 'flex';
+    addPropBtn.style.display = 'none';
+    toggleBtn.innerText = '📋 切换至 表格编辑模式';
+    state.managerMode = 'text';
+  } else {
+    // 切换回表格模式，先解析文本框内容
+    syncTextToProps();
+    renderManagerPropertiesList();
+    
+    tableWrapper.style.display = 'block';
+    textWrapper.style.display = 'none';
+    addPropBtn.style.display = 'inline-block';
+    toggleBtn.innerText = '📋 切换至 Excel 粘贴模式';
+    state.managerMode = 'table';
+  }
 }
 
-// 新增房源
-function managerAddProperty() {
-  const activeBrand = state.tempConfig.find(b => b.id === state.managerActiveBrandId);
-  if (!activeBrand) return;
+// 解析文本框内容到内存状态中
+function syncTextToProps() {
+  if (state.managerMode !== 'text') return;
+  const text = document.getElementById('manager-properties-textarea').value;
+  const lines = text.split('\n');
+  state.tempConfigProps = [];
   
-  const newProp = {
-    id: 'prop_' + Date.now(),
-    name: '新房源名称',
+  lines.forEach(line => {
+    const cleaned = line.trim();
+    if (!cleaned) return;
+    
+    // 优先采用 Excel 复制出来的 Tab 键分割
+    let parts = cleaned.split('\t');
+    if (parts.length < 3) {
+      // 备用：两个或两个以上空格
+      parts = cleaned.split(/\s{2,}/);
+      if (parts.length < 3) {
+        // 备用：普通空格
+        parts = cleaned.split(/\s+/);
+      }
+    }
+    
+    if (parts.length >= 3) {
+      state.tempConfigProps.push({
+        brand: parts[0].trim(),
+        name: parts[1].trim(),
+        ical: parts.slice(2).join(' ').trim()
+      });
+    } else if (parts.length === 2) {
+      state.tempConfigProps.push({
+        brand: parts[0].trim(),
+        name: parts[1].trim(),
+        ical: ''
+      });
+    } else if (parts.length === 1) {
+      state.tempConfigProps.push({
+        brand: parts[0].trim(),
+        name: '',
+        ical: ''
+      });
+    }
+  });
+}
+
+// 新增单行房源
+function managerAddProperty() {
+  state.tempConfigProps.push({
+    brand: '',
+    name: '',
     ical: ''
-  };
-  activeBrand.properties.push(newProp);
+  });
   renderManagerPropertiesList();
   
   // 滚动到底部以展示新添加的行
   setTimeout(() => {
-    const wrapper = document.querySelector('.manager-properties-table-wrapper');
-    wrapper.scrollTop = wrapper.scrollHeight;
+    const wrapper = document.getElementById('manager-table-wrapper');
+    if (wrapper) wrapper.scrollTop = wrapper.scrollHeight;
   }, 50);
+}
+
+// 将扁平化属性列表编译为层次化的 BRANDS_CONFIG 结构
+function compileTempConfig() {
+  syncTextToProps();
+  
+  const newBrandsConfig = [];
+  const brandMap = new Map();
+  
+  state.tempConfigProps.forEach(item => {
+    const brandName = item.brand.trim();
+    const propName = item.name.trim();
+    const ical = item.ical.trim();
+    
+    if (!brandName || !propName) return; // 过滤不完整数据
+    
+    // 如果该品牌尚未在 map 中，初始化它
+    if (!brandMap.has(brandName)) {
+      // 从原有的 rawConfig 查找，尽可能保留品牌 Icon 和固定 ID (比如 "yunmachiya" 对应 "🌸")
+      const existingBrand = state.rawConfig.find(b => b.name === brandName);
+      const brandId = existingBrand ? existingBrand.id : 'brand_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+      const icon = existingBrand ? existingBrand.icon : '🏨';
+      
+      const brandObj = {
+        id: brandId,
+        name: brandName,
+        icon: icon,
+        properties: []
+      };
+      brandMap.set(brandName, brandObj);
+      newBrandsConfig.push(brandObj);
+    }
+    
+    // 查找该房源是否已经存在，尽可能保留其原始 ID，防止 localStorage 绑定的运营备注、入住人数等数据丢失
+    let propId = '';
+    const fullName = brandName + ' ' + propName;
+    
+    let existingProp = null;
+    for (const b of state.rawConfig) {
+      for (const p of b.properties) {
+        if (p.ical === ical) {
+          existingProp = p;
+          break;
+        }
+        if (p.name === fullName || p.name.replace(/\s+/g, '') === fullName.replace(/\s+/g, '')) {
+          existingProp = p;
+          break;
+        }
+      }
+      if (existingProp) break;
+    }
+    
+    if (existingProp) {
+      propId = existingProp.id;
+    } else {
+      propId = 'prop_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+    }
+    
+    brandMap.get(brandName).properties.push({
+      id: propId,
+      name: fullName,
+      ical: ical
+    });
+  });
+  
+  return newBrandsConfig;
 }
 
 // 保存并应用管理器配置
 function managerSave() {
-  if (state.tempConfig.length === 0) {
-    showToast('❌ 请至少保留一个品牌 Tab！', 'error');
+  const newBrandsConfig = compileTempConfig();
+  
+  if (newBrandsConfig.length === 0) {
+    showToast('❌ 请至少配置一个有效的房源信息！', 'error');
     return;
   }
   
-  // 校验房源链接与名称
-  for (const b of state.tempConfig) {
-    if (!b.name.trim()) {
-      showToast(`❌ 品牌名称不能为空，请检查带有 ${b.icon} 的品牌。`, 'error');
-      return;
-    }
+  // 校验 iCal 订阅链接
+  for (const b of newBrandsConfig) {
     for (const p of b.properties) {
-      if (!p.name.trim()) {
-        showToast(`❌ [${b.name}] 下存在没有名字的房源，请补充。`, 'error');
+      if (!p.ical.trim()) {
+        showToast(`❌ 房源 [${p.name}] 的 Airbnb ics 订阅链接不能为空！`, 'error');
         return;
       }
     }
   }
   
-  state.rawConfig = state.tempConfig;
+  state.rawConfig = newBrandsConfig;
   
   // 持久化存储于本地 localStorage 数据库
   localStorage.setItem('airbnb_calendar_custom_config', JSON.stringify(state.rawConfig));
   
   hideManagerModal();
   
-  // 局部重新装载激活，重绘全网页所有 Tab 和甘特图！
+  // 重新渲染全部 Tab 与甘特图视图
   applyData({
     lastUpdated: state.lastUpdated,
     properties: state.propertiesData
@@ -1124,9 +1217,9 @@ function managerSave() {
   showToast('💾 房源配置已成功保存并在本地应用！若需拉取最新日程，请点击“立即更新”。', 'success');
 }
 
-// 恢复默认配置
+// 恢复默认初始配置
 function managerReset() {
-  if (confirm('🗑️ 确定要清空所有自定义房源，恢复为最初的 [雲町屋 14个房源] 默认配置吗？\n此操作将擦除您的所有修改！')) {
+  if (confirm('🗑️ 确定要清空所有自定义房源，恢复为最初的 [雲町屋 14个房源] 默认配置吗？\n此操作将擦除您的所有本地修改！')) {
     localStorage.removeItem('airbnb_calendar_custom_config');
     state.rawConfig = BRANDS_CONFIG;
     hideManagerModal();
@@ -1138,10 +1231,16 @@ function managerReset() {
   }
 }
 
-// 一键复制并编译当前配置为 config.js 物理文件内容
+// 一键复制并编译当前配置为 config.js 文件内容
 function managerCopyCode() {
-  // 生成与本地 config.js 完全一样的代码文本格式
-  const compiledCode = `/**\n * 雲町屋 & 多品牌房源日历配置文件 (Config.js)\n * 由配置管理器自动编译生成\n */\n\nconst BRANDS_CONFIG = ${JSON.stringify(state.tempConfig, null, 2)};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { BRANDS_CONFIG };\n}\n`;
+  const newBrandsConfig = compileTempConfig();
+  
+  if (newBrandsConfig.length === 0) {
+    showToast('❌ 无有效配置，请先添加房源！', 'error');
+    return;
+  }
+  
+  const compiledCode = `/**\n * 雲町屋 & 多品牌房源日历配置文件 (Config.js)\n * 由配置管理器自动编译生成\n */\n\nconst BRANDS_CONFIG = ${JSON.stringify(newBrandsConfig, null, 2)};\n\nif (typeof module !== 'undefined' && module.exports) {\n  module.exports = { BRANDS_CONFIG };\n}\n`;
   
   navigator.clipboard.writeText(compiledCode).then(() => {
     showToast('📋 config.js 代码已复制！请粘贴到本地文件并 git push 即可。', 'success');
@@ -1738,12 +1837,10 @@ function setupEventListeners() {
   // ⚙️ 8. 房源管理器弹窗动作交互绑定
   document.getElementById('btn-open-manager').onclick = openManagerModal;
   document.getElementById('btn-close-manager-modal').onclick = hideManagerModal;
-  document.getElementById('btn-manager-cancel').onclick = hideManagerModal;
   document.getElementById('btn-manager-save').onclick = managerSave;
   document.getElementById('btn-manager-reset').onclick = managerReset;
   document.getElementById('btn-manager-copy-code').onclick = managerCopyCode;
-  
-  document.getElementById('btn-manager-add-brand').onclick = managerAddBrand;
+  document.getElementById('btn-manager-toggle-mode').onclick = managerToggleMode;
   document.getElementById('btn-manager-add-prop').onclick = managerAddProperty;
   
   document.getElementById('manager-modal').onclick = (e) => {
