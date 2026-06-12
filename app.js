@@ -33,6 +33,10 @@ const state = {
   // 备忘录/任务数据 (持久化于 localStorage)
   remarksData: {},              // 键为 "YYYY-MM-DD_propId_slotIdx" (slotIdx 1-7对应子行2-8)
   
+  // 自定义预订订单详情备忘 (创建日期, 入住人数，持久化于 localStorage)
+  customBookingDetails: {},     // 键为 event 唯一的 uid, 值为 { createdDate, guests }
+  activeModalEventUid: '',      // 当前详情弹窗展示的预订 UID
+  
   // 处于活动编辑中的备注信息
   remarksActivePropId: '',
   remarksActiveDate: '',
@@ -164,8 +168,8 @@ function parseICSClient(icsText) {
           const phoneMatch = value.match(/Phone Number \(Last 4 Digits\): (\d{4})/i);
           if (phoneMatch) currentEvent.phoneLast4 = phoneMatch[1];
           
-          const urlMatch = value.match(/Reservation URL: (https:\/\/\S+)/i);
-          if (urlMatch) currentEvent.reservationUrl = urlMatch[1].replace(/\\n/g, '').trim();
+          const urlMatch = value.match(/Reservation URL: (https:\/\/[^\s\\]+)/i);
+          if (urlMatch) currentEvent.reservationUrl = urlMatch[1].trim();
         } else if (key === 'UID') {
           currentEvent.uid = value;
         }
@@ -410,6 +414,9 @@ async function loadData() {
   
   // 载入本地备忘录备注库
   state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
+  
+  // 载入本地自定义详情备注 (创建日期, 入住人数)
+  state.customBookingDetails = JSON.parse(localStorage.getItem('airbnb_calendar_custom_booking_details')) || {};
   
   // B. 尝试从 localStorage 优先读取日历缓存（实现极速载入，无需等待 Actions JSON 请求）
   const cachedData = localStorage.getItem('airbnb_calendar_data');
@@ -1440,9 +1447,67 @@ function showBookingModal(propertyName, statusText, event) {
   const nights = getNights(event.start, event.end);
   document.getElementById('modal-nights').innerText = `${nights} 晚`;
   
+  const createdDateRow = document.getElementById('modal-field-created-date');
+  const guestsRow = document.getElementById('modal-field-guests');
+  const hintRow = document.getElementById('modal-field-hint');
+  
+  if (isReal) {
+    createdDateRow.style.display = 'flex';
+    guestsRow.style.display = 'flex';
+    hintRow.style.display = 'block';
+    
+    // 重置输入框与文本展示状态
+    const createdDateInput = document.getElementById('modal-created-date-input');
+    const createdDateSpan = document.getElementById('modal-created-date');
+    const editCreatedDateBtn = document.getElementById('btn-edit-created-date');
+    createdDateInput.style.display = 'none';
+    createdDateSpan.style.display = 'inline';
+    editCreatedDateBtn.innerText = '✏️';
+    
+    const guestsInput = document.getElementById('modal-guests-input');
+    const guestsSpan = document.getElementById('modal-guests');
+    const editGuestsBtn = document.getElementById('btn-edit-guests');
+    guestsInput.style.display = 'none';
+    guestsSpan.style.display = 'inline';
+    editGuestsBtn.innerText = '✏️';
+    
+    state.activeModalEventUid = event.uid;
+    
+    // 展示当前保存的值
+    const details = state.customBookingDetails[event.uid] || {};
+    if (details.createdDate) {
+      createdDateSpan.innerText = formatDateChinese(details.createdDate);
+      createdDateSpan.style.color = '';
+      createdDateSpan.style.fontStyle = '';
+      createdDateSpan.style.fontSize = '';
+    } else {
+      createdDateSpan.innerText = 'iCal未提供 (可点击编辑)';
+      createdDateSpan.style.color = 'var(--text-muted)';
+      createdDateSpan.style.fontStyle = 'italic';
+      createdDateSpan.style.fontSize = '0.85rem';
+    }
+    
+    if (details.guests) {
+      guestsSpan.innerText = `${details.guests} 人`;
+      guestsSpan.style.color = '';
+      guestsSpan.style.fontStyle = '';
+      guestsSpan.style.fontSize = '';
+    } else {
+      guestsSpan.innerText = 'iCal未提供 (可点击编辑)';
+      guestsSpan.style.color = 'var(--text-muted)';
+      guestsSpan.style.fontStyle = 'italic';
+      guestsSpan.style.fontSize = '0.85rem';
+    }
+  } else {
+    createdDateRow.style.display = 'none';
+    guestsRow.style.display = 'none';
+    hintRow.style.display = 'none';
+    state.activeModalEventUid = '';
+  }
+  
   const phoneRow = document.getElementById('modal-field-phone');
   const linkRow = document.getElementById('modal-field-link');
-  
+
   if (isReal && event.phoneLast4) {
     phoneRow.style.display = 'flex';
     document.getElementById('modal-phone').innerText = `*** - **** - ${event.phoneLast4}`;
@@ -1539,6 +1604,109 @@ function setupEventListeners() {
   document.getElementById('btn-close-modal-confirm').onclick = hideBookingModal;
   document.getElementById('booking-modal').onclick = (e) => {
     if (e.target.id === 'booking-modal') hideBookingModal();
+  };
+  
+  // 6b. 订单创建日期与人数的本地编辑交互
+  document.getElementById('btn-edit-created-date').onclick = () => {
+    const uid = state.activeModalEventUid;
+    if (!uid) return;
+    
+    const span = document.getElementById('modal-created-date');
+    const input = document.getElementById('modal-created-date-input');
+    const btn = document.getElementById('btn-edit-created-date');
+    
+    const isEditing = input.style.display !== 'none';
+    if (isEditing) {
+      // 保存
+      const newVal = input.value.trim();
+      if (!state.customBookingDetails[uid]) {
+        state.customBookingDetails[uid] = {};
+      }
+      state.customBookingDetails[uid].createdDate = newVal;
+      localStorage.setItem('airbnb_calendar_custom_booking_details', JSON.stringify(state.customBookingDetails));
+      
+      // 更新UI展示
+      input.style.display = 'none';
+      span.style.display = 'inline';
+      btn.innerText = '✏️';
+      
+      if (newVal) {
+        span.innerText = formatDateChinese(newVal);
+        span.style.color = '';
+        span.style.fontStyle = '';
+        span.style.fontSize = '';
+      } else {
+        span.innerText = 'iCal未提供 (可点击编辑)';
+        span.style.color = 'var(--text-muted)';
+        span.style.fontStyle = 'italic';
+        span.style.fontSize = '0.85rem';
+      }
+      
+      showToast('订单创建日期保存成功', 'success');
+    } else {
+      // 进入编辑状态
+      const currVal = (state.customBookingDetails[uid] && state.customBookingDetails[uid].createdDate) || '';
+      input.value = currVal;
+      
+      span.style.display = 'none';
+      input.style.display = 'inline-block';
+      btn.innerText = '💾';
+      input.focus();
+    }
+  };
+  
+  document.getElementById('btn-edit-guests').onclick = () => {
+    const uid = state.activeModalEventUid;
+    if (!uid) return;
+    
+    const span = document.getElementById('modal-guests');
+    const input = document.getElementById('modal-guests-input');
+    const btn = document.getElementById('btn-edit-guests');
+    
+    const isEditing = input.style.display !== 'none';
+    if (isEditing) {
+      // 保存
+      const newVal = parseInt(input.value.trim(), 10);
+      if (!state.customBookingDetails[uid]) {
+        state.customBookingDetails[uid] = {};
+      }
+      
+      if (isNaN(newVal) || newVal <= 0) {
+        delete state.customBookingDetails[uid].guests;
+      } else {
+        state.customBookingDetails[uid].guests = newVal;
+      }
+      localStorage.setItem('airbnb_calendar_custom_booking_details', JSON.stringify(state.customBookingDetails));
+      
+      // 更新UI展示
+      input.style.display = 'none';
+      span.style.display = 'inline';
+      btn.innerText = '✏️';
+      
+      const savedVal = state.customBookingDetails[uid] ? state.customBookingDetails[uid].guests : null;
+      if (savedVal) {
+        span.innerText = `${savedVal} 人`;
+        span.style.color = '';
+        span.style.fontStyle = '';
+        span.style.fontSize = '';
+      } else {
+        span.innerText = 'iCal未提供 (可点击编辑)';
+        span.style.color = 'var(--text-muted)';
+        span.style.fontStyle = 'italic';
+        span.style.fontSize = '0.85rem';
+      }
+      
+      showToast('入住人数保存成功', 'success');
+    } else {
+      // 进入编辑状态
+      const currVal = (state.customBookingDetails[uid] && state.customBookingDetails[uid].guests) || '';
+      input.value = currVal;
+      
+      span.style.display = 'none';
+      input.style.display = 'inline-block';
+      btn.innerText = '💾';
+      input.focus();
+    }
   };
   
   // 7. 备忘录编辑弹窗关闭与动作

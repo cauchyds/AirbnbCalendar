@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.6">
+  <link rel="stylesheet" href="style.css?v=3.7">
 </head>
 <body>
 
@@ -257,6 +257,22 @@
           <span class="field-label">入住晚数 (Nights)</span>
           <span class="field-value font-bold" id="modal-nights">- 晚</span>
         </div>
+        <div class="modal-field" id="modal-field-created-date">
+          <span class="field-label">订单创建日期</span>
+          <div class="field-interactive-wrapper">
+            <span class="field-value" id="modal-created-date">-</span>
+            <input type="date" id="modal-created-date-input" class="modal-input-field" style="display: none;" />
+            <button id="btn-edit-created-date" class="btn-inline-edit" title="编辑订单创建日期">✏️</button>
+          </div>
+        </div>
+        <div class="modal-field" id="modal-field-guests">
+          <span class="field-label">入住人数</span>
+          <div class="field-interactive-wrapper">
+            <span class="field-value" id="modal-guests">-</span>
+            <input type="number" id="modal-guests-input" min="1" max="100" placeholder="人数" class="modal-input-field" style="display: none; width: 60px;" />
+            <button id="btn-edit-guests" class="btn-inline-edit" title="编辑入住人数">✏️</button>
+          </div>
+        </div>
         <div class="modal-field" id="modal-field-phone">
           <span class="field-label">电话后四位</span>
           <span class="field-value" id="modal-phone">-</span>
@@ -264,6 +280,9 @@
         <div class="modal-field" id="modal-field-link">
           <span class="field-label">订单操作</span>
           <a href="#" target="_blank" class="btn-modal-action" id="modal-link">前往 Airbnb 订单详情 ↗</a>
+        </div>
+        <div class="modal-hint" id="modal-field-hint">
+          * 提示：订单创建日期与人数为本地备注，Airbnb 订阅源不提供此数据。
         </div>
       </div>
       <div class="modal-footer">
@@ -385,7 +404,7 @@
   </footer>
 
   <!-- 引入配置与逻辑控制 JS -->
-  <script src="config.js?v=3.6"></script>
-  <script src="app.js?v=3.6"></script>
+  <script src="config.js?v=3.7"></script>
+  <script src="app.js?v=3.7"></script>
 </body>
 </html>

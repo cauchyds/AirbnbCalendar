@@ -90,10 +90,10 @@ function parseICS(icsText) {
             currentEvent.phoneLast4 = phoneMatch[1];
           }
           
-          // 提取订单详情 URL（将换行转义符去掉）
-          const urlMatch = value.match(/Reservation URL: (https:\/\/\S+)/i);
+          // 提取订单详情 URL（过滤掉换行转义符及后续内容）
+          const urlMatch = value.match(/Reservation URL: (https:\/\/[^\s\\]+)/i);
           if (urlMatch) {
-            currentEvent.reservationUrl = urlMatch[1].replace(/\\n/g, '').trim();
+            currentEvent.reservationUrl = urlMatch[1].trim();
           }
         } else if (key === 'UID') {
           currentEvent.uid = value;
