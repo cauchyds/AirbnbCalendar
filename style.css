@@ -531,6 +531,11 @@ body {
   overflow-y: auto;
 }
 
+.timeline-wrapper-outer-card {
+  flex: 1;
+  min-width: 0;
+}
+
 .section-card {
   background-color: var(--bg-washi);
   border: 1px solid var(--border-wood-light);
