@@ -1917,6 +1917,16 @@ body {
     font-size: 0.75rem !important; 
     white-space: nowrap !important;
   }
+  .date-picker-wrapper {
+    display: flex !important;
+    flex: 1 !important;
+  }
+  .date-picker-wrapper .btn-jump-display {
+    flex: 1 !important;
+    width: 100% !important;
+    padding: 6px 4px !important;
+    font-size: 0.75rem !important;
+  }
   .timeline-wrapper-outer { 
     width: 100% !important;
     max-width: 100% !important;
