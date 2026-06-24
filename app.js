@@ -50,9 +50,9 @@ const state = {
   isRenderingTimeline: false    // 防止滚动触发重绘冲突的锁
 };
 
-// CORS 代理服务列表，备用切换提高可用性
+// CORS 代理服务列表，优先采用自建的 Vercel 后端安全代理，确保 100% 同步成功
 const CORS_PROXIES = [
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `/api/proxy?url=${encodeURIComponent(url)}`,
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
 ];
 
