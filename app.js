@@ -508,20 +508,37 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
 async function loadData() {
   showSyncButtonLoading(true);
   
-  // ⚙️ 优先级 1：读取 localStorage 自定义品牌房源配置
-  const customConfig = localStorage.getItem('airbnb_calendar_custom_config');
-  if (customConfig) {
-    try {
-      state.rawConfig = JSON.parse(customConfig);
-      console.log('⚙️ 成功从本地加载自定义房源配置');
-    } catch (e) {
-      console.error('⚠️ 本地自定义配置解析失败，恢复默认配置。');
-      localStorage.removeItem('airbnb_calendar_custom_config');
+  // ⚙️ 优先级 1：优先尝试从云端 Vercel Blob 获取自定义房源配置
+  try {
+    const cloudConfigRes = await fetch('/api/config?t=' + Date.now());
+    if (cloudConfigRes.ok) {
+      const cloudConfig = await cloudConfigRes.json();
+      if (cloudConfig && Array.isArray(cloudConfig) && cloudConfig.length > 0) {
+        state.rawConfig = cloudConfig;
+        localStorage.setItem('airbnb_calendar_custom_config', JSON.stringify(cloudConfig));
+        console.log('✅ 成功从云端 Vercel Blob 载入房源配置');
+      }
+    }
+  } catch (e) {
+    console.warn('⚠️ 从云端载入房源配置失败，将退回本地缓存或默认配置:', e.message);
+  }
+  
+  if (!state.rawConfig || state.rawConfig.length === 0) {
+    // 优先级 2：读取 localStorage 自定义品牌房源配置
+    const customConfig = localStorage.getItem('airbnb_calendar_custom_config');
+    if (customConfig) {
+      try {
+        state.rawConfig = JSON.parse(customConfig);
+        console.log('⚙️ 成功从本地加载自定义房源配置');
+      } catch (e) {
+        console.error('⚠️ 本地自定义配置解析失败，恢复默认配置。');
+        localStorage.removeItem('airbnb_calendar_custom_config');
+        state.rawConfig = BRANDS_CONFIG;
+      }
+    } else {
+      // 默认配置
       state.rawConfig = BRANDS_CONFIG;
     }
-  } else {
-    // 使用 config.js 中的默认配置
-    state.rawConfig = BRANDS_CONFIG;
   }
   
   // 载入本地备忘录备注库
@@ -1414,7 +1431,10 @@ function managerSave() {
     properties: state.propertiesData
   });
   
-  showToast('💾 房源配置已成功保存并在本地应用！若需拉取最新日程，请点击“立即更新”。', 'success');
+  showToast('💾 房源配置已成功保存并在本地应用！正在同步至云端，请稍候...', 'info');
+  
+  // 异步同步房源配置至云端 Vercel Blob
+  syncConfigToCloud();
 }
 
 // 恢复默认初始配置
@@ -1427,7 +1447,10 @@ function managerReset() {
       lastUpdated: state.lastUpdated,
       properties: state.propertiesData
     });
-    showToast('✅ 已顺利恢复默认初始配置！', 'success');
+    showToast('✅ 已顺利恢复默认初始配置！正在同步至云端，请稍候...', 'info');
+    
+    // 同步默认配置至云端 Vercel Blob
+    syncConfigToCloud();
   }
 }
 
@@ -1544,6 +1567,27 @@ async function syncRemarksToCloud() {
   } catch (e) {
     console.error('⚠️ 备注云端同步失败，已保存在本地浏览器:', e.message);
     showToast('⚠️ 备注云端同步失败，已保存在本地浏览器', 'warning');
+  }
+}
+
+async function syncConfigToCloud() {
+  try {
+    const res = await fetch('/api/config', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(state.rawConfig)
+    });
+    if (res.ok) {
+      console.log('✅ 房源配置成功同步至 Vercel Blob 云端');
+      showToast('🌸 房源配置已成功同步到云端！数据将在下次定时同步时自动载入。', 'success');
+    } else {
+      throw new Error(`HTTP状态码: ${res.status}`);
+    }
+  } catch (e) {
+    console.error('⚠️ 房源配置同步云端失败，但已保存在当前浏览器:', e.message);
+    showToast('⚠️ 房源配置同步云端失败，但已保存在当前浏览器', 'warning');
   }
 }
 

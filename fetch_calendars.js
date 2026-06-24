@@ -209,6 +209,21 @@ async function main() {
   console.log('--- 🏮 开始抓取 Airbnb 房源日历 ---');
   const syncTimestamp = new Date().toISOString();
   
+  // 0. 从 Vercel API 动态加载最新的房源配置 (实现全自动数据库驱动)
+  const CONFIG_API_URL = process.env.CONFIG_API_URL || 'https://airbnb-calendar-cauchyds.vercel.app/api/config';
+  let brandsConfig = BRANDS_CONFIG;
+  try {
+    console.log(`⏳ 正在尝试从云端获取最新房源配置: ${CONFIG_API_URL}`);
+    const configDataStr = await fetchUrl(CONFIG_API_URL);
+    const parsedConfig = JSON.parse(configDataStr);
+    if (parsedConfig && Array.isArray(parsedConfig) && parsedConfig.length > 0) {
+      brandsConfig = parsedConfig;
+      console.log('✅ 成功从云端加载最新房源配置，包含房源数:', brandsConfig.flatMap(b => b.properties).length);
+    }
+  } catch (e) {
+    console.warn('⚠️ 从云端加载配置失败，将降级使用本地默认 config.js 配置:', e.message);
+  }
+
   // 1. 读取原有的 data.json 数据用于合并历史数据
   const outputFilePath = path.join(__dirname, 'data.json');
   let oldData = null;
@@ -228,7 +243,7 @@ async function main() {
 
   // 展开所有需要抓取的房源
   const fetchTasks = [];
-  for (const brand of BRANDS_CONFIG) {
+  for (const brand of brandsConfig) {
     for (const prop of brand.properties) {
       if (prop.ical) {
         fetchTasks.push({
