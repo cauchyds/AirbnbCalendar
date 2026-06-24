@@ -1,11 +1,139 @@
 {
-  "lastUpdated": "2026-06-24T09:40:32.573Z",
+  "lastUpdated": "2026-06-24T13:37:51.054Z",
   "properties": {
     "xiaochi": {
       "propId": "xiaochi",
       "propName": "雲町屋 小池",
       "brandId": "yunmachiya",
-      "events": [],
+      "events": [
+        {
+          "start": "2026-08-29",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-84e3610edbaec5912a762fe5ff5e3b4d@airbnb.com"
+        },
+        {
+          "start": "2026-08-30",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9754a6737eaaebc21f4ec471119945d0@airbnb.com"
+        },
+        {
+          "start": "2026-08-31",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a43808b5f3077736ad7e37eab32a29b9@airbnb.com"
+        },
+        {
+          "start": "2026-09-01",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e12f91207641dae2e988d6c43d4cfd17@airbnb.com"
+        },
+        {
+          "start": "2026-09-02",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6000307df7000fe3f58855bb16176353@airbnb.com"
+        },
+        {
+          "start": "2026-09-03",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1e61b62a8c0a7b499d5f9e3595317541@airbnb.com"
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ec00d6c3e1a390cb687d96168d38fbb1@airbnb.com"
+        },
+        {
+          "start": "2026-09-05",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d4a3beeb32e4feac58120f3797b60b5d@airbnb.com"
+        },
+        {
+          "start": "2026-09-06",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed827267b7e2980b2d5f401a8b3976f2@airbnb.com"
+        },
+        {
+          "start": "2026-09-07",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a581d1fc88d57523c13da30e0e363f82@airbnb.com"
+        },
+        {
+          "start": "2026-09-08",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f82a5829a918600176818bfbbd3293cb@airbnb.com"
+        },
+        {
+          "start": "2026-09-09",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
+        },
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        },
+        {
+          "start": "2026-09-11",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d31fac478f875d3f8fa95a8a9a30f31d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-12",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-97348e41854303762d25ff4d8aacd913@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
+        }
+      ],
       "status": "ok"
     },
     "xiaogong": {
@@ -13,6 +141,79 @@
       "propName": "雲町屋 小宫",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-26",
+          "end": "2026-05-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-06aa7525ca4cfa7766ca462795ff456e@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5EHPY8Z4\\nPhone Number (Last 4 Digits): 8809",
+          "phoneLast4": "8809",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5EHPY8Z4Phone"
+        },
+        {
+          "start": "2026-05-31",
+          "end": "2026-06-02",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-dfe8d3a91c99a7a2c902bcef1eb65a85@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMRT2J255\\nPhone Number (Last 4 Digits): 0917",
+          "phoneLast4": "0917",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMRT2J255Phone"
+        },
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-bbf048b8fc2bd7f916c53b719821629a@airbnb.com"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a38a3dfe301ab907ba3f721287fbe70a@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM9CC44NDA\\nPhone Number (Last 4 Digits): 8978",
+          "phoneLast4": "8978",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM9CC44NDAPhone"
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e903d257b387d0e04453e9c25bc0675f@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-15",
+          "end": "2026-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-32dfbd0b53b1f229f7b357dea1a49d3d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-16",
+          "end": "2026-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f00c125bd8e10e6ae40bdb4b36959346@airbnb.com",
+          "isReservation": false
+        },
         {
           "start": "2026-06-21",
           "end": "2026-06-26",
@@ -44,6 +245,12 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
           "start": "2026-11-28",
           "end": "2026-11-30",
           "summary": "Reserved",
@@ -52,6 +259,120 @@
           "phoneLast4": "1599",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSWS8E2XA",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -61,6 +382,90 @@
       "propName": "雲町屋 水影阁",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-7ae881f1291e615224738b68bef639d9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMH2XPPY2\\nPhone Number (Last 4 Digits): 2897",
+          "phoneLast4": "2897",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMH2XPPY2Phone"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f0110cad5f9c9cb25d35c73a5c36c27c@airbnb.com"
+        },
+        {
+          "start": "2026-06-07",
+          "end": "2026-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5596a3f0868988597f892c4b1019d3ea@airbnb.com"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3227241ba260a76836d64fd0c12d6818@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDH\\nPhone Number (Last 4 Digits): 3037",
+          "phoneLast4": "3037",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5CNXBHDHPhone"
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-18",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d24ccdef1bc6e015090f67334adc2af7@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYH\\nPhone Number (Last 4 Digits): 8361",
+          "phoneLast4": "8361",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKSPBDRYHPhone"
+        },
+        {
+          "start": "2026-06-18",
+          "end": "2026-06-19",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-688939fd8631be206d650d7bbf8abb0b@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-19",
+          "end": "2026-06-20",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-0ecc729a80fec9ea7f73fd09a99647a5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-20",
+          "end": "2026-06-21",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7d732347662e5420dd0a5cb498fa32f7@airbnb.com",
+          "isReservation": false
+        },
         {
           "start": "2026-06-21",
           "end": "2026-06-25",
@@ -96,6 +501,25 @@
       "propName": "雲町屋 小樂",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-05",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b2be0dcce3835146b7a67f6da42d2ca9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSJN2TBAS\\nPhone Number (Last 4 Digits): 3675",
+          "phoneLast4": "3675",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSJN2TBASPhone"
+        },
+        {
+          "start": "2026-06-17",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d9729ce6659bbe987ae596c5fa5cb67d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYYZ94BKB\\nPhone Number (Last 4 Digits): 6181",
+          "phoneLast4": "6181",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYYZ94BKB",
+          "isReservation": true
+        },
         {
           "start": "2026-06-22",
           "end": "2026-06-25",
@@ -137,6 +561,98 @@
           "isReservation": true
         },
         {
+          "start": "2026-08-29",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-84e3610edbaec5912a762fe5ff5e3b4d@airbnb.com"
+        },
+        {
+          "start": "2026-08-30",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9754a6737eaaebc21f4ec471119945d0@airbnb.com"
+        },
+        {
+          "start": "2026-08-31",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a43808b5f3077736ad7e37eab32a29b9@airbnb.com"
+        },
+        {
+          "start": "2026-09-01",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e12f91207641dae2e988d6c43d4cfd17@airbnb.com"
+        },
+        {
+          "start": "2026-09-02",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6000307df7000fe3f58855bb16176353@airbnb.com"
+        },
+        {
+          "start": "2026-09-03",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1e61b62a8c0a7b499d5f9e3595317541@airbnb.com"
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ec00d6c3e1a390cb687d96168d38fbb1@airbnb.com"
+        },
+        {
+          "start": "2026-09-05",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d4a3beeb32e4feac58120f3797b60b5d@airbnb.com"
+        },
+        {
+          "start": "2026-09-06",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed827267b7e2980b2d5f401a8b3976f2@airbnb.com"
+        },
+        {
+          "start": "2026-09-07",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a581d1fc88d57523c13da30e0e363f82@airbnb.com"
+        },
+        {
+          "start": "2026-09-08",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f82a5829a918600176818bfbbd3293cb@airbnb.com"
+        },
+        {
+          "start": "2026-09-09",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
+        },
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        },
+        {
+          "start": "2026-09-11",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d31fac478f875d3f8fa95a8a9a30f31d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-12",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-97348e41854303762d25ff4d8aacd913@airbnb.com",
+          "isReservation": false
+        },
+        {
           "start": "2026-09-19",
           "end": "2026-09-23",
           "summary": "Reserved",
@@ -145,6 +661,48 @@
           "phoneLast4": "0876",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH",
           "isReservation": true
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-16",
+          "end": "2027-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-77897bd795948a79d2040fed9cc202e5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-17",
+          "end": "2027-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f136ec4040ff03aab9ff7e2b85228d8@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-18",
+          "end": "2027-06-23",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edd2aadc9476a4ff6f0963022f1c77b4@airbnb.com",
+          "isReservation": false
         },
         {
           "start": "2027-06-19",
@@ -161,6 +719,40 @@
       "propName": "庆有鱼 鸭川观景店",
       "brandId": "qingyouyu",
       "events": [
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-05",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6217a4fad4fc1009582ede7e9d7f31a0@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDTPHD9ES\\nPhone Number (Last 4 Digits): 9017",
+          "phoneLast4": "9017",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDTPHD9ESPhone"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
+          "phoneLast4": "3540",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
+        },
+        {
+          "start": "2026-06-19",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-75363a7d8774ad99b81771547aadd0d1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDMNCDZDZ\\nPhone Number (Last 4 Digits): 1269",
+          "phoneLast4": "1269",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDMNCDZDZ",
+          "isReservation": true
+        },
         {
           "start": "2026-06-23",
           "end": "2026-06-28",
@@ -230,6 +822,133 @@
           "phoneLast4": "3245",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4",
           "isReservation": true
+        },
+        {
+          "start": "2027-02-25",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-854d9d22cedb81841673557daf054bb6@airbnb.com"
+        },
+        {
+          "start": "2027-02-26",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf9d509b1fd7bd3c93d5a9b3514e546@airbnb.com"
+        },
+        {
+          "start": "2027-02-27",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83d9a7977e7e950e75ecd4abd29fcd80@airbnb.com"
+        },
+        {
+          "start": "2027-02-28",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-81656e1471ef3007702cd0d51682cf41@airbnb.com"
+        },
+        {
+          "start": "2027-03-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1c3a7381f0586ffca2a77fa6b83171ff@airbnb.com"
+        },
+        {
+          "start": "2027-03-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a075aafd17a7af16fec18d7fbf3efcc6@airbnb.com"
+        },
+        {
+          "start": "2027-03-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7f83840b4da2c5e706856694928b3b81@airbnb.com"
+        },
+        {
+          "start": "2027-03-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a4eeeab22868b5caf2bb0167164bb558@airbnb.com"
+        },
+        {
+          "start": "2027-03-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-69e111d8cbeee12acad1da832d9d7b40@airbnb.com"
+        },
+        {
+          "start": "2027-03-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3f8e5d0eb4f9af015c5d4a82736811b3@airbnb.com"
+        },
+        {
+          "start": "2027-03-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-c5410fc4e34374b0633fbd3edcccb086@airbnb.com"
+        },
+        {
+          "start": "2027-03-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3bd60f8371f0e59389dc22a095444bf7@airbnb.com"
+        },
+        {
+          "start": "2027-03-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5d9da63f11f6aaf1d5a0aff1c055255f@airbnb.com"
+        },
+        {
+          "start": "2027-03-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-137f72360cdbda7624ba1d4e4ee403ff@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-03-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-500208909bb6dd4405a3841b534a1fc0@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-14",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d669eb0b545c6de4bd4b45605ab86b68@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-15",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f359a25c987aaf786915bab287478223@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-16",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-77897bd795948a79d2040fed9cc202e5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-17",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f136ec4040ff03aab9ff7e2b85228d8@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-18",
+          "end": "2027-06-19",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edd2aadc9476a4ff6f0963022f1c77b4@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -239,6 +958,91 @@
       "propName": "雲町屋 小舟",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-27",
+          "end": "2026-05-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6538c5c18090c63d2eab9014d1b059ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMQF5D2Q9\\nPhone Number (Last 4 Digits): 1304",
+          "phoneLast4": "1304",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMQF5D2Q9Phone"
+        },
+        {
+          "start": "2026-05-31",
+          "end": "2026-06-05",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3ec1e48edd9c3b0d391fb7cd22139932@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMEMTBR3Q4\\nPhone Number (Last 4 Digits): 2210",
+          "phoneLast4": "2210",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMEMTBR3Q4Phone"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f0110cad5f9c9cb25d35c73a5c36c27c@airbnb.com"
+        },
+        {
+          "start": "2026-06-07",
+          "end": "2026-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5596a3f0868988597f892c4b1019d3ea@airbnb.com"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f111472708409b2ae9d74ab9d6c63a17@airbnb.com"
+        },
+        {
+          "start": "2026-06-11",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-c91d7c5e3d736ae7408728060966a159@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b60518d70930c98f34b97cb687144d4c@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e903d257b387d0e04453e9c25bc0675f@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-17",
+          "end": "2026-06-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9f2668976ba10475ab1d55b7e41a83cb@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3WNTQX83\\nPhone Number (Last 4 Digits): 7477",
+          "phoneLast4": "7477",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3WNTQX83",
+          "isReservation": true
+        },
         {
           "start": "2026-06-21",
           "end": "2026-06-25",
@@ -370,6 +1174,126 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
+        },
+        {
           "start": "2027-03-29",
           "end": "2027-04-02",
           "summary": "Reserved",
@@ -387,6 +1311,144 @@
       "propName": "雲町屋 小月",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-31",
+          "end": "2026-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-96b951df9bacc4611285f7cebe34c5cd@airbnb.com"
+        },
+        {
+          "start": "2026-06-01",
+          "end": "2026-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-be994450209e5d1b922feff6ec3d85bc@airbnb.com"
+        },
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-bbf048b8fc2bd7f916c53b719821629a@airbnb.com"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f0110cad5f9c9cb25d35c73a5c36c27c@airbnb.com"
+        },
+        {
+          "start": "2026-06-07",
+          "end": "2026-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5596a3f0868988597f892c4b1019d3ea@airbnb.com"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-21e8939d29c579e94bdcd58a65faece3@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM498YPAJQ\\nPhone Number (Last 4 Digits): 2418",
+          "phoneLast4": "2418",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM498YPAJQPhone"
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e903d257b387d0e04453e9c25bc0675f@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-15",
+          "end": "2026-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-32dfbd0b53b1f229f7b357dea1a49d3d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-16",
+          "end": "2026-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f00c125bd8e10e6ae40bdb4b36959346@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-17",
+          "end": "2026-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5eafbd903142e6cde7e449b7361e5771@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-18",
+          "end": "2026-06-20",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-e8e405273772ca42065e77629b1a6833@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8FRT2BH9\\nPhone Number (Last 4 Digits): 8869",
+          "phoneLast4": "8869",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8FRT2BH9",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-20",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-5c42f1ad6ac57a770c9816a5e64a42da@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMNN3MDQNE\\nPhone Number (Last 4 Digits): 4230",
+          "phoneLast4": "4230",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNN3MDQNE",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-21",
+          "end": "2026-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-adc4571cffcd8399ea0813f8e87cb723@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-22",
+          "end": "2026-06-23",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b2e7ffb392c00de1d9f4b2048f2de806@airbnb.com",
+          "isReservation": false
+        },
         {
           "start": "2026-06-23",
           "end": "2026-06-27",
@@ -498,10 +1560,171 @@
           "isReservation": true
         },
         {
+          "start": "2026-08-01",
+          "end": "2026-08-28",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-cf60422aa0bf1b0354dfa90bd3dae09b@airbnb.com"
+        },
+        {
           "start": "2026-08-18",
           "end": "2026-09-20",
           "summary": "Airbnb (Not available)",
           "uid": "7f662ec65913-0001e2c6358321ea7e8af23026751402@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-08-29",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-84e3610edbaec5912a762fe5ff5e3b4d@airbnb.com"
+        },
+        {
+          "start": "2026-08-30",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9754a6737eaaebc21f4ec471119945d0@airbnb.com"
+        },
+        {
+          "start": "2026-08-31",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a43808b5f3077736ad7e37eab32a29b9@airbnb.com"
+        },
+        {
+          "start": "2026-09-01",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e12f91207641dae2e988d6c43d4cfd17@airbnb.com"
+        },
+        {
+          "start": "2026-09-02",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6000307df7000fe3f58855bb16176353@airbnb.com"
+        },
+        {
+          "start": "2026-09-03",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1e61b62a8c0a7b499d5f9e3595317541@airbnb.com"
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ec00d6c3e1a390cb687d96168d38fbb1@airbnb.com"
+        },
+        {
+          "start": "2026-09-05",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d4a3beeb32e4feac58120f3797b60b5d@airbnb.com"
+        },
+        {
+          "start": "2026-09-06",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed827267b7e2980b2d5f401a8b3976f2@airbnb.com"
+        },
+        {
+          "start": "2026-09-07",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a581d1fc88d57523c13da30e0e363f82@airbnb.com"
+        },
+        {
+          "start": "2026-09-08",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f82a5829a918600176818bfbbd3293cb@airbnb.com"
+        },
+        {
+          "start": "2026-09-09",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
+        },
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        },
+        {
+          "start": "2026-09-11",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d31fac478f875d3f8fa95a8a9a30f31d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-12",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-97348e41854303762d25ff4d8aacd913@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-13",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-92135a0bf009ebabf01414e498c31793@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-14",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d089821d330a910fde9f7523fb327d91@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-15",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9499aee670fe2683a3221ad04355d611@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-16",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-135a65c2272a6f586108edc6466120a0@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-17",
+          "end": "2027-06-19",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5bc56dcf4ed57f743dda41d3834e4c29@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-18",
+          "end": "2027-06-20",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-cbdbacf80be93c3d1b7bef40ac4d8f54@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-19",
+          "end": "2027-06-21",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ea8b9d012dc88e1236cc8a88cda2866b@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-20",
+          "end": "2027-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-82834e611c7a6600f59af1f079b2b698@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-21",
+          "end": "2027-06-23",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-36eba6c30dda0fe6c912880e41d47f87@airbnb.com",
           "isReservation": false
         },
         {
@@ -519,6 +1742,42 @@
       "propName": "雲町屋 小川",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-30",
+          "end": "2026-05-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-02869176f1f5ded5c3d5c69d8a058a96@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMWRCMJ3ZM\\nPhone Number (Last 4 Digits): 1115",
+          "phoneLast4": "1115",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMWRCMJ3ZMPhone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-18",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-622357a12527c8feb51fe9505fc0362d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMRZ9J3A3D\\nPhone Number (Last 4 Digits): 0757",
+          "phoneLast4": "0757",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMRZ9J3A3D",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-20",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-f3c7c0cea5e4278ae0a2615cb5ec2e04@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2ZJ9HDDX\\nPhone Number (Last 4 Digits): 4230",
+          "phoneLast4": "4230",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2ZJ9HDDX",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-01",
+          "end": "2026-07-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
+          "isReservation": false
+        },
         {
           "start": "2026-08-08",
           "end": "2026-08-11",
@@ -588,13 +1847,6 @@
           "phoneLast4": "6714",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5",
           "isReservation": true
-        },
-        {
-          "start": "2026-07-01",
-          "end": "2026-07-04",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
-          "isReservation": false
         }
       ],
       "status": "ok"
@@ -605,6 +1857,99 @@
       "brandId": "yunmachiya",
       "events": [
         {
+          "start": "2026-05-28",
+          "end": "2026-06-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-0ca39879ae066b6434c31f12c75472bf@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMM4Q2YRCQ\\nPhone Number (Last 4 Digits): 1244",
+          "phoneLast4": "1244",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMM4Q2YRCQPhone"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f0110cad5f9c9cb25d35c73a5c36c27c@airbnb.com"
+        },
+        {
+          "start": "2026-06-07",
+          "end": "2026-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5596a3f0868988597f892c4b1019d3ea@airbnb.com"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f111472708409b2ae9d74ab9d6c63a17@airbnb.com"
+        },
+        {
+          "start": "2026-06-11",
+          "end": "2026-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-c91d7c5e3d736ae7408728060966a159@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-17",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-e6e7167885ede554809c5364a8faf899@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMK9MYK98F\\nPhone Number (Last 4 Digits): 1764",
+          "phoneLast4": "1764",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMK9MYK98FPhone"
+        },
+        {
+          "start": "2026-06-17",
+          "end": "2026-06-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-476c4ffd6fbb853c44d4d23f9aa0ef84@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYJ99MYQF\\nPhone Number (Last 4 Digits): 5620",
+          "phoneLast4": "5620",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYJ99MYQF",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-20",
+          "end": "2026-06-22",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6ff25ab00dabbe444fbf64be56597d00@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2KQWQ45A\\nPhone Number (Last 4 Digits): 5656",
+          "phoneLast4": "5656",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2KQWQ45A",
+          "isReservation": true
+        },
+        {
           "start": "2026-06-24",
           "end": "2026-06-30",
           "summary": "Reserved",
@@ -612,6 +1957,25 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMC9BAFFWF\\nPhone Number (Last 4 Digits): 8721",
           "phoneLast4": "8721",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMC9BAFFWF",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-24",
+          "end": "2026-07-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-7443afc75b87b380f8c0475f901982b1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKS4J5WEJ\\nPhone Number (Last 4 Digits): 8721",
+          "phoneLast4": "8721",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKS4J5WEJPhone"
+        },
+        {
+          "start": "2026-07-02",
+          "end": "2026-07-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-7f294ea5b445755abe2d2046e734cdcc@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM89PTCFH4\\nPhone Number (Last 4 Digits): 6639",
+          "phoneLast4": "6639",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM89PTCFH4",
           "isReservation": true
         },
         {
@@ -625,6 +1989,13 @@
           "isReservation": true
         },
         {
+          "start": "2026-07-10",
+          "end": "2026-07-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a62a523cc487878e60d46d74888f630e@airbnb.com",
+          "isReservation": false
+        },
+        {
           "start": "2026-07-11",
           "end": "2026-07-15",
           "summary": "Reserved",
@@ -635,6 +2006,16 @@
           "isReservation": true
         },
         {
+          "start": "2026-07-15",
+          "end": "2026-07-18",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-e9cacad8f245f600ddab7bcbf6c0fd89@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDP5PWT29\\nPhone Number (Last 4 Digits): 1846",
+          "phoneLast4": "1846",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDP5PWT29",
+          "isReservation": true
+        },
+        {
           "start": "2026-07-18",
           "end": "2026-07-24",
           "summary": "Reserved",
@@ -642,6 +2023,16 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSZ4RAHE3\\nPhone Number (Last 4 Digits): 5883",
           "phoneLast4": "5883",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSZ4RAHE3",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-26",
+          "end": "2026-07-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-ef9fe96d626d8472a5eae77692ef729b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMT3FMCC28\\nPhone Number (Last 4 Digits): 0118",
+          "phoneLast4": "0118",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMT3FMCC28",
           "isReservation": true
         },
         {
@@ -795,6 +2186,12 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
           "start": "2026-11-28",
           "end": "2026-11-30",
           "summary": "Reserved",
@@ -805,6 +2202,18 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
           "start": "2026-11-30",
           "end": "2026-12-02",
           "summary": "Reserved",
@@ -813,6 +2222,115 @@
           "phoneLast4": "7883",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMHM38EZ3Q",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-16",
+          "end": "2027-06-19",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-bf2fa8c8ab18f1736b985e5f04b02838@airbnb.com",
+          "isReservation": false
         },
         {
           "start": "2026-12-29",
@@ -845,10 +2363,17 @@
           "isReservation": true
         },
         {
-          "start": "2026-07-10",
-          "end": "2026-07-11",
+          "start": "2027-06-17",
+          "end": "2027-06-23",
           "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-a62a523cc487878e60d46d74888f630e@airbnb.com",
+          "uid": "7f662ec65913-5f136ec4040ff03aab9ff7e2b85228d8@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-18",
+          "end": "2027-06-23",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edd2aadc9476a4ff6f0963022f1c77b4@airbnb.com",
           "isReservation": false
         },
         {
@@ -866,6 +2391,112 @@
       "propName": "雲町屋 风早",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-27",
+          "end": "2026-05-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-0cb82f1af42566e8b31d22f2a6dc838e@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMC54WBKZ\\nPhone Number (Last 4 Digits): 1119",
+          "phoneLast4": "1119",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMC54WBKZPhone"
+        },
+        {
+          "start": "2026-05-31",
+          "end": "2026-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-96b951df9bacc4611285f7cebe34c5cd@airbnb.com"
+        },
+        {
+          "start": "2026-06-01",
+          "end": "2026-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-be994450209e5d1b922feff6ec3d85bc@airbnb.com"
+        },
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-bbf048b8fc2bd7f916c53b719821629a@airbnb.com"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f0110cad5f9c9cb25d35c73a5c36c27c@airbnb.com"
+        },
+        {
+          "start": "2026-06-07",
+          "end": "2026-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5596a3f0868988597f892c4b1019d3ea@airbnb.com"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f111472708409b2ae9d74ab9d6c63a17@airbnb.com"
+        },
+        {
+          "start": "2026-06-11",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-c91d7c5e3d736ae7408728060966a159@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-12",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b60518d70930c98f34b97cb687144d4c@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-13",
+          "end": "2026-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e903d257b387d0e04453e9c25bc0675f@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-20",
+          "end": "2026-06-22",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9350fe9c6a569f09148a68a40bf4fc7b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKPZTT8KT\\nPhone Number (Last 4 Digits): 5276",
+          "phoneLast4": "5276",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKPZTT8KT",
+          "isReservation": true
+        },
         {
           "start": "2026-06-24",
           "end": "2026-06-26",
@@ -927,6 +2558,16 @@
           "isReservation": true
         },
         {
+          "start": "2026-10-08",
+          "end": "2026-10-14",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-f4c7c921db10510db5de51a1a94746ea@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPZRW5QER\\nPhone Number (Last 4 Digits): 5329",
+          "phoneLast4": "5329",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPZRW5QER",
+          "isReservation": true
+        },
+        {
           "start": "2026-10-26",
           "end": "2026-10-28",
           "summary": "Reserved",
@@ -957,6 +2598,15 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-21",
+          "end": "2026-11-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a4150132d764747500322b921876c24b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMADMKAHCQ\\nPhone Number (Last 4 Digits): 2352",
+          "phoneLast4": "2352",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMADMKAHCQPhone"
+        },
+        {
           "start": "2026-11-25",
           "end": "2026-11-28",
           "summary": "Reserved",
@@ -967,6 +2617,12 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
           "start": "2026-11-28",
           "end": "2026-12-03",
           "summary": "Reserved",
@@ -975,6 +2631,120 @@
           "phoneLast4": "9489",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMX3TZJFPK",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -984,6 +2754,33 @@
       "propName": "雲町屋 小杉",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-c90ce3cea42c82ff9168c907b0d4735c@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3R8XQ4EQ\\nPhone Number (Last 4 Digits): 5673",
+          "phoneLast4": "5673",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3R8XQ4EQPhone"
+        },
+        {
+          "start": "2026-06-01",
+          "end": "2026-06-04",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-0ec78ce99aed9f2791c8de6d568440be@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2TMWMPSB\\nPhone Number (Last 4 Digits): 0925",
+          "phoneLast4": "0925",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2TMWMPSBPhone"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-12",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3a96ee9a9f8a9671f8699f41625925ee@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8\\nPhone Number (Last 4 Digits): 8155",
+          "phoneLast4": "8155",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMFDR9S8C8Phone"
+        },
         {
           "start": "2026-06-22",
           "end": "2026-06-27",
@@ -1053,6 +2850,126 @@
           "phoneLast4": "9016",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBXPWRACM",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -1062,6 +2979,25 @@
       "propName": "庆有鱼 岚山温泉店",
       "brandId": "qingyouyu",
       "events": [
+        {
+          "start": "2026-06-02",
+          "end": "2026-06-05",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b2be0dcce3835146b7a67f6da42d2ca9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSJN2TBAS\\nPhone Number (Last 4 Digits): 3675",
+          "phoneLast4": "3675",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSJN2TBASPhone"
+        },
+        {
+          "start": "2026-06-17",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d9729ce6659bbe987ae596c5fa5cb67d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYYZ94BKB\\nPhone Number (Last 4 Digits): 6181",
+          "phoneLast4": "6181",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYYZ94BKB",
+          "isReservation": true
+        },
         {
           "start": "2026-06-22",
           "end": "2026-06-25",
@@ -1103,6 +3039,98 @@
           "isReservation": true
         },
         {
+          "start": "2026-08-29",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-84e3610edbaec5912a762fe5ff5e3b4d@airbnb.com"
+        },
+        {
+          "start": "2026-08-30",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9754a6737eaaebc21f4ec471119945d0@airbnb.com"
+        },
+        {
+          "start": "2026-08-31",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a43808b5f3077736ad7e37eab32a29b9@airbnb.com"
+        },
+        {
+          "start": "2026-09-01",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e12f91207641dae2e988d6c43d4cfd17@airbnb.com"
+        },
+        {
+          "start": "2026-09-02",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6000307df7000fe3f58855bb16176353@airbnb.com"
+        },
+        {
+          "start": "2026-09-03",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1e61b62a8c0a7b499d5f9e3595317541@airbnb.com"
+        },
+        {
+          "start": "2026-09-04",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ec00d6c3e1a390cb687d96168d38fbb1@airbnb.com"
+        },
+        {
+          "start": "2026-09-05",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d4a3beeb32e4feac58120f3797b60b5d@airbnb.com"
+        },
+        {
+          "start": "2026-09-06",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed827267b7e2980b2d5f401a8b3976f2@airbnb.com"
+        },
+        {
+          "start": "2026-09-07",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a581d1fc88d57523c13da30e0e363f82@airbnb.com"
+        },
+        {
+          "start": "2026-09-08",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f82a5829a918600176818bfbbd3293cb@airbnb.com"
+        },
+        {
+          "start": "2026-09-09",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-9b723f4d91897e1a8ac6f8ed3cfea22f@airbnb.com"
+        },
+        {
+          "start": "2026-09-10",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-febdcffe80f65f132f958ab62dd154c6@airbnb.com"
+        },
+        {
+          "start": "2026-09-11",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d31fac478f875d3f8fa95a8a9a30f31d@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-09-12",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-97348e41854303762d25ff4d8aacd913@airbnb.com",
+          "isReservation": false
+        },
+        {
           "start": "2026-09-19",
           "end": "2026-09-23",
           "summary": "Reserved",
@@ -1111,6 +3139,48 @@
           "phoneLast4": "0876",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH",
           "isReservation": true
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-16",
+          "end": "2027-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-77897bd795948a79d2040fed9cc202e5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-17",
+          "end": "2027-06-22",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f136ec4040ff03aab9ff7e2b85228d8@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-18",
+          "end": "2027-06-23",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edd2aadc9476a4ff6f0963022f1c77b4@airbnb.com",
+          "isReservation": false
         },
         {
           "start": "2027-06-19",
@@ -1127,6 +3197,88 @@
       "propName": "雲町屋　京都駅前",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-25",
+          "end": "2026-05-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-83d792285cf252ecc07f8d030fcad543@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMM8J2QBYW\\nPhone Number (Last 4 Digits): 2090",
+          "phoneLast4": "2090",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMM8J2QBYWPhone"
+        },
+        {
+          "start": "2026-05-30",
+          "end": "2026-06-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9bdb2e95d444d4e6c99b5932faff855d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3TZNE4A3\\nPhone Number (Last 4 Digits): 1411",
+          "phoneLast4": "1411",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3TZNE4A3Phone"
+        },
+        {
+          "start": "2026-06-03",
+          "end": "2026-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b5405b9fe42ffcd67ad21f71bf81e002@airbnb.com"
+        },
+        {
+          "start": "2026-06-04",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-fee7778c69b6a5b88aea85d75f0c653d@airbnb.com"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-570f3a725133b894b238c5bf6686bfb4@airbnb.com"
+        },
+        {
+          "start": "2026-06-06",
+          "end": "2026-06-08",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-2d564639223b55a4203865e0d91432e1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMNJJR4JAF\\nPhone Number (Last 4 Digits): 3404",
+          "phoneLast4": "3404",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNJJR4JAFPhone"
+        },
+        {
+          "start": "2026-06-08",
+          "end": "2026-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edf671eecdc5c69d3fe803f39a81c8a3@airbnb.com"
+        },
+        {
+          "start": "2026-06-09",
+          "end": "2026-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-942468ef45d6f3cd2262bc9fed3fd284@airbnb.com"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-14",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-038ea7ddd02353d04b30d92b9c8612ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8TBS3XC2\\nPhone Number (Last 4 Digits): 2515",
+          "phoneLast4": "2515",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8TBS3XC2Phone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-06-19",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-840502a988b11248db3109a06d07ae1d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSHE4A4YX\\nPhone Number (Last 4 Digits): 9257",
+          "phoneLast4": "9257",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSHE4A4YXPhone"
+        },
         {
           "start": "2026-06-23",
           "end": "2026-06-27",
@@ -1166,6 +3318,15 @@
           "phoneLast4": "9953",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPQHZBQ4C",
           "isReservation": true
+        },
+        {
+          "start": "2026-07-09",
+          "end": "2026-07-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-8ea6ce64aea5044b6145628a03dd31a7@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSFMKWBHK\\nPhone Number (Last 4 Digits): 7713",
+          "phoneLast4": "7713",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSFMKWBHKPhone"
         },
         {
           "start": "2026-07-16",
@@ -1226,6 +3387,126 @@
           "phoneLast4": "7051",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3H9RFZEH",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -1235,6 +3516,25 @@
       "propName": "雲町屋 小天",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-29",
+          "end": "2026-06-04",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9ce649f6dbe24af1f0c70f4d70fb1531@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMEWKDECNM\\nPhone Number (Last 4 Digits): 2313",
+          "phoneLast4": "2313",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMEWKDECNMPhone"
+        },
+        {
+          "start": "2026-06-19",
+          "end": "2026-06-22",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a858b7727ec6276b74e3610a678acd64@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBZKAQQC5\\nPhone Number (Last 4 Digits): 7436",
+          "phoneLast4": "7436",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBZKAQQC5",
+          "isReservation": true
+        },
         {
           "start": "2026-06-25",
           "end": "2026-06-29",
@@ -1254,6 +3554,126 @@
           "phoneLast4": "4788",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKQ9MS9PD",
           "isReservation": true
+        },
+        {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-86009cc361823fe705c2609f1be27298@airbnb.com"
+        },
+        {
+          "start": "2026-11-30",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e0b7c44611a45c9d5d063bcbe6cd5972@airbnb.com"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-50282632e318d12a748762e16b408ef6@airbnb.com"
+        },
+        {
+          "start": "2026-12-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-abb32119a9aa0dcaa227d6610ea08ef8@airbnb.com"
+        },
+        {
+          "start": "2026-12-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3efe4bf19de852e6d576009d86c39f65@airbnb.com"
+        },
+        {
+          "start": "2026-12-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-e90c73e27bd79b14730c1a3721260173@airbnb.com"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f535dda81b1c5d00e384fc73c76a75f@airbnb.com"
+        },
+        {
+          "start": "2026-12-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7aa86fb75bec8ea55d1b848d1c95fd5b@airbnb.com"
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-b90a0e1b6b84f3d973436d87e3c61bf9@airbnb.com"
+        },
+        {
+          "start": "2026-12-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83c79fdf587a2227a38a1156b9493155@airbnb.com"
+        },
+        {
+          "start": "2026-12-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-772ec56887c924a0c593d07bcd7c9d20@airbnb.com"
+        },
+        {
+          "start": "2026-12-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5aa6a647a19bb7850d14659588adcaed@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf7e84e772af381bbdb0fbfa849bc4a@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-12",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1fa2d30b1dd63a63093727a8d4f09d78@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-13",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-6912fdaf4e7e40d60ceb6126de21fafd@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-14",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-490ac63d84eae16b467da3029172cc89@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ed1c35150a3a580af5b22bc55b6b0fff@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
@@ -1263,6 +3683,66 @@
       "propName": "雲町屋 小星",
       "brandId": "yunmachiya",
       "events": [
+        {
+          "start": "2026-05-28",
+          "end": "2026-05-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-c46e94f68bc1900c52d3011d3fd98d71@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM4HP5PH4K\\nPhone Number (Last 4 Digits): 3069",
+          "phoneLast4": "3069",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM4HP5PH4KPhone"
+        },
+        {
+          "start": "2026-05-30",
+          "end": "2026-05-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-ec9d1631d1e17c74d9aeaf2acf2bf7b1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMH93FAYED\\nPhone Number (Last 4 Digits): 0176",
+          "phoneLast4": "0176",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMH93FAYEDPhone"
+        },
+        {
+          "start": "2026-05-31",
+          "end": "2026-06-04",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-7fa595b13e8041718688c445e6cec380@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMK5HPXPAE\\nPhone Number (Last 4 Digits): 6683",
+          "phoneLast4": "6683",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMK5HPXPAEPhone"
+        },
+        {
+          "start": "2026-06-05",
+          "end": "2026-06-07",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-4ff229b771101862cbe8b3bb85cb32b3@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMK58K28XP\\nPhone Number (Last 4 Digits): 3993",
+          "phoneLast4": "3993",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMK58K28XPPhone"
+        },
+        {
+          "start": "2026-06-11",
+          "end": "2026-06-12",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-f0c44baea3047a3cf131bb93b3a10ba6@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8NWZBT9M\\nPhone Number (Last 4 Digits): 9349",
+          "phoneLast4": "9349",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8NWZBT9MPhone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
+        },
+        {
+          "start": "2026-06-16",
+          "end": "2026-06-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-dcb7e750fb0c618f2324e6c29329954f@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM4XH4Z9FW\\nPhone Number (Last 4 Digits): 8687",
+          "phoneLast4": "8687",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM4XH4Z9FWPhone"
+        },
         {
           "start": "2026-06-20",
           "end": "2026-06-23",
@@ -1404,6 +3884,15 @@
           "isReservation": true
         },
         {
+          "start": "2026-10-13",
+          "end": "2026-10-16",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-04a0e2708807aaabb0c92e2d2290e0ca@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM28DNFZH2\\nPhone Number (Last 4 Digits): 5427",
+          "phoneLast4": "5427",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM28DNFZH2Phone"
+        },
+        {
           "start": "2026-10-18",
           "end": "2026-10-22",
           "summary": "Reserved",
@@ -1504,6 +3993,27 @@
           "isReservation": true
         },
         {
+          "start": "2026-11-27",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1630c263a1ca99d273e4319092f2eb6b@airbnb.com"
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-4c0d617c974a763f9f8f3bc12947409d@airbnb.com"
+        },
+        {
+          "start": "2026-11-29",
+          "end": "2026-12-02",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a52d991d0526d1b669ca68a52c833acb@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMNQ38PJEJ\\nPhone Number (Last 4 Digits): 2882",
+          "phoneLast4": "2882",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNQ38PJEJPhone"
+        },
+        {
           "start": "2026-11-30",
           "end": "2026-12-03",
           "summary": "Reserved",
@@ -1512,6 +4022,15 @@
           "phoneLast4": "2506",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HME9XN2ZSF",
           "isReservation": true
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2026-12-09",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-4558332bc9825f44398d48e5c80cf26d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPJQXAWZ9\\nPhone Number (Last 4 Digits): 8216",
+          "phoneLast4": "8216",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPJQXAWZ9Phone"
         },
         {
           "start": "2026-12-05",
@@ -1602,6 +4121,40 @@
       "brandId": "yunmachiya",
       "events": [
         {
+          "start": "2026-06-02",
+          "end": "2026-06-05",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6217a4fad4fc1009582ede7e9d7f31a0@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDTPHD9ES\\nPhone Number (Last 4 Digits): 9017",
+          "phoneLast4": "9017",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDTPHD9ESPhone"
+        },
+        {
+          "start": "2026-06-10",
+          "end": "2026-06-13",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d656dc3996ddf1b1cf1a48f05bd091ce@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQ\\nPhone Number (Last 4 Digits): 3540",
+          "phoneLast4": "3540",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZQYW4NSQPhone"
+        },
+        {
+          "start": "2026-06-14",
+          "end": "2026-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-ef73b805ce869451587a3ddd59b09db5@airbnb.com"
+        },
+        {
+          "start": "2026-06-19",
+          "end": "2026-06-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-75363a7d8774ad99b81771547aadd0d1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDMNCDZDZ\\nPhone Number (Last 4 Digits): 1269",
+          "phoneLast4": "1269",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDMNCDZDZ",
+          "isReservation": true
+        },
+        {
           "start": "2026-06-23",
           "end": "2026-06-28",
           "summary": "Reserved",
@@ -1670,6 +4223,133 @@
           "phoneLast4": "3245",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4",
           "isReservation": true
+        },
+        {
+          "start": "2027-02-25",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-854d9d22cedb81841673557daf054bb6@airbnb.com"
+        },
+        {
+          "start": "2027-02-26",
+          "end": "2027-06-01",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-8cf9d509b1fd7bd3c93d5a9b3514e546@airbnb.com"
+        },
+        {
+          "start": "2027-02-27",
+          "end": "2027-06-02",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-83d9a7977e7e950e75ecd4abd29fcd80@airbnb.com"
+        },
+        {
+          "start": "2027-02-28",
+          "end": "2027-06-03",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-81656e1471ef3007702cd0d51682cf41@airbnb.com"
+        },
+        {
+          "start": "2027-03-01",
+          "end": "2027-06-04",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-1c3a7381f0586ffca2a77fa6b83171ff@airbnb.com"
+        },
+        {
+          "start": "2027-03-02",
+          "end": "2027-06-05",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a075aafd17a7af16fec18d7fbf3efcc6@airbnb.com"
+        },
+        {
+          "start": "2027-03-03",
+          "end": "2027-06-06",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-7f83840b4da2c5e706856694928b3b81@airbnb.com"
+        },
+        {
+          "start": "2027-03-04",
+          "end": "2027-06-07",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a4eeeab22868b5caf2bb0167164bb558@airbnb.com"
+        },
+        {
+          "start": "2027-03-05",
+          "end": "2027-06-08",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-69e111d8cbeee12acad1da832d9d7b40@airbnb.com"
+        },
+        {
+          "start": "2027-03-06",
+          "end": "2027-06-09",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3f8e5d0eb4f9af015c5d4a82736811b3@airbnb.com"
+        },
+        {
+          "start": "2027-03-07",
+          "end": "2027-06-10",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-c5410fc4e34374b0633fbd3edcccb086@airbnb.com"
+        },
+        {
+          "start": "2027-03-08",
+          "end": "2027-06-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-3bd60f8371f0e59389dc22a095444bf7@airbnb.com"
+        },
+        {
+          "start": "2027-03-09",
+          "end": "2027-06-12",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5d9da63f11f6aaf1d5a0aff1c055255f@airbnb.com"
+        },
+        {
+          "start": "2027-03-10",
+          "end": "2027-06-13",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-137f72360cdbda7624ba1d4e4ee403ff@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-03-11",
+          "end": "2027-06-14",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-500208909bb6dd4405a3841b534a1fc0@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-14",
+          "end": "2027-06-15",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-d669eb0b545c6de4bd4b45605ab86b68@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-15",
+          "end": "2027-06-16",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-f359a25c987aaf786915bab287478223@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-16",
+          "end": "2027-06-17",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-77897bd795948a79d2040fed9cc202e5@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-17",
+          "end": "2027-06-18",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-5f136ec4040ff03aab9ff7e2b85228d8@airbnb.com",
+          "isReservation": false
+        },
+        {
+          "start": "2027-06-18",
+          "end": "2027-06-19",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-edd2aadc9476a4ff6f0963022f1c77b4@airbnb.com",
+          "isReservation": false
         }
       ],
       "status": "ok"
