@@ -996,15 +996,11 @@ function renderGanttTimeline(activeProps) {
         
         td.innerHTML = innerHtml;
         
-        // 智能交互联动：点击徽章与订单格打开详情弹窗，点击其他格（vacant 或备注格）打开备注编辑窗
-        td.onclick = (e) => {
-          e.stopPropagation();
-          if (slotStatus.isBookingCell) {
-            showBookingModal(p.name, slotStatus.label, slotStatus.event);
-          } else {
-            openRemarksModal(p.id, p.name, dateStr, slot);
-          }
-        };
+        // 设置数据属性，以便利用事件委托和拖拽判定
+        td.dataset.propId = p.id;
+        td.dataset.propName = p.name;
+        td.dataset.date = dateStr;
+        td.dataset.slot = slot;
         
         tr.appendChild(td);
       });
@@ -1863,9 +1859,23 @@ function setupEventListeners() {
     scrollToToday();
   };
   
-  // 2. 绑定纵向无限滚动监听
+  // 🔍 2. 放大看板切换
+  const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
+  if (btnToggleFullscreen) {
+    btnToggleFullscreen.onclick = () => {
+      const section = document.querySelector('.timeline-section');
+      if (section) {
+        const isFull = section.classList.toggle('fullscreen-mode');
+        btnToggleFullscreen.innerHTML = isFull ? '🔍 恢复常规视图' : '🔍 放大每日看板';
+        setTimeout(scrollToToday, 50);
+      }
+    };
+  }
+  
+  // 🤝 3. 拖动及点击代理手势系统 与 无限滚动监听
   const outerContainer = document.querySelector('.timeline-wrapper-outer');
   if (outerContainer) {
+    // 3.1 纵向无限滚动监听
     let isScrolling = false;
     outerContainer.addEventListener('scroll', () => {
       if (isScrolling) return;
@@ -1874,6 +1884,81 @@ function setupEventListeners() {
         handleTimelineScroll(outerContainer);
         isScrolling = false;
       });
+    });
+
+    // 3.2 鼠标拖拽平滑横纵移动表格
+    let isDown = false;
+    let startX, startY;
+    let scrollLeft, scrollTop;
+    let moved = false;
+
+    outerContainer.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return; // 仅限左键
+      if (e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea') || e.target.closest('a')) return;
+      
+      isDown = true;
+      outerContainer.classList.add('grabbing');
+      startX = e.pageX - outerContainer.offsetLeft;
+      startY = e.pageY - outerContainer.offsetTop;
+      scrollLeft = outerContainer.scrollLeft;
+      scrollTop = outerContainer.scrollTop;
+      moved = false;
+    });
+
+    outerContainer.addEventListener('mouseleave', () => {
+      if (isDown) {
+        isDown = false;
+        outerContainer.classList.remove('grabbing');
+      }
+    });
+
+    outerContainer.addEventListener('mouseup', () => {
+      if (isDown) {
+        isDown = false;
+        outerContainer.classList.remove('grabbing');
+      }
+    });
+
+    outerContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - outerContainer.offsetLeft;
+      const y = e.pageY - outerContainer.offsetTop;
+      const walkX = (x - startX) * 1.5;
+      const walkY = (y - startY) * 1.5;
+      
+      if (Math.abs(walkX) > 4 || Math.abs(walkY) > 4) {
+        moved = true;
+      }
+      
+      outerContainer.scrollLeft = scrollLeft - walkX;
+      outerContainer.scrollTop = scrollTop - walkY;
+    });
+
+    // 3.3 利用事件委托，避开拖拽干扰
+    outerContainer.addEventListener('click', (e) => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      
+      const td = e.target.closest('td');
+      if (!td) return;
+      
+      const propId = td.dataset.propId;
+      const propName = td.dataset.propName;
+      const dateStr = td.dataset.date;
+      const slot = td.dataset.slot;
+      if (!propId || !dateStr || slot === undefined) return;
+      
+      const slotIdx = parseInt(slot, 10);
+      const slotStatus = getSlotStatusForDate(propId, dateStr, slotIdx);
+      if (slotStatus.isBookingCell) {
+        showBookingModal(propName, slotStatus.label, slotStatus.event);
+      } else {
+        openRemarksModal(propId, propName, dateStr, slotIdx);
+      }
     });
   }
   

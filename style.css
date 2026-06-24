@@ -2093,3 +2093,71 @@ body {
     order: 3 !important;
   }
 }
+
+/* ==========================================================================
+   16. 全屏放大及拖拽手势增强样式 (Fullscreen & Drag Styling)
+   ========================================================================== */
+.btn-toggle-fullscreen {
+  margin-left: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  background-color: var(--bg-washi);
+  border: 1px solid var(--border-wood-dark);
+  border-radius: var(--radius-sm);
+  color: var(--text-dark);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-toggle-fullscreen:hover {
+  background-color: var(--accent-gold-light);
+  border-color: var(--accent-gold);
+}
+
+/* 全屏放大排版重组 */
+.timeline-section.fullscreen-mode {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 15px !important;
+  margin-top: 10px !important;
+}
+
+.timeline-section.fullscreen-mode .gantt-sidebar-todo {
+  display: none !important;
+}
+
+.timeline-section.fullscreen-mode .gantt-center-column {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.timeline-section.fullscreen-mode .timeline-wrapper-outer-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 !important;
+}
+
+.timeline-section.fullscreen-mode .timeline-wrapper-outer {
+  max-height: calc(100vh - 160px) !important;
+}
+
+.timeline-section.fullscreen-mode .kpi-section {
+  display: none !important;
+}
+
+/* 鼠标拖拽抓手样式 */
+.timeline-wrapper-outer {
+  cursor: grab;
+  /* 确保隐藏 Windows 默认的文本选择指针 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.timeline-wrapper-outer.grabbing {
+  cursor: grabbing;
+}
