@@ -1,6 +1,96 @@
 {
-  "lastUpdated": "2026-06-24T04:04:25.704Z",
+  "lastUpdated": "2026-06-24T09:40:32.573Z",
   "properties": {
+    "xiaochi": {
+      "propId": "xiaochi",
+      "propName": "雲町屋 小池",
+      "brandId": "yunmachiya",
+      "events": [],
+      "status": "ok"
+    },
+    "xiaogong": {
+      "propId": "xiaogong",
+      "propName": "雲町屋 小宫",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-21",
+          "end": "2026-06-26",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-bce625f076bd82402397b7360e946c8c@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXPZCYQTB\\nPhone Number (Last 4 Digits): 6313",
+          "phoneLast4": "6313",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXPZCYQTB",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-26",
+          "end": "2026-06-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-5c07a8898564ceebe8816265cc06b520@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5222XY93\\nPhone Number (Last 4 Digits): 3147",
+          "phoneLast4": "3147",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5222XY93",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-21",
+          "end": "2026-07-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-4fee2590187f211cb50315d1a6dd3316@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8H389M3Z\\nPhone Number (Last 4 Digits): 8270",
+          "phoneLast4": "8270",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8H389M3Z",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2026-11-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-29a394bde0954c752d96b7d7f0c3cde8@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSWS8E2XA\\nPhone Number (Last 4 Digits): 1599",
+          "phoneLast4": "1599",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSWS8E2XA",
+          "isReservation": true
+        }
+      ],
+      "status": "ok"
+    },
+    "shuiyingge": {
+      "propId": "shuiyingge",
+      "propName": "雲町屋 水影阁",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-21",
+          "end": "2026-06-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-6dfa01e04667e74b67322b1e64d31b8b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8WNF342W\\nPhone Number (Last 4 Digits): 9357",
+          "phoneLast4": "9357",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8WNF342W",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-27",
+          "end": "2026-07-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-31d2c4b4abfae90928ee107aa73036e0@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3\\nPhone Number (Last 4 Digits): 3712",
+          "phoneLast4": "3712",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-01",
+          "end": "2027-06-25",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
+          "isReservation": false
+        }
+      ],
+      "status": "ok"
+    },
     "xiaole": {
       "propId": "xiaole",
       "propName": "雲町屋 小樂",
@@ -47,6 +137,16 @@
           "isReservation": true
         },
         {
+          "start": "2026-09-19",
+          "end": "2026-09-23",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b53f7aea7d503083e5e82af6cd33f73c@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH\\nPhone Number (Last 4 Digits): 0876",
+          "phoneLast4": "0876",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH",
+          "isReservation": true
+        },
+        {
           "start": "2027-06-19",
           "end": "2027-06-25",
           "summary": "Airbnb (Not available)",
@@ -56,10 +156,10 @@
       ],
       "status": "ok"
     },
-    "xiaoyu": {
-      "propId": "xiaoyu",
-      "propName": "雲町屋 小御",
-      "brandId": "yunmachiya",
+    "qing_dummy1": {
+      "propId": "qing_dummy1",
+      "propName": "庆有鱼 鸭川观景店",
+      "brandId": "qingyouyu",
       "events": [
         {
           "start": "2026-06-23",
@@ -129,197 +229,6 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
           "phoneLast4": "3245",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4",
-          "isReservation": true
-        }
-      ],
-      "status": "ok"
-    },
-    "shuiyingge": {
-      "propId": "shuiyingge",
-      "propName": "雲町屋 水影阁",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-21",
-          "end": "2026-06-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-6dfa01e04667e74b67322b1e64d31b8b@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8WNF342W\\nPhone Number (Last 4 Digits): 9357",
-          "phoneLast4": "9357",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8WNF342W",
-          "isReservation": true
-        },
-        {
-          "start": "2026-06-27",
-          "end": "2026-07-01",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-31d2c4b4abfae90928ee107aa73036e0@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3\\nPhone Number (Last 4 Digits): 3712",
-          "phoneLast4": "3712",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDAPB2WY3",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-01",
-          "end": "2027-06-25",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
-          "isReservation": false
-        }
-      ],
-      "status": "ok"
-    },
-    "kyoto_ekimae": {
-      "propId": "kyoto_ekimae",
-      "propName": "雲町屋　京都駅前",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-23",
-          "end": "2026-06-27",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-52f1e4dcfa4e3b2300df37b03440b886@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8SBCHDZ9\\nPhone Number (Last 4 Digits): 4052",
-          "phoneLast4": "4052",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8SBCHDZ9",
-          "isReservation": true
-        },
-        {
-          "start": "2026-06-27",
-          "end": "2026-07-01",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-98b2372510ec929fe0ad055639dd0c1c@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMB4K49ATA\\nPhone Number (Last 4 Digits): 0198",
-          "phoneLast4": "0198",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMB4K49ATA",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-01",
-          "end": "2026-07-03",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-570c86c6a2ae52b444d897ab764853d6@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYMMMMFTZ\\nPhone Number (Last 4 Digits): 4714",
-          "phoneLast4": "4714",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYMMMMFTZ",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-08",
-          "end": "2026-07-10",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-d4b85c69c04cbf5a8374cf6df145c7ba@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPQHZBQ4C\\nPhone Number (Last 4 Digits): 9953",
-          "phoneLast4": "9953",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPQHZBQ4C",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-16",
-          "end": "2026-07-17",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-115d7a46c59169195ceb6c88e6b8fd16@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMEFTCMWH9\\nPhone Number (Last 4 Digits): 3207",
-          "phoneLast4": "3207",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMEFTCMWH9",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-18",
-          "end": "2026-07-19",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-89c61fbeb433ed4c735a8052ea1868af@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDYCATBXE\\nPhone Number (Last 4 Digits): 4014",
-          "phoneLast4": "4014",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDYCATBXE",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-29",
-          "end": "2026-07-31",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-ee41470c55a881f814048e63a217eb0d@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM9QWQHHT3\\nPhone Number (Last 4 Digits): 7742",
-          "phoneLast4": "7742",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM9QWQHHT3",
-          "isReservation": true
-        },
-        {
-          "start": "2026-10-06",
-          "end": "2026-10-11",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-17518d2286867d89a8c7ebccd9ee06f9@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMNFR4MQXN\\nPhone Number (Last 4 Digits): 9162",
-          "phoneLast4": "9162",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNFR4MQXN",
-          "isReservation": true
-        },
-        {
-          "start": "2026-10-11",
-          "end": "2026-10-19",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-922794ee72e0a6a6dd2a121df3aead87@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMX944SCHK\\nPhone Number (Last 4 Digits): 0757",
-          "phoneLast4": "0757",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMX944SCHK",
-          "isReservation": true
-        },
-        {
-          "start": "2026-11-18",
-          "end": "2026-11-22",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-5b9bcf902499499b5a1a91848c2a6cf9@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3H9RFZEH\\nPhone Number (Last 4 Digits): 7051",
-          "phoneLast4": "7051",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3H9RFZEH",
-          "isReservation": true
-        }
-      ],
-      "status": "ok"
-    },
-    "xiaogong": {
-      "propId": "xiaogong",
-      "propName": "雲町屋 小宫",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-21",
-          "end": "2026-06-26",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-bce625f076bd82402397b7360e946c8c@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXPZCYQTB\\nPhone Number (Last 4 Digits): 6313",
-          "phoneLast4": "6313",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXPZCYQTB",
-          "isReservation": true
-        },
-        {
-          "start": "2026-06-26",
-          "end": "2026-06-30",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-5c07a8898564ceebe8816265cc06b520@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM5222XY93\\nPhone Number (Last 4 Digits): 3147",
-          "phoneLast4": "3147",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM5222XY93",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-21",
-          "end": "2026-07-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-4fee2590187f211cb50315d1a6dd3316@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8H389M3Z\\nPhone Number (Last 4 Digits): 8270",
-          "phoneLast4": "8270",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8H389M3Z",
-          "isReservation": true
-        },
-        {
-          "start": "2026-11-28",
-          "end": "2026-11-30",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-29a394bde0954c752d96b7d7f0c3cde8@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSWS8E2XA\\nPhone Number (Last 4 Digits): 1599",
-          "phoneLast4": "1599",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSWS8E2XA",
           "isReservation": true
         }
       ],
@@ -605,253 +514,87 @@
       ],
       "status": "ok"
     },
-    "fengzao": {
-      "propId": "fengzao",
-      "propName": "雲町屋 风早",
+    "xiaochuan": {
+      "propId": "xiaochuan",
+      "propName": "雲町屋 小川",
       "brandId": "yunmachiya",
       "events": [
         {
-          "start": "2026-06-24",
-          "end": "2026-06-26",
+          "start": "2026-08-08",
+          "end": "2026-08-11",
           "summary": "Reserved",
-          "uid": "1418fb94e984-d91a0bbfc775971fd8eec257b0a78495@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMHC333C2\\nPhone Number (Last 4 Digits): 2768",
-          "phoneLast4": "2768",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMHC333C2",
+          "uid": "1418fb94e984-9f690087615dc691e8e83f1f5486058d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM525A2NKP\\nPhone Number (Last 4 Digits): 6255",
+          "phoneLast4": "6255",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM525A2NKP",
           "isReservation": true
         },
         {
-          "start": "2026-06-30",
-          "end": "2026-07-04",
+          "start": "2026-09-12",
+          "end": "2026-09-13",
           "summary": "Reserved",
-          "uid": "1418fb94e984-cdfe9b489e4c9b812d2f0d2c699eae4b@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMD9E9R8KA\\nPhone Number (Last 4 Digits): 1986",
-          "phoneLast4": "1986",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMD9E9R8KA",
+          "uid": "1418fb94e984-e9e45611277fd0f38d091fda3f415322@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDJJZX4CP\\nPhone Number (Last 4 Digits): 7125",
+          "phoneLast4": "7125",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDJJZX4CP",
           "isReservation": true
         },
         {
-          "start": "2026-07-12",
-          "end": "2026-07-13",
+          "start": "2026-09-26",
+          "end": "2026-09-28",
           "summary": "Reserved",
-          "uid": "1418fb94e984-50300398b2addaf57406596aa298cbbf@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBF2YQ38P\\nPhone Number (Last 4 Digits): 6913",
-          "phoneLast4": "6913",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBF2YQ38P",
+          "uid": "1418fb94e984-2d724301b710729966540b87b805d883@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMETMPW42Z\\nPhone Number (Last 4 Digits): 1157",
+          "phoneLast4": "1157",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMETMPW42Z",
           "isReservation": true
         },
         {
-          "start": "2026-07-14",
-          "end": "2026-07-16",
+          "start": "2026-10-09",
+          "end": "2026-10-12",
           "summary": "Reserved",
-          "uid": "1418fb94e984-88e3bbe055be9d38e3cfedd64c2477a4@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3828SCS8\\nPhone Number (Last 4 Digits): 2172",
-          "phoneLast4": "2172",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3828SCS8",
+          "uid": "1418fb94e984-5b3639f99372f30612d854ff3c0942e1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMWQHJKE93\\nPhone Number (Last 4 Digits): 5270",
+          "phoneLast4": "5270",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMWQHJKE93",
           "isReservation": true
         },
         {
-          "start": "2026-07-21",
-          "end": "2026-07-26",
+          "start": "2026-11-09",
+          "end": "2026-11-16",
           "summary": "Reserved",
-          "uid": "1418fb94e984-294c12381616de369df1215ba68d42c5@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM84B2N32N\\nPhone Number (Last 4 Digits): 4789",
-          "phoneLast4": "4789",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM84B2N32N",
-          "isReservation": true
-        },
-        {
-          "start": "2026-09-02",
-          "end": "2026-09-07",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-59b60c4e27082f777502bbb35e75d195@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A\\nPhone Number (Last 4 Digits): 2386",
-          "phoneLast4": "2386",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A",
-          "isReservation": true
-        },
-        {
-          "start": "2026-10-26",
-          "end": "2026-10-28",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-a615c39afab75aa0ca5472f27e2a4751@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3\\nPhone Number (Last 4 Digits): 4041",
-          "phoneLast4": "4041",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3",
-          "isReservation": true
-        },
-        {
-          "start": "2026-11-03",
-          "end": "2026-11-07",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-d488302075fc0e3a190bb653268aed43@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDEZ55JS5\\nPhone Number (Last 4 Digits): 4522",
-          "phoneLast4": "4522",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDEZ55JS5",
-          "isReservation": true
-        },
-        {
-          "start": "2026-11-20",
-          "end": "2026-11-23",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-3800535d6dc25e8c65e4062da3e854a9@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED\\nPhone Number (Last 4 Digits): 5102",
-          "phoneLast4": "5102",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED",
+          "uid": "1418fb94e984-400229657de18715d32b7d49973501f8@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMB3NSW3QR\\nPhone Number (Last 4 Digits): 5673",
+          "phoneLast4": "5673",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMB3NSW3QR",
           "isReservation": true
         },
         {
           "start": "2026-11-25",
-          "end": "2026-11-28",
+          "end": "2026-11-30",
           "summary": "Reserved",
-          "uid": "1418fb94e984-00ca7ddd551c9b196ac1dbcbb2c709e8@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMK53SBDFR\\nPhone Number (Last 4 Digits): 8386",
-          "phoneLast4": "8386",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMK53SBDFR",
+          "uid": "1418fb94e984-d9f4b403c8dd8819f8968e0167291156@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMDEDBJJW\\nPhone Number (Last 4 Digits): 7511",
+          "phoneLast4": "7511",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMDEDBJJW",
           "isReservation": true
         },
         {
-          "start": "2026-11-28",
-          "end": "2026-12-03",
+          "start": "2027-03-26",
+          "end": "2027-04-02",
           "summary": "Reserved",
-          "uid": "1418fb94e984-9f12bfa7b14b13e332dc45881426cbcf@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMX3TZJFPK\\nPhone Number (Last 4 Digits): 9489",
-          "phoneLast4": "9489",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMX3TZJFPK",
-          "isReservation": true
-        }
-      ],
-      "status": "ok"
-    },
-    "qing_dummy2": {
-      "propId": "qing_dummy2",
-      "propName": "庆有鱼 岚山温泉店",
-      "brandId": "qingyouyu",
-      "events": [
-        {
-          "start": "2026-06-22",
-          "end": "2026-06-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-7686a9337a170935521c460d6b44aa5a@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYCECD2NT\\nPhone Number (Last 4 Digits): 4072",
-          "phoneLast4": "4072",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYCECD2NT",
+          "uid": "1418fb94e984-4d773ae683804db8bb0ac783e0c82426@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5\\nPhone Number (Last 4 Digits): 6714",
+          "phoneLast4": "6714",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5",
           "isReservation": true
         },
         {
-          "start": "2026-06-27",
-          "end": "2026-06-29",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-4ee52ee98134d3273db826ab96bc53e0@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXP3D5XW4\\nPhone Number (Last 4 Digits): 3020",
-          "phoneLast4": "3020",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXP3D5XW4",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-23",
-          "end": "2026-07-25",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-c7cf853e0a6ab7ee88a8da64871ebcc2@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM9MZX9RYK\\nPhone Number (Last 4 Digits): 2015",
-          "phoneLast4": "2015",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM9MZX9RYK",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-31",
-          "end": "2026-08-03",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-76968239e62371f6e59f7de84b63e813@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMWRPFCXPS\\nPhone Number (Last 4 Digits): 4813",
-          "phoneLast4": "4813",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMWRPFCXPS",
-          "isReservation": true
-        },
-        {
-          "start": "2027-06-19",
-          "end": "2027-06-25",
+          "start": "2026-07-01",
+          "end": "2026-07-04",
           "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-567fae8f3432d46807a8ad585ac0f2b7@airbnb.com",
+          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
           "isReservation": false
-        }
-      ],
-      "status": "ok"
-    },
-    "xiaoshan": {
-      "propId": "xiaoshan",
-      "propName": "雲町屋 小杉",
-      "brandId": "yunmachiya",
-      "events": [
-        {
-          "start": "2026-06-22",
-          "end": "2026-06-27",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-3393ce8af40dc7526ee85755b1d80600@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMFX9J829K\\nPhone Number (Last 4 Digits): 5640",
-          "phoneLast4": "5640",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMFX9J829K",
-          "isReservation": true
-        },
-        {
-          "start": "2026-06-28",
-          "end": "2026-07-03",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-98fcb01385d76f792f08acbe10438f1d@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMRJYAQY2X\\nPhone Number (Last 4 Digits): 0333",
-          "phoneLast4": "0333",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMRJYAQY2X",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-15",
-          "end": "2026-07-22",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-97483489d79054a4af6d8a86fdeb3623@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM43424ARW\\nPhone Number (Last 4 Digits): 0692",
-          "phoneLast4": "0692",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM43424ARW",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-23",
-          "end": "2026-07-27",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-546b5ddd65e5de39d497c2cbe5e00d32@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXDPB9YKM\\nPhone Number (Last 4 Digits): 6761",
-          "phoneLast4": "6761",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXDPB9YKM",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-27",
-          "end": "2026-07-30",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-edd0637e80c70af35b594c31e5ab9c2b@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMD22XDR9Y\\nPhone Number (Last 4 Digits): 4363",
-          "phoneLast4": "4363",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMD22XDR9Y",
-          "isReservation": true
-        },
-        {
-          "start": "2026-08-06",
-          "end": "2026-08-11",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-5a5d34a8fec3586079dc490f092acf80@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMAHJMPF9W\\nPhone Number (Last 4 Digits): 3078",
-          "phoneLast4": "3078",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMAHJMPF9W",
-          "isReservation": true
-        },
-        {
-          "start": "2026-08-11",
-          "end": "2026-08-14",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-e1cad1202473db2b370719d2565046fb@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBXPWRACM\\nPhone Number (Last 4 Digits): 9016",
-          "phoneLast4": "9016",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBXPWRACM",
-          "isReservation": true
         }
       ],
       "status": "ok"
@@ -889,16 +632,6 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM4K3KARFF\\nPhone Number (Last 4 Digits): 8669",
           "phoneLast4": "8669",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM4K3KARFF",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-15",
-          "end": "2026-07-18",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-e9cacad8f245f600ddab7bcbf6c0fd89@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDP5PWT29\\nPhone Number (Last 4 Digits): 1846",
-          "phoneLast4": "1846",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDP5PWT29",
           "isReservation": true
         },
         {
@@ -1112,6 +845,13 @@
           "isReservation": true
         },
         {
+          "start": "2026-07-10",
+          "end": "2026-07-11",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-a62a523cc487878e60d46d74888f630e@airbnb.com",
+          "isReservation": false
+        },
+        {
           "start": "2027-06-19",
           "end": "2027-06-25",
           "summary": "Airbnb (Not available)",
@@ -1121,165 +861,371 @@
       ],
       "status": "ok"
     },
-    "qing_dummy1": {
-      "propId": "qing_dummy1",
-      "propName": "庆有鱼 鸭川观景店",
-      "brandId": "qingyouyu",
+    "fengzao": {
+      "propId": "fengzao",
+      "propName": "雲町屋 风早",
+      "brandId": "yunmachiya",
       "events": [
         {
-          "start": "2026-06-23",
-          "end": "2026-06-28",
+          "start": "2026-06-24",
+          "end": "2026-06-26",
           "summary": "Reserved",
-          "uid": "1418fb94e984-2235716935e0971c4d42259014adeff1@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMHSBECPHE\\nPhone Number (Last 4 Digits): 7639",
-          "phoneLast4": "7639",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMHSBECPHE",
+          "uid": "1418fb94e984-d91a0bbfc775971fd8eec257b0a78495@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMHC333C2\\nPhone Number (Last 4 Digits): 2768",
+          "phoneLast4": "2768",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMHC333C2",
           "isReservation": true
         },
         {
-          "start": "2026-06-28",
-          "end": "2026-07-01",
+          "start": "2026-06-30",
+          "end": "2026-07-04",
           "summary": "Reserved",
-          "uid": "1418fb94e984-9808e76f47ac94dd3bf8805989be2ecd@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKX8DP5F3\\nPhone Number (Last 4 Digits): 2352",
-          "phoneLast4": "2352",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKX8DP5F3",
-          "isReservation": true
-        },
-        {
-          "start": "2026-07-02",
-          "end": "2026-07-08",
-          "summary": "Reserved",
-          "uid": "1418fb94e984-20ff435b97b52d4e36cc559b41ed3bf5@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM4NJQKRTN\\nPhone Number (Last 4 Digits): 6793",
-          "phoneLast4": "6793",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM4NJQKRTN",
+          "uid": "1418fb94e984-cdfe9b489e4c9b812d2f0d2c699eae4b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMD9E9R8KA\\nPhone Number (Last 4 Digits): 1986",
+          "phoneLast4": "1986",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMD9E9R8KA",
           "isReservation": true
         },
         {
           "start": "2026-07-12",
-          "end": "2026-07-21",
+          "end": "2026-07-13",
           "summary": "Reserved",
-          "uid": "1418fb94e984-5570031ca65c6ef5604af04248ae9c13@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMAZD8KNFA\\nPhone Number (Last 4 Digits): 4282",
-          "phoneLast4": "4282",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMAZD8KNFA",
+          "uid": "1418fb94e984-50300398b2addaf57406596aa298cbbf@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBF2YQ38P\\nPhone Number (Last 4 Digits): 6913",
+          "phoneLast4": "6913",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBF2YQ38P",
           "isReservation": true
         },
         {
-          "start": "2026-09-23",
-          "end": "2026-09-27",
+          "start": "2026-07-14",
+          "end": "2026-07-16",
           "summary": "Reserved",
-          "uid": "1418fb94e984-41f72fda28b7b64b7552da043abaa0c3@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMES2NJBBW\\nPhone Number (Last 4 Digits): 3274",
-          "phoneLast4": "3274",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMES2NJBBW",
+          "uid": "1418fb94e984-88e3bbe055be9d38e3cfedd64c2477a4@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3828SCS8\\nPhone Number (Last 4 Digits): 2172",
+          "phoneLast4": "2172",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3828SCS8",
           "isReservation": true
         },
         {
-          "start": "2026-11-15",
-          "end": "2026-11-19",
+          "start": "2026-07-21",
+          "end": "2026-07-26",
           "summary": "Reserved",
-          "uid": "1418fb94e984-472f882725a691baf7839fb533aeff28@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSNNBCATT\\nPhone Number (Last 4 Digits): 2097",
-          "phoneLast4": "2097",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSNNBCATT",
+          "uid": "1418fb94e984-294c12381616de369df1215ba68d42c5@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM84B2N32N\\nPhone Number (Last 4 Digits): 4789",
+          "phoneLast4": "4789",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM84B2N32N",
+          "isReservation": true
+        },
+        {
+          "start": "2026-09-02",
+          "end": "2026-09-07",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-59b60c4e27082f777502bbb35e75d195@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A\\nPhone Number (Last 4 Digits): 2386",
+          "phoneLast4": "2386",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMP3NEQN5A",
+          "isReservation": true
+        },
+        {
+          "start": "2026-10-26",
+          "end": "2026-10-28",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-a615c39afab75aa0ca5472f27e2a4751@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3\\nPhone Number (Last 4 Digits): 4041",
+          "phoneLast4": "4041",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM2MMWYHS3",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-03",
+          "end": "2026-11-07",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d488302075fc0e3a190bb653268aed43@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDEZ55JS5\\nPhone Number (Last 4 Digits): 4522",
+          "phoneLast4": "4522",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDEZ55JS5",
           "isReservation": true
         },
         {
           "start": "2026-11-20",
-          "end": "2026-11-25",
+          "end": "2026-11-23",
           "summary": "Reserved",
-          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
-          "phoneLast4": "3245",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4",
+          "uid": "1418fb94e984-3800535d6dc25e8c65e4062da3e854a9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED\\nPhone Number (Last 4 Digits): 5102",
+          "phoneLast4": "5102",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMZS2W3BED",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-25",
+          "end": "2026-11-28",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-00ca7ddd551c9b196ac1dbcbb2c709e8@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMK53SBDFR\\nPhone Number (Last 4 Digits): 8386",
+          "phoneLast4": "8386",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMK53SBDFR",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-28",
+          "end": "2026-12-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9f12bfa7b14b13e332dc45881426cbcf@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMX3TZJFPK\\nPhone Number (Last 4 Digits): 9489",
+          "phoneLast4": "9489",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMX3TZJFPK",
           "isReservation": true
         }
       ],
       "status": "ok"
     },
-    "xiaochuan": {
-      "propId": "xiaochuan",
-      "propName": "雲町屋 小川",
+    "xiaoshan": {
+      "propId": "xiaoshan",
+      "propName": "雲町屋 小杉",
       "brandId": "yunmachiya",
       "events": [
         {
-          "start": "2026-08-08",
+          "start": "2026-06-22",
+          "end": "2026-06-27",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-3393ce8af40dc7526ee85755b1d80600@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMFX9J829K\\nPhone Number (Last 4 Digits): 5640",
+          "phoneLast4": "5640",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMFX9J829K",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-28",
+          "end": "2026-07-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-98fcb01385d76f792f08acbe10438f1d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMRJYAQY2X\\nPhone Number (Last 4 Digits): 0333",
+          "phoneLast4": "0333",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMRJYAQY2X",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-15",
+          "end": "2026-07-22",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-97483489d79054a4af6d8a86fdeb3623@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM43424ARW\\nPhone Number (Last 4 Digits): 0692",
+          "phoneLast4": "0692",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM43424ARW",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-23",
+          "end": "2026-07-27",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-546b5ddd65e5de39d497c2cbe5e00d32@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXDPB9YKM\\nPhone Number (Last 4 Digits): 6761",
+          "phoneLast4": "6761",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXDPB9YKM",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-27",
+          "end": "2026-07-30",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-edd0637e80c70af35b594c31e5ab9c2b@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMD22XDR9Y\\nPhone Number (Last 4 Digits): 4363",
+          "phoneLast4": "4363",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMD22XDR9Y",
+          "isReservation": true
+        },
+        {
+          "start": "2026-08-06",
           "end": "2026-08-11",
           "summary": "Reserved",
-          "uid": "1418fb94e984-9f690087615dc691e8e83f1f5486058d@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM525A2NKP\\nPhone Number (Last 4 Digits): 6255",
-          "phoneLast4": "6255",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM525A2NKP",
+          "uid": "1418fb94e984-5a5d34a8fec3586079dc490f092acf80@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMAHJMPF9W\\nPhone Number (Last 4 Digits): 3078",
+          "phoneLast4": "3078",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMAHJMPF9W",
           "isReservation": true
         },
         {
-          "start": "2026-09-12",
-          "end": "2026-09-13",
+          "start": "2026-08-11",
+          "end": "2026-08-14",
           "summary": "Reserved",
-          "uid": "1418fb94e984-e9e45611277fd0f38d091fda3f415322@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDJJZX4CP\\nPhone Number (Last 4 Digits): 7125",
-          "phoneLast4": "7125",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDJJZX4CP",
+          "uid": "1418fb94e984-e1cad1202473db2b370719d2565046fb@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBXPWRACM\\nPhone Number (Last 4 Digits): 9016",
+          "phoneLast4": "9016",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBXPWRACM",
+          "isReservation": true
+        }
+      ],
+      "status": "ok"
+    },
+    "qing_dummy2": {
+      "propId": "qing_dummy2",
+      "propName": "庆有鱼 岚山温泉店",
+      "brandId": "qingyouyu",
+      "events": [
+        {
+          "start": "2026-06-22",
+          "end": "2026-06-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-7686a9337a170935521c460d6b44aa5a@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYCECD2NT\\nPhone Number (Last 4 Digits): 4072",
+          "phoneLast4": "4072",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYCECD2NT",
           "isReservation": true
         },
         {
-          "start": "2026-09-26",
-          "end": "2026-09-28",
+          "start": "2026-06-27",
+          "end": "2026-06-29",
           "summary": "Reserved",
-          "uid": "1418fb94e984-2d724301b710729966540b87b805d883@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMETMPW42Z\\nPhone Number (Last 4 Digits): 1157",
-          "phoneLast4": "1157",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMETMPW42Z",
+          "uid": "1418fb94e984-4ee52ee98134d3273db826ab96bc53e0@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMXP3D5XW4\\nPhone Number (Last 4 Digits): 3020",
+          "phoneLast4": "3020",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMXP3D5XW4",
           "isReservation": true
         },
         {
-          "start": "2026-10-09",
-          "end": "2026-10-12",
+          "start": "2026-07-23",
+          "end": "2026-07-25",
           "summary": "Reserved",
-          "uid": "1418fb94e984-5b3639f99372f30612d854ff3c0942e1@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMWQHJKE93\\nPhone Number (Last 4 Digits): 5270",
-          "phoneLast4": "5270",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMWQHJKE93",
+          "uid": "1418fb94e984-c7cf853e0a6ab7ee88a8da64871ebcc2@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM9MZX9RYK\\nPhone Number (Last 4 Digits): 2015",
+          "phoneLast4": "2015",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM9MZX9RYK",
           "isReservation": true
         },
         {
-          "start": "2026-11-09",
-          "end": "2026-11-16",
+          "start": "2026-07-31",
+          "end": "2026-08-03",
           "summary": "Reserved",
-          "uid": "1418fb94e984-400229657de18715d32b7d49973501f8@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMB3NSW3QR\\nPhone Number (Last 4 Digits): 5673",
-          "phoneLast4": "5673",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMB3NSW3QR",
+          "uid": "1418fb94e984-76968239e62371f6e59f7de84b63e813@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMWRPFCXPS\\nPhone Number (Last 4 Digits): 4813",
+          "phoneLast4": "4813",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMWRPFCXPS",
           "isReservation": true
         },
         {
-          "start": "2026-11-25",
-          "end": "2026-11-30",
+          "start": "2026-09-19",
+          "end": "2026-09-23",
           "summary": "Reserved",
-          "uid": "1418fb94e984-d9f4b403c8dd8819f8968e0167291156@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMDEDBJJW\\nPhone Number (Last 4 Digits): 7511",
-          "phoneLast4": "7511",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMDEDBJJW",
+          "uid": "1418fb94e984-b53f7aea7d503083e5e82af6cd33f73c@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH\\nPhone Number (Last 4 Digits): 0876",
+          "phoneLast4": "0876",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMMCZZY2RH",
           "isReservation": true
         },
         {
-          "start": "2027-03-26",
-          "end": "2027-04-02",
+          "start": "2027-06-19",
+          "end": "2027-06-25",
+          "summary": "Airbnb (Not available)",
+          "uid": "7f662ec65913-567fae8f3432d46807a8ad585ac0f2b7@airbnb.com",
+          "isReservation": false
+        }
+      ],
+      "status": "ok"
+    },
+    "kyoto_ekimae": {
+      "propId": "kyoto_ekimae",
+      "propName": "雲町屋　京都駅前",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-23",
+          "end": "2026-06-27",
           "summary": "Reserved",
-          "uid": "1418fb94e984-4d773ae683804db8bb0ac783e0c82426@airbnb.com",
-          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5\\nPhone Number (Last 4 Digits): 6714",
-          "phoneLast4": "6714",
-          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPDHNBZC5",
+          "uid": "1418fb94e984-52f1e4dcfa4e3b2300df37b03440b886@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM8SBCHDZ9\\nPhone Number (Last 4 Digits): 4052",
+          "phoneLast4": "4052",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM8SBCHDZ9",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-27",
+          "end": "2026-07-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-98b2372510ec929fe0ad055639dd0c1c@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMB4K49ATA\\nPhone Number (Last 4 Digits): 0198",
+          "phoneLast4": "0198",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMB4K49ATA",
           "isReservation": true
         },
         {
           "start": "2026-07-01",
-          "end": "2026-07-04",
-          "summary": "Airbnb (Not available)",
-          "uid": "7f662ec65913-771eace85b7d642b92aa43e8015aa80f@airbnb.com",
-          "isReservation": false
+          "end": "2026-07-03",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-570c86c6a2ae52b444d897ab764853d6@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMYMMMMFTZ\\nPhone Number (Last 4 Digits): 4714",
+          "phoneLast4": "4714",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMYMMMMFTZ",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-08",
+          "end": "2026-07-10",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-d4b85c69c04cbf5a8374cf6df145c7ba@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMPQHZBQ4C\\nPhone Number (Last 4 Digits): 9953",
+          "phoneLast4": "9953",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMPQHZBQ4C",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-16",
+          "end": "2026-07-17",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-115d7a46c59169195ceb6c88e6b8fd16@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMEFTCMWH9\\nPhone Number (Last 4 Digits): 3207",
+          "phoneLast4": "3207",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMEFTCMWH9",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-18",
+          "end": "2026-07-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-89c61fbeb433ed4c735a8052ea1868af@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMDYCATBXE\\nPhone Number (Last 4 Digits): 4014",
+          "phoneLast4": "4014",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMDYCATBXE",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-29",
+          "end": "2026-07-31",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-ee41470c55a881f814048e63a217eb0d@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM9QWQHHT3\\nPhone Number (Last 4 Digits): 7742",
+          "phoneLast4": "7742",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM9QWQHHT3",
+          "isReservation": true
+        },
+        {
+          "start": "2026-10-06",
+          "end": "2026-10-11",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-17518d2286867d89a8c7ebccd9ee06f9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMNFR4MQXN\\nPhone Number (Last 4 Digits): 9162",
+          "phoneLast4": "9162",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMNFR4MQXN",
+          "isReservation": true
+        },
+        {
+          "start": "2026-10-11",
+          "end": "2026-10-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-922794ee72e0a6a6dd2a121df3aead87@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMX944SCHK\\nPhone Number (Last 4 Digits): 0757",
+          "phoneLast4": "0757",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMX944SCHK",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2026-11-22",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-5b9bcf902499499b5a1a91848c2a6cf9@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3H9RFZEH\\nPhone Number (Last 4 Digits): 7051",
+          "phoneLast4": "7051",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3H9RFZEH",
+          "isReservation": true
         }
       ],
       "status": "ok"
@@ -1310,13 +1256,6 @@
           "isReservation": true
         }
       ],
-      "status": "ok"
-    },
-    "xiaochi": {
-      "propId": "xiaochi",
-      "propName": "雲町屋 小池",
-      "brandId": "yunmachiya",
-      "events": [],
       "status": "ok"
     },
     "xiaoxing": {
@@ -1652,6 +1591,84 @@
           "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM3XFW2KPH\\nPhone Number (Last 4 Digits): 3500",
           "phoneLast4": "3500",
           "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM3XFW2KPH",
+          "isReservation": true
+        }
+      ],
+      "status": "ok"
+    },
+    "xiaoyu": {
+      "propId": "xiaoyu",
+      "propName": "雲町屋 小御",
+      "brandId": "yunmachiya",
+      "events": [
+        {
+          "start": "2026-06-23",
+          "end": "2026-06-28",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-2235716935e0971c4d42259014adeff1@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMHSBECPHE\\nPhone Number (Last 4 Digits): 7639",
+          "phoneLast4": "7639",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMHSBECPHE",
+          "isReservation": true
+        },
+        {
+          "start": "2026-06-28",
+          "end": "2026-07-01",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-9808e76f47ac94dd3bf8805989be2ecd@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMKX8DP5F3\\nPhone Number (Last 4 Digits): 2352",
+          "phoneLast4": "2352",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMKX8DP5F3",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-02",
+          "end": "2026-07-08",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-20ff435b97b52d4e36cc559b41ed3bf5@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HM4NJQKRTN\\nPhone Number (Last 4 Digits): 6793",
+          "phoneLast4": "6793",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HM4NJQKRTN",
+          "isReservation": true
+        },
+        {
+          "start": "2026-07-12",
+          "end": "2026-07-21",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-5570031ca65c6ef5604af04248ae9c13@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMAZD8KNFA\\nPhone Number (Last 4 Digits): 4282",
+          "phoneLast4": "4282",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMAZD8KNFA",
+          "isReservation": true
+        },
+        {
+          "start": "2026-09-23",
+          "end": "2026-09-27",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-41f72fda28b7b64b7552da043abaa0c3@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMES2NJBBW\\nPhone Number (Last 4 Digits): 3274",
+          "phoneLast4": "3274",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMES2NJBBW",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-15",
+          "end": "2026-11-19",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-472f882725a691baf7839fb533aeff28@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMSNNBCATT\\nPhone Number (Last 4 Digits): 2097",
+          "phoneLast4": "2097",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMSNNBCATT",
+          "isReservation": true
+        },
+        {
+          "start": "2026-11-20",
+          "end": "2026-11-25",
+          "summary": "Reserved",
+          "uid": "1418fb94e984-b0c0e80b1b7268b82f28f57c31887942@airbnb.com",
+          "description": "Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4\\nPhone Number (Last 4 Digits): 3245",
+          "phoneLast4": "3245",
+          "reservationUrl": "https://www.airbnb.com/hosting/reservations/details/HMBFEWJ3S4",
           "isReservation": true
         }
       ],
