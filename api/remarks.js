@@ -1,4 +1,4 @@
-const { put, list } = require('@vercel/blob');
+const { put, list, get } = require('@vercel/blob');
 
 module.exports = async function handler(req, res) {
   // 设置跨域头以支持本地调试和多域名访问
@@ -24,12 +24,11 @@ module.exports = async function handler(req, res) {
       if (blobs && blobs.length > 0) {
         // 寻找到精确匹配的 blob
         const targetBlob = blobs.find(b => b.pathname === 'remarks.json') || blobs[0];
-        // 用 cache-busting 请求文件内容，防止 CDN 强缓存
-        const fileRes = await fetch(targetBlob.url + '?t=' + Date.now());
-        if (fileRes.ok) {
-          const data = await fileRes.json();
-          return res.status(200).json(data);
-        }
+        // 使用 SDK 的 get() 获取私有 blob 内容，兼容私有/公开存储
+        const blobObj = await get(targetBlob.url);
+        const text = await blobObj.text();
+        const data = JSON.parse(text);
+        return res.status(200).json(data);
       }
       // 未找到任何已上传的文件，返回空对象
       return res.status(200).json({});
@@ -42,9 +41,9 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'Body is required' });
       }
       
-      // 写入并覆盖云端文件，确保 addRandomSuffix 为 false 使其 URL 唯一稳定
+      // 写入并覆盖云端文件，设置 access 为 'private' 并确保 addRandomSuffix 为 false 使其 URL 唯一稳定
       const blob = await put('remarks.json', JSON.stringify(remarksData, null, 2), {
-        access: 'public',
+        access: 'private',
         contentType: 'application/json',
         addRandomSuffix: false,
         allowOverwrite: true
