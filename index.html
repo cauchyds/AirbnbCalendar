@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.14">
+  <link rel="stylesheet" href="style.css?v=3.15">
 </head>
 <body>
 
@@ -120,17 +120,8 @@
             
             <!-- 时间轴过滤器与视图切换 -->
             <div class="timeline-controls">
-              <div class="control-group">
-                <span class="control-label" style="font-family: var(--font-serif); font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 5px;">展示天数：</span>
-                <button id="btn-scale-15" class="btn-toggle">15天</button>
-                <button id="btn-scale-30" class="btn-toggle active">30天</button>
-                <button id="btn-scale-60" class="btn-toggle">60天</button>
-              </div>
-              
               <div class="timeline-nav">
-                <button id="btn-time-prev" class="btn-nav" title="向前移">◀</button>
-                <button id="btn-time-today" class="btn-nav btn-today">今天</button>
-                <button id="btn-time-next" class="btn-nav" title="向后移">▶</button>
+                <button id="btn-time-today" class="btn-nav btn-today" style="border-radius: var(--radius-sm); border: 1px solid var(--border-wood-dark); padding: 6px 16px; font-size: 0.85rem; background-color: var(--bg-washi);">🗓️ 回到今天</button>
               </div>
             </div>
           </div>
@@ -417,7 +408,7 @@
   </footer>
 
   <!-- 引入配置与逻辑控制 JS -->
-  <script src="config.js?v=3.14"></script>
-  <script src="app.js?v=3.14"></script>
+  <script src="config.js?v=3.15"></script>
+  <script src="app.js?v=3.15"></script>
 </body>
 </html>

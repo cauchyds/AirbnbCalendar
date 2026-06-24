@@ -45,7 +45,9 @@ const state = {
   
   // 房源管理器临时工作状态
   tempConfigProps: [],          // 弹窗中扁平化的房源编辑草稿列表
-  managerMode: 'table'          // 编辑器模式：'table' 或 'text'
+  managerMode: 'table',         // 编辑器模式：'table' 或 'text'
+  isFirstLoad: true,            // 是否是第一次加载页面以执行滚动定位
+  isRenderingTimeline: false    // 防止滚动触发重绘冲突的锁
 };
 
 // CORS 代理服务列表，备用切换提高可用性
@@ -1011,6 +1013,52 @@ function renderGanttTimeline(activeProps) {
   }
   table.appendChild(tbody);
   container.appendChild(table);
+
+  // 第一次加载时自动定位到“今天”
+  if (state.isFirstLoad) {
+    setTimeout(scrollToToday, 50);
+    state.isFirstLoad = false;
+  }
+}
+
+// 自动滚动定位到“今天”
+function scrollToToday() {
+  const outer = document.querySelector('.timeline-wrapper-outer');
+  if (!outer) return;
+  const todayEl = outer.querySelector('.today-date');
+  if (todayEl) {
+    outer.scrollTop = todayEl.offsetTop - (outer.clientHeight / 3);
+  }
+}
+
+// 无限滚动事件处理器
+function handleTimelineScroll(container) {
+  if (state.isRenderingTimeline) return;
+  
+  const threshold = 150; // px
+  
+  // 向下滚动（加载未来）
+  if (container.scrollTop + container.clientHeight >= container.scrollHeight - threshold) {
+    state.isRenderingTimeline = true;
+    state.timelineScale += 15;
+    renderGanttTimeline(getPropertiesForActiveBrand());
+    state.isRenderingTimeline = false;
+  }
+  // 向上滚动（加载历史）
+  else if (container.scrollTop <= threshold) {
+    state.isRenderingTimeline = true;
+    const oldScrollHeight = container.scrollHeight;
+    const oldScrollTop = container.scrollTop;
+    
+    state.timelineStartDate = addDays(state.timelineStartDate, -15);
+    state.timelineScale += 15;
+    
+    renderGanttTimeline(getPropertiesForActiveBrand());
+    
+    const newScrollHeight = container.scrollHeight;
+    container.scrollTop = oldScrollTop + (newScrollHeight - oldScrollHeight);
+    state.isRenderingTimeline = false;
+  }
 }
 
 function parseRemarkTextHtml(text) {
@@ -1806,24 +1854,28 @@ function hideBookingModal() {
 // 13. 控制监听与程序初始化 (Event Handlers & Bootstrapper)
 // ==========================================================================
 function setupEventListeners() {
-  // 1. 甘特图时间轴跨度切换 (15, 30, 60天)
-  document.getElementById('btn-scale-15').onclick = (e) => setTimelineScale(15, e.target);
-  document.getElementById('btn-scale-30').onclick = (e) => setTimelineScale(30, e.target);
-  document.getElementById('btn-scale-60').onclick = (e) => setTimelineScale(60, e.target);
-  
-  // 2. 甘特图导航
-  document.getElementById('btn-time-prev').onclick = () => {
-    state.timelineStartDate = addDays(state.timelineStartDate, -state.timelineScale);
-    renderGanttTimeline(getPropertiesForActiveBrand());
-  };
+  // 1. 回到今天（重置展示时间跨度为：30天前 到 30天后，共60天）
   document.getElementById('btn-time-today').onclick = () => {
-    state.timelineStartDate = new Date();
+    const today = new Date();
+    state.timelineStartDate = addDays(today, -30);
+    state.timelineScale = 60;
     renderGanttTimeline(getPropertiesForActiveBrand());
+    scrollToToday();
   };
-  document.getElementById('btn-time-next').onclick = () => {
-    state.timelineStartDate = addDays(state.timelineStartDate, state.timelineScale);
-    renderGanttTimeline(getPropertiesForActiveBrand());
-  };
+  
+  // 2. 绑定纵向无限滚动监听
+  const outerContainer = document.querySelector('.timeline-wrapper-outer');
+  if (outerContainer) {
+    let isScrolling = false;
+    outerContainer.addEventListener('scroll', () => {
+      if (isScrolling) return;
+      isScrolling = true;
+      requestAnimationFrame(() => {
+        handleTimelineScroll(outerContainer);
+        isScrolling = false;
+      });
+    });
+  }
   
   // 3. 手动刷新按钮触发跨域拉取
   document.getElementById('btn-manual-sync').onclick = async () => {
@@ -2015,22 +2067,13 @@ function setupEventListeners() {
   };
 }
 
-function setTimelineScale(days, buttonEl) {
-  state.timelineScale = days;
-  document.querySelectorAll('.timeline-controls .btn-toggle').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  buttonEl.classList.add('active');
-  
-  renderGanttTimeline(getPropertiesForActiveBrand());
-}
-
 // 主启动引导程序
 function init() {
   console.log('🌸 正在初始化日系纵向房态与排班备忘大盘...');
   
   const today = new Date();
-  state.timelineStartDate = today;
+  state.timelineStartDate = addDays(today, -30);
+  state.timelineScale = 60;
   state.calendarYear = today.getFullYear();
   state.calendarMonth = today.getMonth();
   
