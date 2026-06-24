@@ -1562,11 +1562,18 @@ async function syncRemarksToCloud() {
     if (res.ok) {
       console.log('✅ 备注成功同步至 Vercel Blob 云端');
     } else {
-      throw new Error(`HTTP状态码: ${res.status}`);
+      let errMsg = `HTTP 状态码: ${res.status}`;
+      try {
+        const errJson = await res.json();
+        if (errJson && errJson.error) {
+          errMsg = errJson.error;
+        }
+      } catch (jsonErr) {}
+      throw new Error(errMsg);
     }
   } catch (e) {
     console.error('⚠️ 备注云端同步失败，已保存在本地浏览器:', e.message);
-    showToast('⚠️ 备注云端同步失败，已保存在本地浏览器', 'warning');
+    showToast(`⚠️ 备注云端同步失败 (${e.message})，已保存在本地浏览器`, 'warning');
   }
 }
 
@@ -1583,11 +1590,18 @@ async function syncConfigToCloud() {
       console.log('✅ 房源配置成功同步至 Vercel Blob 云端');
       showToast('🌸 房源配置已成功同步到云端！数据将在下次定时同步时自动载入。', 'success');
     } else {
-      throw new Error(`HTTP状态码: ${res.status}`);
+      let errMsg = `HTTP 状态码: ${res.status}`;
+      try {
+        const errJson = await res.json();
+        if (errJson && errJson.error) {
+          errMsg = errJson.error;
+        }
+      } catch (jsonErr) {}
+      throw new Error(errMsg);
     }
   } catch (e) {
     console.error('⚠️ 房源配置同步云端失败，但已保存在当前浏览器:', e.message);
-    showToast('⚠️ 房源配置同步云端失败，但已保存在当前浏览器', 'warning');
+    showToast(`⚠️ 房源配置同步云端失败 (${e.message})，已保存在当前浏览器`, 'warning');
   }
 }
 

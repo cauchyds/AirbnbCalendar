@@ -10,6 +10,13 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // 校验 Vercel Blob 密钥是否存在，避免抛出底层 SDK 错误
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return res.status(500).json({
+      error: '数据库云端密钥 (BLOB_READ_WRITE_TOKEN) 未设置。请参考使用说明，在 Vercel 控制台中的 Settings -> Environment Variables 页面添加此变量并重新部署！'
+    });
+  }
+
   try {
     if (req.method === 'GET') {
       // 1. 列出存储的 blob 以定位 remarks.json
