@@ -560,12 +560,38 @@ async function loadData() {
     }
   }
 
-  // C. 尝试静默拉取 Actions 自动跑出的可靠静态 data.json
   try {
     const response = await fetch('data.json?t=' + new Date().getTime());
     if (!response.ok) throw new Error('读取静态日历 JSON 失败');
     const data = await response.json();
     console.log('✅ 成功从静态 data.json 获取最新日程');
+    
+    // 💡 增量融合本地与服务端数据：
+    // 如果本地缓存里有某个房源（比如新添加的房源）且状态为 ok，但服务端 data.json 还没有该房源（或者状态不是 ok），
+    // 则将本地缓存中的房源数据融合到服务端数据中，防止刷新后新房源数据被覆盖抹除。
+    const cachedDataStr = localStorage.getItem('airbnb_calendar_data');
+    if (cachedDataStr) {
+      try {
+        const cachedData = JSON.parse(cachedDataStr);
+        if (cachedData && cachedData.properties) {
+          for (const brand of state.rawConfig) {
+            for (const prop of brand.properties) {
+              const serverProp = data.properties[prop.id];
+              const cacheProp = cachedData.properties[prop.id];
+              if (cacheProp && cacheProp.status === 'ok') {
+                if (!serverProp || serverProp.status !== 'ok') {
+                  data.properties[prop.id] = cacheProp;
+                  console.log(`💡 从本地缓存融合了房源 [${prop.name}] 的最新日程`);
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('⚠️ 融合本地缓存与服务端日程失败:', e);
+      }
+    }
+    
     localStorage.setItem('airbnb_calendar_data', JSON.stringify(data));
     applyData(data);
   } catch (error) {
