@@ -59,7 +59,74 @@ const CORS_PROXIES = [
 // ==========================================================================
 function getTodayString() {
   const d = new Date();
-  return formatDateString(d);
+  const formatter = new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  try {
+    const parts = formatter.formatToParts(d);
+    const year = parts.find(p => p.type === 'year').value;
+    const month = parts.find(p => p.type === 'month').value;
+    const day = parts.find(p => p.type === 'day').value;
+    return `${year}-${month}-${day}`;
+  } catch (e) {
+    const formatted = formatter.format(d);
+    return formatted.replace(/\//g, '-');
+  }
+}
+
+// 合并新旧日历事件，保留已经发生的历史数据，更新未来的数据
+function mergeCalendarEvents(oldEvents = [], newEvents = []) {
+  const todayStr = getTodayString();
+  const merged = [];
+  
+  const newEventUids = new Set(newEvents.map(e => e.uid).filter(Boolean));
+  const newEventKeys = new Set(newEvents.map(e => `${e.start}_${e.end}_${e.summary}`));
+  
+  // 1. 处理旧事件
+  oldEvents.forEach(oldEv => {
+    const isPast = oldEv.end < todayStr;
+    
+    if (isPast) {
+      // 历史数据：保留
+      const matchesNewUid = oldEv.uid && newEventUids.has(oldEv.uid);
+      const matchesNewKey = newEventKeys.has(`${oldEv.start}_${oldEv.end}_${oldEv.summary}`);
+      
+      if (!matchesNewUid && !matchesNewKey) {
+        merged.push(oldEv);
+      }
+    }
+  });
+  
+  // 2. 加入所有新拉取到的事件
+  newEvents.forEach(newEv => {
+    merged.push(newEv);
+  });
+  
+  // 3. 去重
+  const finalEvents = [];
+  const seenUids = new Set();
+  const seenKeys = new Set();
+  
+  merged.forEach(ev => {
+    const key = `${ev.start}_${ev.end}_${ev.summary}`;
+    if (ev.uid) {
+      if (!seenUids.has(ev.uid)) {
+        seenUids.add(ev.uid);
+        seenKeys.add(key);
+        finalEvents.push(ev);
+      }
+    } else {
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        finalEvents.push(ev);
+      }
+    }
+  });
+  
+  return finalEvents;
 }
 
 function formatDateString(date) {
@@ -458,6 +525,24 @@ async function loadData() {
   // 载入本地备忘录备注库
   state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
   
+  // 尝试从云端 Vercel Blob 同步最新备注
+  try {
+    const cloudRemarksRes = await fetch('/api/remarks?t=' + Date.now());
+    if (cloudRemarksRes.ok) {
+      const cloudRemarks = await cloudRemarksRes.json();
+      if (cloudRemarks && typeof cloudRemarks === 'object') {
+        state.remarksData = Object.assign({}, state.remarksData, cloudRemarks);
+        localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
+        console.log('✅ 成功从云端 Vercel Blob 载入并合并备注');
+        // 显示备份与同步按钮
+        const syncBtn = document.getElementById('btn-manager-sync-remarks');
+        if (syncBtn) syncBtn.style.display = 'inline-block';
+      }
+    }
+  } catch (e) {
+    console.warn('⚠️ 云端备注同步失败，将继续使用本地 LocalStorage 备注:', e.message);
+  }
+  
   // 载入本地自定义详情备注 (创建日期, 入住人数)
   state.customBookingDetails = JSON.parse(localStorage.getItem('airbnb_calendar_custom_booking_details')) || {};
   
@@ -541,20 +626,29 @@ async function fetchLiveSyncFallback(useProxyIndex = 0) {
       if (!res.ok) throw new Error(`状态码: ${res.status}`);
       const text = await res.text();
       const events = parseICSClient(text);
+      
+      const existingProp = state.propertiesData && state.propertiesData[task.propId];
+      const existingEvents = existingProp ? existingProp.events : [];
+      const mergedEvents = mergeCalendarEvents(existingEvents, events);
+      
       fallbackResults.properties[task.propId] = {
         propId: task.propId,
         propName: task.propName,
         brandId: task.brandId,
-        events: events,
+        events: mergedEvents,
         status: 'ok'
       };
     } catch (e) {
       console.error(`⚠️ 代理抓取房源 [${task.propName}] 失败:`, e.message);
+      
+      const existingProp = state.propertiesData && state.propertiesData[task.propId];
+      const existingEvents = existingProp ? existingProp.events : [];
+      
       fallbackResults.properties[task.propId] = {
         propId: task.propId,
         propName: task.propName,
         brandId: task.brandId,
-        events: [],
+        events: existingEvents,
         status: 'error',
         errorMessage: e.message
       };
@@ -1350,6 +1444,7 @@ function saveRemarks() {
   localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
   hideRemarksModal();
   renderGanttTimeline(getPropertiesForActiveBrand());
+  syncRemarksToCloud();
 }
 
 function deleteRemark() {
@@ -1359,6 +1454,27 @@ function deleteRemark() {
   localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
   hideRemarksModal();
   renderGanttTimeline(getPropertiesForActiveBrand());
+  syncRemarksToCloud();
+}
+
+async function syncRemarksToCloud() {
+  try {
+    const res = await fetch('/api/remarks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(state.remarksData)
+    });
+    if (res.ok) {
+      console.log('✅ 备注成功同步至 Vercel Blob 云端');
+    } else {
+      throw new Error(`HTTP状态码: ${res.status}`);
+    }
+  } catch (e) {
+    console.error('⚠️ 备注云端同步失败，已保存在本地浏览器:', e.message);
+    showToast('⚠️ 备注云端同步失败，已保存在本地浏览器', 'warning');
+  }
 }
 
 function hideRemarksModal() {
@@ -1878,6 +1994,21 @@ function setupEventListeners() {
   document.getElementById('btn-manager-copy-code').onclick = managerCopyCode;
   document.getElementById('btn-manager-toggle-mode').onclick = managerToggleMode;
   document.getElementById('btn-manager-add-prop').onclick = managerAddProperty;
+  
+  document.getElementById('btn-manager-sync-remarks').onclick = async () => {
+    const btn = document.getElementById('btn-manager-sync-remarks');
+    btn.disabled = true;
+    btn.innerText = '⏳ 正在备份...';
+    try {
+      await syncRemarksToCloud();
+      showToast('🌸 成功将本地所有备注上传备份至 Vercel Blob 云端！', 'success');
+    } catch (e) {
+      showToast('❌ 备份失败: ' + e.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerText = '☁️ 备份备注至云端';
+    }
+  };
   
   document.getElementById('manager-modal').onclick = (e) => {
     if (e.target.id === 'manager-modal') hideManagerModal();

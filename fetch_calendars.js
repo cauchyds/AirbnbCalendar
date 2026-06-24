@@ -136,10 +136,91 @@ function parseICS(icsText) {
   return events;
 }
 
+// 获取东京（日本）时间的今天日期 (YYYY-MM-DD)
+function getTodayString() {
+  const d = new Date();
+  const formatter = new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  const parts = formatter.formatToParts(d);
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
+  return `${year}-${month}-${day}`;
+}
+
+// 合并新旧日历事件，保留已经发生的历史数据，更新未来的数据
+function mergeCalendarEvents(oldEvents = [], newEvents = []) {
+  const todayStr = getTodayString();
+  const merged = [];
+  
+  const newEventUids = new Set(newEvents.map(e => e.uid).filter(Boolean));
+  const newEventKeys = new Set(newEvents.map(e => `${e.start}_${e.end}_${e.summary}`));
+  
+  // 1. 处理旧事件
+  oldEvents.forEach(oldEv => {
+    const isPast = oldEv.end < todayStr;
+    
+    if (isPast) {
+      // 历史数据：保留
+      const matchesNewUid = oldEv.uid && newEventUids.has(oldEv.uid);
+      const matchesNewKey = newEventKeys.has(`${oldEv.start}_${oldEv.end}_${oldEv.summary}`);
+      
+      if (!matchesNewUid && !matchesNewKey) {
+        merged.push(oldEv);
+      }
+    }
+  });
+  
+  // 2. 加入所有新拉取到的事件
+  newEvents.forEach(newEv => {
+    merged.push(newEv);
+  });
+  
+  // 3. 去重
+  const finalEvents = [];
+  const seenUids = new Set();
+  const seenKeys = new Set();
+  
+  merged.forEach(ev => {
+    const key = `${ev.start}_${ev.end}_${ev.summary}`;
+    if (ev.uid) {
+      if (!seenUids.has(ev.uid)) {
+        seenUids.add(ev.uid);
+        seenKeys.add(key);
+        finalEvents.push(ev);
+      }
+    } else {
+      if (!seenKeys.has(key)) {
+        seenKeys.add(key);
+        finalEvents.push(ev);
+      }
+    }
+  });
+  
+  return finalEvents;
+}
+
 // 主同步执行逻辑
 async function main() {
   console.log('--- 🏮 开始抓取 Airbnb 房源日历 ---');
   const syncTimestamp = new Date().toISOString();
+  
+  // 1. 读取原有的 data.json 数据用于合并历史数据
+  const outputFilePath = path.join(__dirname, 'data.json');
+  let oldData = null;
+  if (fs.existsSync(outputFilePath)) {
+    try {
+      oldData = JSON.parse(fs.readFileSync(outputFilePath, 'utf8'));
+      console.log('⚙️ 成功载入本地旧 data.json 历史缓存');
+    } catch (e) {
+      console.warn('⚠️ 读取旧 data.json 失败或文件格式损坏:', e.message);
+    }
+  }
+
   const results = {
     lastUpdated: syncTimestamp,
     properties: {}
@@ -179,20 +260,29 @@ async function main() {
       const events = parseICS(icsData);
       
       console.log(`✅ 成功解析 [${task.brandName} - ${task.propName}]: 找到 ${events.length} 个预订日程`);
+      
+      const existingProp = oldData && oldData.properties && oldData.properties[task.propId];
+      const existingEvents = existingProp ? existingProp.events : [];
+      const mergedEvents = mergeCalendarEvents(existingEvents, events);
+      
       results.properties[task.propId] = {
         propId: task.propId,
         propName: task.propName,
         brandId: task.brandId,
-        events: events,
+        events: mergedEvents,
         status: 'ok'
       };
     } catch (error) {
       console.error(`❌ 拉取 [${task.brandName} - ${task.propName}] 失败:`, error.message);
+      
+      const existingProp = oldData && oldData.properties && oldData.properties[task.propId];
+      const existingEvents = existingProp ? existingProp.events : [];
+      
       results.properties[task.propId] = {
         propId: task.propId,
         propName: task.propName,
         brandId: task.brandId,
-        events: [],
+        events: existingEvents,
         status: 'error',
         errorMessage: error.message
       };
@@ -202,7 +292,6 @@ async function main() {
   await Promise.all(promises);
 
   // 写入 JSON 静态数据文件
-  const outputFilePath = path.join(__dirname, 'data.json');
   fs.writeFileSync(outputFilePath, JSON.stringify(results, null, 2), 'utf8');
   
   console.log('\n--- 🎉 日历同步圆满完成 ---');
