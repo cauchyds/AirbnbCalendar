@@ -120,9 +120,13 @@
             </div>
             
             <!-- 时间轴过滤器与视图切换 -->
-            <div class="timeline-controls">
-              <div class="timeline-nav">
+            <div class="timeline-controls" style="display: flex; align-items: center; gap: 10px;">
+              <div class="timeline-nav" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <button id="btn-time-today" class="btn-nav btn-today" style="border-radius: var(--radius-sm); border: 1px solid var(--border-wood-dark); padding: 6px 16px; font-size: 0.85rem; background-color: var(--bg-washi);">🗓️ 回到今天</button>
+                <div class="date-picker-wrapper" style="display: flex; align-items: center; gap: 5px; background: var(--bg-washi); border: 1px solid var(--border-wood-dark); border-radius: var(--radius-sm); padding: 4px 10px;">
+                  <span style="font-size: 0.8rem; color: var(--text-wood-dark); font-weight: 500;">📅 选择日期跳转:</span>
+                  <input type="date" id="input-jump-date" style="border: none; background: transparent; font-size: 0.85rem; color: var(--text-charcoal); outline: none; cursor: pointer; font-family: inherit; font-weight: 500;" />
+                </div>
               </div>
             </div>
           </div>

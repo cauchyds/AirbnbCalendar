@@ -982,6 +982,7 @@ function renderGanttTimeline(activeProps) {
       if (slot === 0) {
         const tdDate = document.createElement('td');
         tdDate.className = `tg-col-date-header ${dateClass}`;
+        tdDate.setAttribute('data-date-header', dateStr);
         tdDate.rowSpan = 8;
         
         tdDate.innerHTML = `
@@ -1067,6 +1068,45 @@ function scrollToToday() {
   const todayEl = outer.querySelector('.today-date');
   if (todayEl) {
     outer.scrollTop = todayEl.offsetTop - (outer.clientHeight / 3);
+  }
+}
+
+// 自动滚动定位到指定日期
+function scrollToDate(dateStr) {
+  const outer = document.querySelector('.timeline-wrapper-outer');
+  if (!outer) return false;
+  const dateEl = outer.querySelector(`[data-date-header="${dateStr}"]`);
+  if (dateEl) {
+    outer.scrollTop = dateEl.offsetTop - (outer.clientHeight / 3);
+    return true;
+  }
+  return false;
+}
+
+// 跳转到任意日期（支持按需重新加载时间轴范围）
+function jumpToDate(dateStr) {
+  if (!dateStr) return;
+  const targetDate = new Date(dateStr);
+  if (isNaN(targetDate.getTime())) return;
+  
+  // 检查目标日期是否在当前已加载的日期范围内
+  const start = state.timelineStartDate;
+  const end = addDays(start, state.timelineScale);
+  
+  if (targetDate >= start && targetDate < end) {
+    // 已经在加载范围内，直接滚动定位
+    scrollToDate(dateStr);
+  } else {
+    // 超出加载范围，重新以目标日期为中心（前推15天作为起点）进行加载重绘
+    state.timelineStartDate = addDays(targetDate, -15);
+    state.timelineScale = 60;
+    
+    renderGanttTimeline(getPropertiesForActiveBrand());
+    
+    // 延迟等待 DOM 重绘后，执行滚动定位
+    setTimeout(() => {
+      scrollToDate(dateStr);
+    }, 80);
   }
 }
 
@@ -1934,6 +1974,8 @@ function hideBookingModal() {
 // 13. 控制监听与程序初始化 (Event Handlers & Bootstrapper)
 // ==========================================================================
 function setupEventListeners() {
+  const inputJumpDate = document.getElementById('input-jump-date');
+
   // 1. 回到今天（重置展示时间跨度为：30天前 到 30天后，共60天）
   document.getElementById('btn-time-today').onclick = () => {
     const today = new Date();
@@ -1941,7 +1983,17 @@ function setupEventListeners() {
     state.timelineScale = 60;
     renderGanttTimeline(getPropertiesForActiveBrand());
     scrollToToday();
+    if (inputJumpDate) {
+      inputJumpDate.value = '';
+    }
   };
+  
+  // 1b. 选择任意日期跳转
+  if (inputJumpDate) {
+    inputJumpDate.onchange = (e) => {
+      jumpToDate(e.target.value);
+    };
+  }
   
   // 🔍 2. 放大看板切换
   const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
