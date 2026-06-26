@@ -25,7 +25,9 @@ module.exports = async function handler(req, res) {
         // 寻找到精确匹配的 blob
         const targetBlob = blobs.find(b => b.pathname === 'remarks.json') || blobs[0];
         // 使用 SDK 的 get() 获取私有 blob 内容，兼容私有/公开存储
-        const blobObj = await get(targetBlob.url);
+        const blobObj = await get(targetBlob.url, {
+          token: process.env.BLOB_READ_WRITE_TOKEN
+        });
         const response = new Response(blobObj.stream);
         const data = await response.json();
         return res.status(200).json(data);
