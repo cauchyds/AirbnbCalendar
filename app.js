@@ -541,25 +541,23 @@ async function loadData() {
     }
   }
   
-  // 载入本地备忘录备注库
-  state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
-  
-  // 尝试从云端 Vercel Blob 同步最新备注
+  // ⚙️ 优先级 1：优先尝试从云端 Vercel Blob 获取最新备忘录备注库 (实现全自动数据库驱动)
   try {
     const cloudRemarksRes = await fetch('/api/remarks?t=' + Date.now());
     if (cloudRemarksRes.ok) {
       const cloudRemarks = await cloudRemarksRes.json();
       if (cloudRemarks && typeof cloudRemarks === 'object') {
-        state.remarksData = Object.assign({}, state.remarksData, cloudRemarks);
+        state.remarksData = cloudRemarks;
         localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
-        console.log('✅ 成功从云端 Vercel Blob 载入并合并备注');
-        // 显示备份与同步按钮
-        const syncBtn = document.getElementById('btn-manager-sync-remarks');
-        if (syncBtn) syncBtn.style.display = 'inline-block';
+        console.log('✅ 成功从云端 Vercel Blob 载入最新备注');
       }
+    } else {
+      throw new Error(`HTTP 状态码: ${cloudRemarksRes.status}`);
     }
   } catch (e) {
-    console.warn('⚠️ 云端备注同步失败，将继续使用本地 LocalStorage 备注:', e.message);
+    console.warn('⚠️ 云端载入备注失败，退回使用本地 LocalStorage 备份:', e.message);
+    // 优先级 2：退回到本地 LocalStorage 备份
+    state.remarksData = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
   }
   
   // 载入本地自定义详情备注 (创建日期, 入住人数)
@@ -1563,9 +1561,12 @@ function updateRemarksTagHighlight() {
   });
 }
 
-function saveRemarks() {
+async function saveRemarks() {
   const textVal = document.getElementById('input-remark-text').value.trim();
   const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_slot_${state.remarksActiveSlotIdx}`;
+  
+  // 备份旧状态以备同步失败时回滚
+  const oldRemarks = Object.assign({}, state.remarksData);
   
   if (textVal === '') {
     delete state.remarksData[key];
@@ -1574,46 +1575,67 @@ function saveRemarks() {
     state.remarksData[key] = fullText;
   }
   
-  localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
-  hideRemarksModal();
-  renderGanttTimeline(getPropertiesForActiveBrand());
-  syncRemarksToCloud();
+  showToast('⏳ 正在同步备注至云端数据库...', 'info');
+  
+  try {
+    await syncRemarksToCloud();
+    // 云端保存成功，更新本地 LocalStorage 备份
+    localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
+    hideRemarksModal();
+    renderGanttTimeline(getPropertiesForActiveBrand());
+    showToast('💾 备注已成功同步至云端数据库！', 'success');
+  } catch (e) {
+    // 失败则回滚内存状态，展示报错
+    state.remarksData = oldRemarks;
+    console.error('❌ 备注云端同步失败:', e.message);
+    showToast(`❌ 备注同步失败: ${e.message}。修改未保存，请重试！`, 'error');
+  }
 }
 
-function deleteRemark() {
+async function deleteRemark() {
   const key = `${state.remarksActiveDate}_${state.remarksActivePropId}_slot_${state.remarksActiveSlotIdx}`;
+  
+  // 备份旧状态以备同步失败时回滚
+  const oldRemarks = Object.assign({}, state.remarksData);
+  
   delete state.remarksData[key];
   
-  localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
-  hideRemarksModal();
-  renderGanttTimeline(getPropertiesForActiveBrand());
-  syncRemarksToCloud();
+  showToast('⏳ 正在从云端删除备注...', 'info');
+  
+  try {
+    await syncRemarksToCloud();
+    // 云端删除成功，更新本地 LocalStorage 备份
+    localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
+    hideRemarksModal();
+    renderGanttTimeline(getPropertiesForActiveBrand());
+    showToast('🗑️ 备注已成功从云端删除！', 'success');
+  } catch (e) {
+    // 失败则回滚内存状态，展示报错
+    state.remarksData = oldRemarks;
+    console.error('❌ 从云端删除备注失败:', e.message);
+    showToast(`❌ 删除失败: ${e.message}。修改未应用，请重试！`, 'error');
+  }
 }
 
 async function syncRemarksToCloud() {
-  try {
-    const res = await fetch('/api/remarks', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(state.remarksData)
-    });
-    if (res.ok) {
-      console.log('✅ 备注成功同步至 Vercel Blob 云端');
-    } else {
-      let errMsg = `HTTP 状态码: ${res.status}`;
-      try {
-        const errJson = await res.json();
-        if (errJson && errJson.error) {
-          errMsg = errJson.error;
-        }
-      } catch (jsonErr) {}
-      throw new Error(errMsg);
-    }
-  } catch (e) {
-    console.error('⚠️ 备注云端同步失败，已保存在本地浏览器:', e.message);
-    showToast(`⚠️ 备注云端同步失败 (${e.message})，已保存在本地浏览器`, 'warning');
+  const res = await fetch('/api/remarks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(state.remarksData)
+  });
+  if (res.ok) {
+    console.log('✅ 备注成功同步至 Vercel Blob 云端');
+  } else {
+    let errMsg = `HTTP 状态码: ${res.status}`;
+    try {
+      const errJson = await res.json();
+      if (errJson && errJson.error) {
+        errMsg = errJson.error;
+      }
+    } catch (jsonErr) {}
+    throw new Error(errMsg);
   }
 }
 
@@ -2268,20 +2290,7 @@ function setupEventListeners() {
   document.getElementById('btn-manager-toggle-mode').onclick = managerToggleMode;
   document.getElementById('btn-manager-add-prop').onclick = managerAddProperty;
   
-  document.getElementById('btn-manager-sync-remarks').onclick = async () => {
-    const btn = document.getElementById('btn-manager-sync-remarks');
-    btn.disabled = true;
-    btn.innerText = '⏳ 正在备份...';
-    try {
-      await syncRemarksToCloud();
-      showToast('🌸 成功将本地所有备注上传备份至 Vercel Blob 云端！', 'success');
-    } catch (e) {
-      showToast('❌ 备份失败: ' + e.message, 'error');
-    } finally {
-      btn.disabled = false;
-      btn.innerText = '☁️ 备份备注至云端';
-    }
-  };
+
   
   document.getElementById('manager-modal').onclick = (e) => {
     if (e.target.id === 'manager-modal') hideManagerModal();
