@@ -26,8 +26,8 @@ module.exports = async function handler(req, res) {
         const targetBlob = blobs.find(b => b.pathname === 'config.json') || blobs[0];
         // 使用 SDK 的 get() 获取私有 blob 内容，兼容私有/公开存储
         const blobObj = await get(targetBlob.url);
-        const text = await blobObj.text();
-        const data = JSON.parse(text);
+        const response = new Response(blobObj.stream);
+        const data = await response.json();
         return res.status(200).json(data);
       }
       // 如果云端还没有配置过文件，则降级返回本地 config.js 中的默认 BRANDS_CONFIG
