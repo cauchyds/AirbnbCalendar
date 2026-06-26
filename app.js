@@ -325,21 +325,44 @@ function getPropertyStatusForDate(propId, dateStr) {
   let blockedCheckOutEvent = null;
   let blockedActiveEvent = null;
   
+  // Also track cancelled bookings
+  let isCancelledCheckIn = false;
+  let isCancelledCheckOut = false;
+  let isCancelledBetween = false;
+  let cancelledCheckInEvent = null;
+  let cancelledCheckOutEvent = null;
+  let cancelledActiveEvent = null;
+  
   for (const ev of prop.events) {
     const isReal = isReservationEvent(ev);
     
     if (isReal) {
-      if (ev.start === dateStr) {
-        isCheckIn = true;
-        checkInEvent = ev;
-      }
-      if (ev.end === dateStr) {
-        isCheckOut = true;
-        checkOutEvent = ev;
-      }
-      if (dateStr >= ev.start && dateStr < ev.end) {
-        isBetween = true;
-        activeEvent = ev;
+      if (ev.isCancelled) {
+        if (ev.start === dateStr) {
+          isCancelledCheckIn = true;
+          cancelledCheckInEvent = ev;
+        }
+        if (ev.end === dateStr) {
+          isCancelledCheckOut = true;
+          cancelledCheckOutEvent = ev;
+        }
+        if (dateStr >= ev.start && dateStr < ev.end) {
+          isCancelledBetween = true;
+          cancelledActiveEvent = ev;
+        }
+      } else {
+        if (ev.start === dateStr) {
+          isCheckIn = true;
+          checkInEvent = ev;
+        }
+        if (ev.end === dateStr) {
+          isCheckOut = true;
+          checkOutEvent = ev;
+        }
+        if (dateStr >= ev.start && dateStr < ev.end) {
+          isBetween = true;
+          activeEvent = ev;
+        }
       }
     } else {
       if (ev.start === dateStr) {
@@ -383,6 +406,20 @@ function getPropertyStatusForDate(propId, dateStr) {
   }
   if (isBlockedBetween) {
     return { status: 'blocked', event: blockedActiveEvent };
+  }
+  
+  // If no active booking and no block, check if there's a cancelled booking
+  if (isCancelledCheckIn && isCancelledCheckOut) {
+    return { status: 'cancelled-split', checkOutEvent: cancelledCheckOutEvent, checkInEvent: cancelledCheckInEvent };
+  }
+  if (isCancelledCheckIn) {
+    return { status: 'cancelled-checkin', event: cancelledCheckInEvent };
+  }
+  if (isCancelledCheckOut) {
+    return { status: 'cancelled-checkout', event: cancelledCheckOutEvent };
+  }
+  if (isCancelledBetween) {
+    return { status: 'cancelled', event: cancelledActiveEvent };
   }
   
   return { status: 'vacant' };
@@ -494,6 +531,48 @@ function getSlotStatusForDate(propId, dateStr, slotIdx) {
       return { statusClass: 'status-blocked', isBookingCell: true, label: '今日锁房/不可用', event: fStatus.checkInEvent };
     } else if (slotIdx === 7) {
       return { statusClass: 'status-blocked', isBookingCell: false };
+    } else {
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // J. 已取消连住 (中间日)
+  if (s === 'cancelled') {
+    return { statusClass: 'status-cancelled-reserved', isBookingCell: false };
+  }
+  
+  // K. 已取消入住当天 (前空后已取消)
+  if (s === 'cancelled-checkin') {
+    if (slotIdx === 6) {
+      return { statusClass: 'status-cancelled-checkin', isBookingCell: true, label: '今日新入住 (已取消)', event: fStatus.event };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-cancelled-reserved', isBookingCell: false };
+    } else {
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // L. 已取消退房当天 (前已取消后空)
+  if (s === 'cancelled-checkout') {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-cancelled-reserved', isBookingCell: false };
+    } else if (slotIdx === 1) {
+      return { statusClass: 'status-cancelled-checkout', isBookingCell: true, label: '今日退房离店 (已取消)', event: fStatus.event };
+    } else {
+      return { statusClass: 'status-vacant', isBookingCell: false };
+    }
+  }
+  
+  // M. 已取消同日交接日 (换客中)
+  if (s === 'cancelled-split') {
+    if (slotIdx === 0) {
+      return { statusClass: 'status-cancelled-reserved', isBookingCell: false };
+    } else if (slotIdx === 1) {
+      return { statusClass: 'status-cancelled-checkout', isBookingCell: true, label: '今日退房 (已取消)', event: fStatus.checkOutEvent };
+    } else if (slotIdx === 6) {
+      return { statusClass: 'status-cancelled-checkin', isBookingCell: true, label: '今日新入住 (已取消)', event: fStatus.checkInEvent };
+    } else if (slotIdx === 7) {
+      return { statusClass: 'status-cancelled-reserved', isBookingCell: false };
     } else {
       return { statusClass: 'status-vacant', isBookingCell: false };
     }
@@ -1742,6 +1821,14 @@ function getPropertyById(propId) {
   return null;
 }
 
+function getPropertyIdByName(propName) {
+  for (const b of state.rawConfig) {
+    const found = b.properties.find(p => p.name === propName);
+    if (found) return found.id;
+  }
+  return null;
+}
+
 function getBrandNameForProperty(propIdOrName) {
   for (const b of state.rawConfig) {
     const found = b.properties.some(p => p.id === propIdOrName || p.name === propIdOrName);
@@ -2000,6 +2087,55 @@ function showBookingModal(propertyName, statusText, event) {
   } else {
     linkRow.style.display = 'none';
   }
+  
+  // 📅 动态加载该时段订单历史与取消痕迹 (Audit Trail)
+  const propId = getPropertyIdByName(propertyName);
+  const historySection = document.getElementById('modal-history-section');
+  const historyList = document.getElementById('modal-history-list');
+  if (historySection && historyList && propId && event && event.start && event.end) {
+    historyList.innerHTML = '';
+    const events = state.propertiesData[propId]?.events || [];
+    
+    // 寻找与当前查看事件在时间范围上有任何交集的预订订单（包含已取消订单）
+    const overlapping = events.filter(ev => {
+      return isReservationEvent(ev) && (ev.start < event.end && ev.end > event.start);
+    });
+    
+    if (overlapping.length > 0) {
+      historySection.style.display = 'block';
+      overlapping.forEach(ev => {
+        const li = document.createElement('li');
+        li.style.marginBottom = '6px';
+        const nights = getNights(ev.start, ev.end);
+        const isCurrent = ev.start === event.start && ev.end === event.end && ev.uid === event.uid;
+        
+        let badge = '';
+        let itemStyle = '';
+        if (ev.isCancelled) {
+          badge = '<span style="color: #888; border: 1px solid #ccc; background-color: #eee; padding: 1px 5px; border-radius: 3px; font-size: 0.65rem; margin-right: 6px; font-family: var(--font-sans);">已取消</span>';
+          itemStyle = 'text-decoration: line-through; color: #888;';
+        } else {
+          badge = '<span style="color: var(--color-kaki); border: 1px solid var(--color-kaki); background-color: var(--color-kaki-bg); padding: 1px 5px; border-radius: 3px; font-size: 0.65rem; margin-right: 6px; font-family: var(--font-sans);">预订中</span>';
+          itemStyle = 'font-weight: 500; color: var(--text-dark);';
+        }
+        
+        if (isCurrent) {
+          li.style.backgroundColor = 'var(--bg-tatami)';
+          li.style.borderLeft = '3px solid var(--color-kaki)';
+          li.style.paddingLeft = '6px';
+          li.style.borderRadius = '2px';
+        }
+        
+        li.innerHTML = `${badge} <span style="${itemStyle}">${formatDateChinese(ev.start)} 至 ${formatDateChinese(ev.end)} (${nights}晚) - ${ev.summary || '未命名'}</span>`;
+        historyList.appendChild(li);
+      });
+    } else {
+      historySection.style.display = 'none';
+    }
+  } else {
+    if (historySection) historySection.style.display = 'none';
+  }
+  
   modal.classList.add('active');
 }
 

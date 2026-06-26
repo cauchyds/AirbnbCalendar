@@ -2171,3 +2171,34 @@ body {
 .timeline-wrapper-outer.grabbing {
   cursor: grabbing;
 }
+
+/* ==========================================================================
+   已取消订单弱化样式
+   ========================================================================== */
+.status-cancelled-reserved {
+  background-color: #f7f6f4 !important;
+  color: #aaaaaa !important;
+  border: 1px dashed #dcdbd8 !important;
+}
+
+.status-cancelled-checkin {
+  background-color: #f7f6f4 !important;
+  color: #aaaaaa !important;
+  border-left: 1px dashed #dcdbd8 !important;
+}
+
+.status-cancelled-checkout {
+  background-color: #f7f6f4 !important;
+  color: #aaaaaa !important;
+  border-right: 1px dashed #dcdbd8 !important;
+}
+
+/* 已取消的入住/退房胶囊药丸 */
+.status-cancelled-checkin .grid-pill,
+.status-cancelled-checkout .grid-pill {
+  background-color: #eeeeee !important;
+  color: #888888 !important;
+  border-color: #cccccc !important;
+  text-decoration: line-through !important;
+  opacity: 0.65;
+}

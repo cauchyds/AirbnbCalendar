@@ -171,14 +171,28 @@ function mergeCalendarEvents(oldEvents = [], newEvents = []) {
   // 1. 处理旧事件
   oldEvents.forEach(oldEv => {
     const isPast = oldEv.end < todayStr;
+    const matchesNewUid = oldEv.uid && newEventUids.has(oldEv.uid);
+    const matchesNewKey = newEventKeys.has(`${oldEv.start}_${oldEv.end}_${oldEv.summary}`);
     
-    if (isPast) {
-      // 历史数据：保留
-      const matchesNewUid = oldEv.uid && newEventUids.has(oldEv.uid);
-      const matchesNewKey = newEventKeys.has(`${oldEv.start}_${oldEv.end}_${oldEv.summary}`);
-      
+    if (oldEv.isCancelled) {
+      // 已经标记为已取消的事件：继续保留，除非它又回到了新拉取的事件列表里（此时不再标记为已取消，直接由新数据覆盖）
       if (!matchesNewUid && !matchesNewKey) {
         merged.push(oldEv);
+      }
+    } else if (isPast) {
+      // 历史数据：保留
+      if (!matchesNewUid && !matchesNewKey) {
+        merged.push(oldEv);
+      }
+    } else {
+      // 未来数据：如果在新的日历里面找不到了，说明是被取消了！保留，但打上 `isCancelled: true` 标记
+      if (!matchesNewUid && !matchesNewKey) {
+        const cancelledEv = Object.assign({}, oldEv, {
+          isCancelled: true,
+          summary: (oldEv.summary || 'Reserved').includes('(已取消)') ? (oldEv.summary || 'Reserved') : `${oldEv.summary || 'Reserved'} (已取消)`
+        });
+        merged.push(cancelledEv);
+        console.log(`🍊 检测到未来订单被取消，已保留痕迹: [${cancelledEv.start} 至 ${cancelledEv.end}] ${cancelledEv.summary}`);
       }
     }
   });
