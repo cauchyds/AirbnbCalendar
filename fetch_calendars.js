@@ -10,13 +10,14 @@ const https = require('https');
 const path = require('path');
 const { BRANDS_CONFIG } = require('./config');
 
-// 封装 HTTPS GET 请求为 Promise
+// 封装 HTTPS GET 请求为 Promise (带 15 秒超时保护)
 function fetchUrl(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, {
+    const req = https.get(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      }
+      },
+      timeout: 15000 // 15秒超时
     }, (res) => {
       if (res.statusCode !== 200) {
         reject(new Error(`请求失败，状态码: ${res.statusCode} URL: ${url}`));
@@ -26,8 +27,15 @@ function fetchUrl(url) {
       let data = '';
       res.on('data', (chunk) => { data += chunk; });
       res.on('end', () => { resolve(data); });
-    }).on('error', (err) => {
+    });
+    
+    req.on('error', (err) => {
       reject(err);
+    });
+    
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error(`请求超时 (15秒): ${url}`));
     });
   });
 }

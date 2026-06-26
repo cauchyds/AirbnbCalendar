@@ -2042,6 +2042,22 @@ function setupEventListeners() {
   };
   
   // 1b. 选择任意日期跳转
+  const btnJumpDate = document.getElementById('btn-jump-date');
+  if (btnJumpDate && inputJumpDate) {
+    btnJumpDate.onclick = (e) => {
+      e.preventDefault();
+      if (typeof inputJumpDate.showPicker === 'function') {
+        try {
+          inputJumpDate.showPicker();
+        } catch (err) {
+          console.warn('showPicker failed, fallback to click:', err);
+          inputJumpDate.click();
+        }
+      } else {
+        inputJumpDate.click();
+      }
+    };
+  }
   if (inputJumpDate) {
     inputJumpDate.onchange = (e) => {
       jumpToDate(e.target.value);

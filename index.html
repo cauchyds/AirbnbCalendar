@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.20">
+  <link rel="stylesheet" href="style.css?v=3.21">
 </head>
 <body>
 
@@ -123,9 +123,9 @@
             <div class="timeline-controls" style="display: flex; align-items: center; gap: 10px;">
               <div class="timeline-nav" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <button id="btn-time-today" class="btn-nav btn-today" style="border-radius: var(--radius-sm); border: 1px solid var(--border-wood-dark); padding: 6px 16px; font-size: 0.85rem; background-color: var(--bg-washi);">🗓️ 回到今天</button>
-                <div class="date-picker-wrapper" style="position: relative; display: inline-block; overflow: hidden; vertical-align: middle; border-radius: var(--radius-sm);">
-                  <button class="btn-jump-display" style="border: 1px solid var(--border-wood-dark); padding: 6px 16px; font-size: 0.85rem; background-color: var(--bg-washi); pointer-events: none; white-space: nowrap; border-radius: var(--radius-sm); font-family: inherit; font-weight: 500; cursor: pointer; color: var(--text-wood-dark);">📅 选择日期</button>
-                  <input type="date" id="input-jump-date" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; padding: 0;" />
+                <div class="date-picker-wrapper" style="position: relative; display: inline-block; vertical-align: middle;">
+                  <button id="btn-jump-date" class="btn-nav btn-jump-display" style="border-radius: var(--radius-sm); border: 1px solid var(--border-wood-dark); padding: 6px 16px; font-size: 0.85rem; background-color: var(--bg-washi); white-space: nowrap; font-family: inherit; font-weight: 500; cursor: pointer; color: var(--text-wood-dark);">📅 选择日期</button>
+                  <input type="date" id="input-jump-date" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; border: none; padding: 0; margin: 0;" />
                 </div>
               </div>
             </div>
@@ -413,7 +413,7 @@
   </footer>
 
   <!-- 引入配置与逻辑控制 JS -->
-  <script src="config.js?v=3.20"></script>
-  <script src="app.js?v=3.20"></script>
+  <script src="config.js?v=3.21"></script>
+  <script src="app.js?v=3.21"></script>
 </body>
 </html>
