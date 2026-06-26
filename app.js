@@ -547,9 +547,40 @@ async function loadData() {
     if (cloudRemarksRes.ok) {
       const cloudRemarks = await cloudRemarksRes.json();
       if (cloudRemarks && typeof cloudRemarks === 'object') {
+        // 【数据迁移防护机制】：读取当前本地缓存，如果有本地存在但云端缺失的备注数据，
+        // 自动进行静默合并，并自动同步一次回云端数据库，防止更新版本后本地备注被云端空数据擦除覆盖！
+        const localRemarks = JSON.parse(localStorage.getItem('airbnb_calendar_remarks')) || {};
+        let needMigrationSync = false;
+        
+        for (const key in localRemarks) {
+          if (!cloudRemarks[key]) {
+            cloudRemarks[key] = localRemarks[key];
+            needMigrationSync = true;
+          }
+        }
+        
         state.remarksData = cloudRemarks;
         localStorage.setItem('airbnb_calendar_remarks', JSON.stringify(state.remarksData));
         console.log('✅ 成功从云端 Vercel Blob 载入最新备注');
+        
+        if (needMigrationSync) {
+          console.log('⏳ 检测到本地存在未同步备注，正在自动将其迁移合并至云端...');
+          fetch('/api/remarks', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(state.remarksData)
+          }).then(res => {
+            if (res.ok) {
+              console.log('✅ 本地备注数据一键全自动同步迁移云端成功！');
+            } else {
+              console.warn('⚠️ 本地备注自动同步迁移失败');
+            }
+          }).catch(err => {
+            console.error('❌ 本地备注自动同步迁移抛出错误:', err);
+          });
+        }
       }
     } else {
       throw new Error(`HTTP 状态码: ${cloudRemarksRes.status}`);
